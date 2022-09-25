@@ -1,6 +1,66 @@
 <% layout('layout/boilerplate') -%>
 
 <main class="main vh-100 vw-100">
+	<div class="modal-container">
+		<div class="modal-outer">
+			<div class="modal-header">
+				<div class="modal-close-container">
+					<div class="modal-close-outer">
+						<img src="Icons/cross_icon_white.svg"  class="modal-close-btn"></img>
+						<!-- <span class="modal-close-bar"></span> -->
+					</div>
+				</div>
+				<div class="modal-steps">
+					<h2 class="header-text">Step 1 of 5</h2>
+				</div>
+			</div>
+			<div class="modal-form-outer">
+				<form action="POST">
+					<div clas="form-group group-1">
+						<h2 class="form-header">Create your account</h2>
+						<div class="input-label-wrapper" data-input-label>
+							<label class="label-wrapper" for="name" class="form-label" data-label>
+								<p class="input-label">Name</p>
+								<p class="input-word-count">0/50</p>
+							</label>
+							<input type="text" name="name" id="name" class="form-text-input input-text" placeholder="Name" data-input-text data-signup-name>
+						</div>
+						<div class="input-label-wrapper signup-phone" data-input-label data-signup-phone>
+							<label class="label-wrapper" for="phone" class="form-label">
+								<p class="input-label">Phone</p>
+							</label>
+							<input type="text" name="phone" id="phone" class="form-text-input input-text" placeholder="Phone" data-input-text data-signup-phone>
+						</div>
+						<div class="input-label-wrapper signup-email" data-input-label data-signup-email>
+							<label class="label-wrapper" for="email" class="form-label">
+								<p class="input-label">Email</p>
+							</label>
+							<input type="text" name="email" id="email" class="form-text-input input-text " placeholder="Email" data-input-text data-signup-email>
+						</div>
+						<div class="signup-email-phone-switch-wrapper" data-signup-email-phone-switch>
+							<a  class="signup-email-phone-switch" data-email-phone-switch-text>Use email instead</a>
+						</div>
+					</div>
+					<div clas="form-group group-2">
+
+					</div>
+					<div clas="form-group group-3">
+
+					</div>
+					<div clas="form-group group-4">
+
+					</div>
+					<div clas="form-group group-5">
+
+					</div>
+				</form>
+			</div>
+			<div class="form-next-btn">
+				<button class="form-btn">Next</button>
+			</div>
+		</div>
+	</div>
+
 	<section class="d-flex min-height-94 w-100 login-main-section">
 		<div class="logo-container w-60 d-flex justify-content-center align-items-center">
 			<div class="logo">
@@ -64,3 +124,5 @@
 		<p class="text-muted p-2 mt-1 ftr-link d-inline">&copy; 2022 Twitter, Inc.</p>
 	</footer>
 </main>
+
+<script src="JS/login_page.js" defer></script>

@@ -10,6 +10,7 @@ html {
 	font-size: 14px;
 	overflow-x: hidden;
 	background-color: black;
+	/* overflow-y: hidden; */
 }
 
 :root {
@@ -23,6 +24,13 @@ html {
 
 .text-blue {
 	color: var(--twitter-blue);
+}
+
+.input-text,
+.input-text:focus {
+	background-color: transparent;
+	outline: none;
+	border: none;
 }
 
 .text-muted {
@@ -244,6 +252,167 @@ a {
 
 .ftr-link:hover {
 	text-decoration: underline;
+}
+
+.modal-container {
+	height: 100vh;
+	width: 100vw;
+	background: rgba(91, 112, 137, 0.4);
+	position: absolute;
+	z-index: 10;
+	/* display: none; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-outer {
+	min-height: 450px;
+	max-width: 80vw;
+	max-height: 90vh;
+	background-color: black;
+	min-width: 600px;
+	border-radius: 20px;
+	height: 650px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+
+.modal-close-container {
+	height: 35px;
+	width: 35px;
+	background-color: transparent;
+	margin: 12px;
+	display: inline-block;
+}
+
+.modal-close-outer {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-close-outer:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+	cursor: pointer;
+}
+
+.modal-close-btn {
+	height: 40%;
+	width: 40%;
+}
+
+.modal-steps {
+	display: inline-block;
+}
+
+.header-text {
+	color: var(--primary-text);
+	font-size: 1.4rem;
+}
+
+.modal-form-outer {
+	width: 80%;
+	margin: 0 auto;
+	min-height: 80%;
+	min-width: 80%;
+}
+
+.form-group {
+	display: flex;
+	justify-content: space-between;
+}
+
+.form-header {
+	color: var(--primary-text);
+	font-size: 2.3rem;
+	margin-top: 20px;
+}
+
+.input-label-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	background-color: transparent;
+	border: solid 1px rgba(255, 255, 255, 0.3);
+	height: 4rem;
+	border-radius: 3px;
+	cursor: text;
+	text-indent: 7px;
+	font-size: 1rem;
+	color: var(--primary-text);
+	margin-top: 30px;
+}
+
+.form-text-input,
+.form-label,
+.label-wrapper {
+	transition: all 1s;
+	touch-action: manipulation;
+}
+
+.label-wrapper {
+	display: none;
+	justify-content: space-between;
+	padding-top: 7px;
+	padding-right: 4px;
+}
+
+.input-label-wrapper:focus {
+	border: solid 2px var(--twitter-blue);
+}
+
+.input-label {
+	color: var(--twitter-blue);
+}
+
+.form-text-input {
+	color: var(--primary-text);
+	text-indent: 7px;
+	height: 5rem;
+	font-size: 1.3rem;
+}
+
+.input-word-count {
+	color: var(--primary-text);
+}
+
+.form-label {
+	color: var(--primary-text);
+	padding-left: 7px;
+}
+
+.form-next-btn {
+	min-height: 10%;
+}
+
+.input-focused {
+	border: solid 2px var(--twitter-blue);
+}
+
+.form-text-input:focus::placeholder {
+	color: transparent;
+}
+
+.signup-email {
+	display: none;
+}
+
+.signup-email-phone-switch-wrapper {
+	width: 100%;
+	padding-top: 10px;
+	display: flex;
+	justify-content: flex-end;
+	cursor: pointer;
+}
+
+.signup-email-phone-switch {
+	text-decoration: none;
+	font-size: 1.2rem;
 }
 
 @media (max-width: 1024px) {
