@@ -16,6 +16,7 @@ html {
 :root {
 	--primary-text: #e7e9eaff;
 	--twitter-blue: #1d9bf0ff;
+	--faded-white: #ffffff66;
 }
 
 .text-color {
@@ -268,7 +269,7 @@ a {
 
 .modal-outer {
 	min-height: 450px;
-	max-width: 80vw;
+	max-width: 40vw;
 	max-height: 90vh;
 	background-color: black;
 	min-width: 600px;
@@ -318,7 +319,7 @@ a {
 .modal-form-outer {
 	width: 80%;
 	margin: 0 auto;
-	min-height: 80%;
+	min-height: 75%;
 	min-width: 80%;
 }
 
@@ -413,6 +414,100 @@ a {
 .signup-email-phone-switch {
 	text-decoration: none;
 	font-size: 1.2rem;
+}
+
+.signup-email-phone-switch-wrapper:hover {
+	text-decoration: underline;
+}
+
+.birth-date-wrapper {
+	margin-top: 30px;
+}
+
+.dob-info {
+	color: rgba(255, 255, 255, 0.3);
+	word-wrap: break-word;
+}
+
+.dob-input-wrapper {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 30px;
+}
+
+.dob-option {
+	height: 4.1rem;
+	background-color: transparent;
+	color: var(--faded-white);
+	border: solid 1px var(--faded-white);
+	border-radius: 5px;
+}
+
+.dob-month-wrapper {
+	width: 45%;
+	display: flex;
+	flex-direction: column;
+}
+
+.dob-day-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 20%;
+}
+
+.dob-year-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+}
+
+.dob-select {
+	height: 70%;
+	background-color: transparent;
+	border: none;
+	color: var(--primary-text);
+	cursor: pointer;
+	/* margin-left: 5%; */
+	text-indent: 10px;
+	line-height: 1.1rem;
+	font-size: 1.1rem;
+}
+
+.dob-label {
+	height: 20%;
+	padding-top: 13px;
+	margin-left: 13px;
+}
+
+.dob-select:active,
+.dob-select:focus,
+.dob-select:focus-visible {
+	border: none;
+	outline: none;
+}
+
+.select-item {
+	background-color: black;
+	color: white;
+	font-size: 1.3rem;
+}
+
+.modal-btn-wrapper {
+	height: 60px;
+	/* margin-top: 50px; */
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.modal-btn {
+	width: 80%;
+	height: 100%;
+	border-radius: 30px;
 }
 
 @media (max-width: 1024px) {

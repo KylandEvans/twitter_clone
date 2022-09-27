@@ -1,24 +1,27 @@
 // Switch between phone and email signup
-const emailPhoneSwitch = document.querySelector("[data-signup-email-phone-switch]");
+const switcherText = document.querySelector("[data-signup-email-phone-switch]");
 
-// Working on the below. Trying to stop if from needing to be pressed twice to get other email signup
+// Working on the below. Need to fix switching mechanic
+
 function emailPhoneSwap() {
 	const emailSignup = document.querySelector("[data-signup-email]");
 	const phoneSignup = document.querySelector("[data-signup-phone]");
-	const switcherText = document.querySelector("[data-email-phone-switch-text]");
 
-	if (phoneSignup.style.display === "flex") {
+	console.log(switcherText);
+	console.log(phoneSignup.display);
+
+	if (getComputedStyle(phoneSignup).display === "flex") {
 		phoneSignup.style.display = "none";
 		emailSignup.style.display = "flex";
 		switcherText.innerHTML = "Use phone instead";
-	} else {
+	} else if (getComputedStyle(emailSignup).display === "flex") {
 		phoneSignup.style.display = "flex";
 		emailSignup.style.display = "none";
 		switcherText.innerHTML = "Use email instead";
 	}
 }
 
-emailPhoneSwitch.addEventListener("click", function () {
+switcherText.addEventListener("click", function () {
 	emailPhoneSwap();
 });
 
