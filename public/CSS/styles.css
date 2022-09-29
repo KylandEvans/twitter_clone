@@ -5,6 +5,12 @@
 	padding: 0;
 }
 
+:root {
+	--primary-text: #e7e9eaff;
+	--twitter-blue: #1d9bf0ff;
+	--faded-white: #ffffff66;
+}
+
 html {
 	font-family: "'Segoe UI'", sans-serif;
 	font-size: 14px;
@@ -13,10 +19,28 @@ html {
 	/* overflow-y: hidden; */
 }
 
-:root {
-	--primary-text: #e7e9eaff;
-	--twitter-blue: #1d9bf0ff;
-	--faded-white: #ffffff66;
+button:disabled {
+	background-color: rgb(119, 121, 122);
+	color: black;
+}
+
+.noscroll {
+	overflow: hidden;
+}
+
+.invalid-input {
+	border: solid 2px rgb(255, 12, 12) !important;
+}
+
+.invalid-text-color {
+	color: rgb(255, 12, 12) !important;
+}
+
+.invalid-text {
+	display: none;
+	color: rgb(255, 12, 12) !important;
+	padding-top: 7px;
+	padding-left: 10px;
 }
 
 .text-color {
@@ -260,9 +284,9 @@ a {
 	width: 100vw;
 	background: rgba(91, 112, 137, 0.4);
 	position: absolute;
+	top: 0;
 	z-index: 10;
-	/* display: none; */
-	display: flex;
+	display: none;
 	justify-content: center;
 	align-items: center;
 }
@@ -317,10 +341,10 @@ a {
 }
 
 .modal-form-outer {
-	width: 80%;
+	width: 75%;
 	margin: 0 auto;
 	min-height: 75%;
-	min-width: 80%;
+	min-width: 75%;
 }
 
 .form-group {
@@ -379,7 +403,8 @@ a {
 }
 
 .input-word-count {
-	color: var(--primary-text);
+	color: var(--faded-white);
+	margin-right: 3px;
 }
 
 .form-label {
@@ -409,6 +434,8 @@ a {
 	display: flex;
 	justify-content: flex-end;
 	cursor: pointer;
+	color: var(--twitter-blue);
+	font-size: 1.2rem;
 }
 
 .signup-email-phone-switch {
@@ -505,9 +532,11 @@ a {
 }
 
 .modal-btn {
-	width: 80%;
-	height: 100%;
+	width: 75%;
+	height: 90%;
 	border-radius: 30px;
+	font-size: 1.2rem;
+	font-weight: 700;
 }
 
 @media (max-width: 1024px) {
