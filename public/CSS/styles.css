@@ -82,6 +82,14 @@ button:disabled {
 	display: inline;
 }
 
+.d-inline-block {
+	display: inline-block;
+}
+
+.d-none {
+	display: none;
+}
+
 .flex-direction-col {
 	flex-direction: column;
 }
@@ -309,7 +317,6 @@ a {
 	width: 35px;
 	background-color: transparent;
 	margin: 12px;
-	display: inline-block;
 }
 
 .modal-close-outer {
@@ -348,7 +355,6 @@ a {
 }
 
 .form-group {
-	display: flex;
 	justify-content: space-between;
 }
 
@@ -537,6 +543,10 @@ a {
 	border-radius: 30px;
 	font-size: 1.2rem;
 	font-weight: 700;
+}
+
+.modal-btn:not(:disabled) {
+	cursor: pointer;
 }
 
 @media (max-width: 1024px) {

@@ -4,19 +4,25 @@
 	<div class="modal-container" data-modal-signup>
 		<div class="modal-outer">
 			<div class="modal-header">
-				<div class="modal-close-container" data-modal-signup-close>
+				<div class="modal-close-container d-inline-block" data-modal-signup-close data-modal-signup-back>
 					<div class="modal-close-outer">
-						<img src="Icons/cross_icon_white.svg"  class="modal-close-btn"></img>
+						<img src="Icons/cross_icon_white.svg"  class="modal-close-btn" data-in-modal-control-img></img>
+						<!-- <span class="modal-close-bar"></span> -->
+					</div>
+				</div>
+				<div class="modal-close-container d-none" data-modal-signup-back>
+					<div class="modal-close-outer">
+						<img src="Icons/back_arrow.svg"  class="modal-close-btn" data-in-modal-control-img></img>
 						<!-- <span class="modal-close-bar"></span> -->
 					</div>
 				</div>
 				<div class="modal-steps">
-					<h2 class="header-text">Step 1 of 5</h2>
+					<h2 class="header-text" data-steps-header>Step 1 of 5</h2>
 				</div>
 			</div>
 			<div class="modal-form-outer">
 				<form action="POST">
-					<div clas="form-group group-1">
+					<div class="form-group group-1 d-block" data-signup-form-group data-signup-group-1>
 						<h2 class="form-header">Create your account</h2>
 						<div class="input-label-wrapper" data-input-label>
 							<label class="label-wrapper" for="name" class="form-label" data-label>
@@ -84,23 +90,23 @@
 							</div>
 						</div>
 					</div>
-					<div clas="form-group group-2">
+					<div class="form-group group-2 d-none" data-signup-form-group data-signup-group-2>
 
 					</div>
-					<div clas="form-group group-3">
+					<div class="form-group group-3 d-none" data-signup-form-group data-signup-group-3>
 
 					</div>
-					<div clas="form-group group-4">
+					<div class="form-group group-4 d-none" data-signup-form-group data-signup-group-4>
 
 					</div>
-					<div clas="form-group group-5">
+					<div class="form-group group-5 d-none" data-signup-form-group data-signup-group-5>
 
 					</div>
 				</form>
 
 			</div>
 			<div class="modal-btn-wrapper">
-				<button class="modal-btn" disabled data-modal-signup-next-1>Next</button>
+				<button class="modal-btn" disabled data-modal-signup-next>Next</button>
 			</div>
 		</div>
 	</div>
