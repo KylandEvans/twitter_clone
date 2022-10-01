@@ -4,16 +4,14 @@
 	<div class="modal-container" data-modal-signup>
 		<div class="modal-outer">
 			<div class="modal-header">
-				<div class="modal-close-container d-inline-block" data-modal-signup-close data-modal-signup-back>
+				<div class="modal-close-container d-inline-block" data-modal-signup-close>
 					<div class="modal-close-outer">
 						<img src="Icons/cross_icon_white.svg"  class="modal-close-btn" data-in-modal-control-img></img>
-						<!-- <span class="modal-close-bar"></span> -->
 					</div>
 				</div>
 				<div class="modal-close-container d-none" data-modal-signup-back>
 					<div class="modal-close-outer">
 						<img src="Icons/back_arrow.svg"  class="modal-close-btn" data-in-modal-control-img></img>
-						<!-- <span class="modal-close-bar"></span> -->
 					</div>
 				</div>
 				<div class="modal-steps">
@@ -22,14 +20,15 @@
 			</div>
 			<div class="modal-form-outer">
 				<form action="POST">
-					<div class="form-group group-1 d-block" data-signup-form-group data-signup-group-1>
+					<!-- THIS NEEDS TO BE CHANGED BACK TO D-BLOCK WHEN DONE STYLING OTHER PAGES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+					<div class="form-group group-1 d-block" data-signup-form-group data-signup-group-1> 
 						<h2 class="form-header">Create your account</h2>
 						<div class="input-label-wrapper" data-input-label>
 							<label class="label-wrapper" for="name" class="form-label" data-label>
 								<p class="input-label">Name</p>
 								<p class="input-word-count" data-signup-word-count> 0 / 50</p>
 							</label>
-							<input type="text" name="name" id="name" class="form-text-input input-text" placeholder="Name" data-input-text data-signup-name>
+							<input type="text" name="name" id="name" class="form-text-input input-text" placeholder="Name" data-input-text data-signup-name maxlength="50">
 						</div>
 						<p class="invalid-text" data-signup-invalid-text>What's your name?</p>
 						<div class="input-label-wrapper signup-phone" data-input-label data-signup-phone>
@@ -91,9 +90,54 @@
 						</div>
 					</div>
 					<div class="form-group group-2 d-none" data-signup-form-group data-signup-group-2>
-
+						<h2 class="form-header">Customize your experience</h2>
+						<h3 class="text-color information-use-header">Track where you see Twitter content across the web</h3>
+						<div class="information-use-check-wrapper">
+							<label for="information-use" class="text-color information-use-label">Twitter uses this data to personalize your experience. This web browsing history will never be stored with your name, email, or phone number.</label>
+							<div class="checkbox-wrapper">
+								<input type="checkbox" name="information-use" id="information-use" class="checkbox" data-checkbox-hidden>
+								<span class="checkmark" data-checkbox-shown></span>
+							</div>	
+						</div>
+						<div class="information-use-terms">
+							<p class="text-muted ">By signing up, you agree to our <a href="/emptylink">Terms</a>, <a href="/emptylink">Privacy Policy</a>, and <a href="/emptylink">Cookie Use</a>. Twitter may use your contact information, including your email address and phone number for purposes outlined in our Privacy Policy. <a href="">Learn more</a></p>
+						</div>
 					</div>
 					<div class="form-group group-3 d-none" data-signup-form-group data-signup-group-3>
+						<div class="group-3-wrapper">	
+							<div class="info-conf-wrapper">
+								<h2 class="form-header form-3-header">Create your account</h2>
+								<div class="signup-page3-input-wrapper" data-signup-conf-name>
+									<p class="text-muted">Name</p>
+									<div class="signup-page3-input-container">
+										<input type="text" class="signup-page3-input signup-name-conf" data-signup-conf-name-input>
+										<img src="Icons/green_check.svg" alt="" class="green-check-good">
+									</div>
+								</div>
+								<div class="signup-page3-input-wrapper" data-signup-conf-phone>
+									<p class="text-muted">Phone</p>
+									<div class="signup-page3-input-container">
+										<input type="text" class="signup-page3-input signup-phone-conf" data-signup-conf-phone-input>
+										<img src="Icons/green_check.svg" alt="" class="green-check-good">
+									</div>
+								</div>
+								<div class="signup-page3-input-wrapper d-none" data-signup-conf-email>
+									<p class="text-muted">Email</p>
+									<div class="signup-page3-input-container">
+										<input type="text" class="signup-page3-input signup-email-conf" data-signup-conf-email-input>
+										<img src="Icons/green_check.svg" alt="" class="green-check-good">
+									</div>
+								</div>
+								<div class="signup-page3-input-wrapper" data-signup-conf-dob>
+									<p class="text-muted">Date of Birth</p>
+									<div class="signup-page3-input-container">
+										<input type="text" class="signup-page3-input signup-dob-conf" data-signup-conf-dob-input>
+										<img src="Icons/green_check.svg" alt="" class="green-check-good">
+									</div>
+								</div>
+							</div>
+							<p class="text-muted terms-text">By signing up, you agree to the <a href="/emptylink">Terms of Service</a> and <a href="/emptylink">Privacy Policy</a>, including <a href="/emptylink">Cookie Use</a>. Twitter may use your contact information, including your email address and phone number for purposes outlined in our Privacy Policy, like keeping your account secure and personalizing our services, including ads. <a href="/emptylink">Learn more</a>. Others will be able to find you by email or phone number, when provided, unless you choose otherwise <a href="/emptylink">here</a>.</p>
+						</div>	
 
 					</div>
 					<div class="form-group group-4 d-none" data-signup-form-group data-signup-group-4>
@@ -154,23 +198,23 @@
 		</div>
 	</section>
 	<footer class="h-auto text-align-center pt-2 mx-2">
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">About</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Help Center</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Terms of Service</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Privacy Policy</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Cookie Policy</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Accessibility</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Ads info</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Blog</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Status</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Careers</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Brand Resources</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Advertising</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Marketing</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Twitter for Business</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Developers</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Directory</a>
-		<a href="#" class="text-muted p-2 mt-1 ftr-link">Settings</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">About</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Help Center</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Terms of Service</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Privacy Policy</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Cookie Policy</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Accessibility</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Ads info</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Blog</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Status</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Careers</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Brand Resources</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Advertising</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Marketing</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Twitter for Business</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Developers</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Directory</a>
+		<a href="/emptylink" class="text-muted p-2 mt-1 ftr-link">Settings</a>
 		<p class="text-muted p-2 mt-1 ftr-link d-inline">&copy; 2022 Twitter, Inc.</p>
 	</footer>
 </main>

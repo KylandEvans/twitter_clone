@@ -13,24 +13,39 @@ function openSignupModal() {
 	loadFirstSignupPage();
 }
 
-const signupFormGroups = document.querySelectorAll("[data-signup-form-group]");
-
 // Load Script For Signup modal first Page
 
 function loadFirstSignupPage() {
 	// Switch between phone and email signup
 	const switcherText = document.querySelector("[data-signup-email-phone-switch]");
+	let signupNameInput = document.querySelector("[data-signup-name]");
 
 	// Close signup modal
 
-	const signupModalClose = document.querySelector("[data-modal-signup-close]");
+	let signupModalClose = document.querySelector("[data-modal-signup-close]");
 
-	function closeSignupModal() {
+	let closeSignupModal = () => {
 		const signupModal = document.querySelector("[data-modal-signup]");
 		signupModal.style.display = "none";
 		document.querySelector("html").classList.remove("noscroll");
 		signupModalClose.removeEventListener("click", closeSignupModal);
-	}
+		unloadFirstSignupPage();
+	};
+
+	let unloadFirstSignupPage = () => {
+		signupNameInput.removeEventListener("focusin", validateAllFields);
+		signupNameInput.removeEventListener("focusout", validateAllFields);
+		signupNameInput.removeEventListener("input", validateAllFields);
+		signupInputDOBMonth.removeEventListener("change", validateAllFields);
+		signupInputDOBDay.removeEventListener("change", validateAllFields);
+		signupInputDOBYear.removeEventListener("change", validateAllFields);
+		signupInputPhone.removeEventListener("input", validateAllFields);
+		signupInputPhone.removeEventListener("focusout", validateAllFields);
+		signupInputEmail.removeEventListener("input", validateAllFields);
+		signupInputEmail.removeEventListener("focusout", validateAllFields);
+		signupInputEmail.removeEventListener("focusout", validateEmailSignup);
+		signupModalClose.removeEventListener("click", closeSignupModal);
+	};
 
 	signupModalClose.addEventListener("click", closeSignupModal);
 
@@ -105,9 +120,6 @@ function loadFirstSignupPage() {
 		});
 	});
 
-	// Keep track of length in signup name input
-	const signupNameInput = document.querySelector("[data-signup-name]");
-
 	function updateSignupWordLength() {
 		const wordCountField = document.querySelector("[data-signup-word-count]");
 		wordCountField.innerHTML = ` ${signupNameInput.value.length} / 50`;
@@ -120,7 +132,7 @@ function loadFirstSignupPage() {
 
 	// Validate Phone Signup
 
-	const signupInputPhone = document.querySelector("[data-input-phone]");
+	let signupInputPhone = document.querySelector("[data-input-phone]");
 
 	// Returns value if true returns null if false
 	function validatePhoneSignup() {
@@ -129,13 +141,11 @@ function loadFirstSignupPage() {
 		);
 	}
 
-	signupInputPhone.addEventListener("focusout", function () {
-		validatePhoneSignup();
-	});
+	signupInputPhone.addEventListener("focusout", validatePhoneSignup);
 
 	//Validate Email Signup
 
-	const signupInputEmail = document.querySelector("[data-input-email]");
+	let signupInputEmail = document.querySelector("[data-input-email]");
 
 	function validateEmailSignup() {
 		return signupInputEmail.value.match(
@@ -143,18 +153,16 @@ function loadFirstSignupPage() {
 		);
 	}
 
-	signupInputEmail.addEventListener("focusout", function () {
-		validateEmailSignup();
-	});
+	signupInputEmail.addEventListener("focusout", validateEmailSignup);
 
 	// Validate All Fields On First Signup Page
 
-	const signupInputDOBMonth = document.querySelector("[data-select-dob-month]");
-	const signupInputDOBDay = document.querySelector("[data-select-dob-day]");
-	const signupInputDOBYear = document.querySelector("[data-select-dob-year]");
-	const signupNextBtn = document.querySelector("[data-modal-signup-next]");
+	let signupInputDOBMonth = document.querySelector("[data-select-dob-month]");
+	let signupInputDOBDay = document.querySelector("[data-select-dob-day]");
+	let signupInputDOBYear = document.querySelector("[data-select-dob-year]");
+	let signupNextBtn = document.querySelector("[data-modal-signup-next]");
 
-	function validateAllFields() {
+	let validateAllFields = () => {
 		if (!signupInputDOBYear.value) {
 			signupNextBtn.disabled = true;
 			return;
@@ -176,94 +184,251 @@ function loadFirstSignupPage() {
 			return;
 		}
 		signupNextBtn.disabled = false;
-	}
+	};
 
 	signupNameInput.focus();
 
 	// Event listeners to check if signup form is fully filled out correctly
-	signupNameInput.addEventListener("focusout", function () {
-		validateAllFields();
-	});
+	signupNameInput.addEventListener("focusout", validateAllFields);
 
-	signupInputPhone.addEventListener("input", function () {
-		validateAllFields();
-	});
+	signupInputPhone.addEventListener("input", validateAllFields);
 
-	signupInputPhone.addEventListener("focusout", function () {
-		validateAllFields();
-	});
+	signupInputPhone.addEventListener("focusout", validateAllFields);
 
-	signupInputEmail.addEventListener("input", function () {
-		validateAllFields();
-	});
+	signupInputEmail.addEventListener("input", validateAllFields);
 
-	signupInputEmail.addEventListener("focusout", function () {
-		validateAllFields();
-	});
+	signupInputEmail.addEventListener("focusout", validateAllFields);
 
-	signupInputDOBMonth.addEventListener("change", function () {
-		validateAllFields();
-	});
+	signupInputDOBMonth.addEventListener("change", validateAllFields);
 
-	signupInputDOBDay.addEventListener("change", function () {
-		validateAllFields();
-	});
+	signupInputDOBDay.addEventListener("change", validateAllFields);
 
-	signupInputDOBYear.addEventListener("change", function () {
-		validateAllFields();
-	});
+	signupInputDOBYear.addEventListener("change", validateAllFields);
+
+	loadFirstSignupPage.unloadFirstSignupPage = unloadFirstSignupPage;
 }
-
-// function unloadFirstSignupPage() {
-// 	const signupModalClose = document.querySelector("[data-modal-signup-close]");
-
-// 	function closeSignupModal() {
-// 		const signupModal = document.querySelector("[data-modal-signup]");
-// 		signupModal.style.display = "none";
-// 		document.querySelector("html").classList.remove("noscroll");
-// 		signupModalClose.removeEventListener("click", )
-// 	}
-// 	signupModalClose.removeEventListener("click", closeSignupModal);
-// }
 
 // Load Script For Signup modal Second Page
 
 function loadSecondSignupPage() {
-	const headerText = document.querySelector("[data-steps-header]");
-	headerText.innerHTML = "Step 2 of 5";
-	const modalControl = document.querySelector("[data-in-modal-control-img]");
-	modalControl.src = "Icons/back_arrow.svg";
+	const signupModalBackBtn = document.querySelector("[data-modal-signup-back]");
+
+	function headerSetup() {
+		const headerText = document.querySelector("[data-steps-header]");
+		headerText.innerHTML = "Step 2 of 5";
+		const signupModalCloseBtn = document.querySelector("[data-modal-signup-close]");
+		signupModalCloseBtn.classList.remove("d-inline-block");
+		signupModalCloseBtn.classList.add("d-none");
+		signupModalBackBtn.classList.add("d-inline-block");
+		signupModalBackBtn.classList.remove("d-none");
+	}
+	headerSetup();
+
+	function signupModalBackToFirstPage() {
+		const headerText = document.querySelector("[data-steps-header]");
+		headerText.innerHTML = "Step 1 of 5";
+		const signupModalCloseBtn = document.querySelector("[data-modal-signup-close]");
+		signupModalCloseBtn.classList.add("d-inline-block");
+		signupModalCloseBtn.classList.remove("d-none");
+		signupModalBackBtn.classList.remove("d-inline-block");
+		signupModalBackBtn.classList.add("d-none");
+
+		const signupGroup1 = document.querySelector("[data-signup-group-1]");
+		const signupGroup2 = document.querySelector("[data-signup-group-2]");
+		signupGroup1.classList.remove("d-none");
+		signupGroup1.classList.add("d-block");
+		signupGroup2.classList.remove("d-block");
+		signupGroup2.classList.add("d-none");
+		signupNextBtn.disabled = false;
+		unloadSecondSignupPage();
+		loadFirstSignupPage();
+	}
+
+	signupModalBackBtn.addEventListener("click", signupModalBackToFirstPage);
+
+	// Logic to check and uncheck custom checkbox
+	const checkboxShown = document.querySelector("[data-checkbox-shown]");
+
+	const checkBoxCheckedAndUnchecked = () => {
+		const checkboxHidden = document.querySelector("[data-checkbox-hidden]");
+		if (checkboxHidden.checked) {
+			checkboxHidden.checked = false;
+			console.log(checkboxHidden.checked);
+			return;
+		} else if (!checkboxHidden.checked) {
+			checkboxHidden.checked = true;
+			console.log(checkboxHidden.checked);
+			return;
+		}
+	};
+
+	checkboxShown.addEventListener("click", checkBoxCheckedAndUnchecked);
+
+	function unloadSecondSignupPage() {
+		signupModalBackBtn.removeEventListener("click", signupModalBackToFirstPage);
+		checkboxShown.removeEventListener("click", checkBoxCheckedAndUnchecked);
+	}
+
+	loadSecondSignupPage.unloadSecondSignupPage = unloadSecondSignupPage;
 }
+
+// Load Script For Signup modal Third Page
+
+function loadThirdSignupPage() {
+	const headerSetup = () => {
+		const stepsHeader = document.querySelector("[data-steps-header]");
+		stepsHeader.innerHTML = "Step 3 of 5";
+	};
+
+	headerSetup();
+
+	let backToSecondPageBtn = document.querySelector("[data-modal-signup-back]");
+	let backToSecondPage = () => {
+		const signupGroup2 = document.querySelector("[data-signup-group-2]");
+		const signupGruop3 = document.querySelector("[data-signup-group-3]");
+		signupGroup2.classList.remove("d-none");
+		signupGroup2.classList.add("d-block");
+		signupGruop3.classList.remove("d-block");
+		signupGruop3.classList.add("d-none");
+		unloadThirdSignupPage();
+		loadSecondSignupPage();
+	};
+
+	let inputSetup = () => {
+		const confNameField = document.querySelector("[data-signup-conf-name]");
+		const confNameInput = document.querySelector("[data-signup-conf-name-input]");
+		const confPhoneField = document.querySelector("[data-signup-conf-phone]");
+		const confPhoneInput = document.querySelector("[data-signup-conf-phone-input]");
+		const confEmailField = document.querySelector("[data-signup-conf-email]");
+		const confEmailInput = document.querySelector("[data-signup-conf-email-input]");
+		const confDOBField = document.querySelector("[data-signup-conf-dob]");
+		const confDOBInput = document.querySelector("[data-signup-conf-dob-input]");
+		const nameInput = document.querySelector("[data-signup-name]");
+		const phoneInput = document.querySelector("[data-input-phone]");
+		const emailInput = document.querySelector("[data-input-email]");
+		const DOBMonth = document.querySelector("[data-select-dob-month]");
+		const DOBDay = document.querySelector("[data-select-dob-day]");
+		const DOBYear = document.querySelector("[data-select-dob-year]");
+
+		let parseDate = month => {
+			switch (month) {
+				case "January":
+					return "Jan";
+				case "February":
+					return "Feb";
+				case "March":
+					return "Mar";
+				case "April":
+					return "Apr";
+				case "May":
+					return "May";
+				case "June":
+					return "June";
+				case "July":
+					return "July";
+				case "August":
+					return "Aug";
+				case "September":
+					return "Sep";
+				case "October":
+					return "Oct";
+				case "November":
+					return "Nov";
+				case "December":
+					return "Dec";
+			}
+		};
+
+		if (nameInput.value) {
+			confNameInput.value = nameInput.value;
+		}
+		if (phoneInput.value) {
+			confPhoneInput.value = phoneInput.value;
+		}
+		if (emailInput.value) {
+			confEmailInput.value = emailInput.value;
+		}
+		if (emailInput.value && phoneInput.value) {
+			emailInput.value = null;
+			confEmailInput.value = null;
+		}
+		if (DOBMonth.value && DOBDay.value && DOBYear.value) {
+			let parsedMonth = parseDate(DOBMonth.value);
+			confDOBInput.value = `${parsedMonth} ${DOBDay.value}, ${DOBYear.value}`;
+		}
+
+		let editInputField = () => {
+			const signupGroup3 = document.querySelector("[data-signup-group-3]");
+			const signupGroup1 = document.querySelector("[data-signup-group-1]");
+			signupGroup3.classList.remove("d-block");
+			signupGroup3.classList.add("d-none");
+			signupGroup1.classList.remove("d-none");
+			signupGroup1.classList.add("d-block");
+
+			const modalClose = document.querySelector("[data-modal-signup-close]");
+			const modalBackBtn = document.querySelector("[data-modal-signup-back]");
+
+			modalClose.classList.remove("d-none");
+			modalClose.classList.add("d-inline-block");
+			modalBackBtn.classList.remove("d-inline-block");
+			modalBackBtn.classList.add("d-none");
+
+			const stepsHeader = document.querySelector("[data-steps-header]");
+			stepsHeader.innerHTML = "Step 1 of 5";
+
+			unloadThirdSignupPage();
+			loadFirstSignupPage();
+		};
+
+		// FIXME: When field is clicked event listeners double on close input on first page
+
+		let changeNameField = () => {
+			nameInput.focus();
+			editInputField();
+		};
+
+		confNameField.addEventListener("click", changeNameField);
+	};
+
+	inputSetup();
+
+	let unloadThirdSignupPage = () => {
+		backToSecondPageBtn.removeEventListener("click", backToSecondPage);
+	};
+
+	backToSecondPageBtn.addEventListener("click", backToSecondPage);
+}
+
+const signupFormGroups = document.querySelectorAll("[data-signup-form-group]");
 
 function getNextFormPage() {
 	if (signupFormGroups[0].classList.contains("d-block")) {
+		loadFirstSignupPage.unloadFirstSignupPage();
 		loadSecondSignupPage();
 		signupFormGroups[0].classList.remove("d-block");
 		signupFormGroups[1].classList.remove("d-none");
 		signupFormGroups[0].classList.add("d-none");
 		signupFormGroups[1].classList.add("d-block");
-		signupNextBtn.disabled = true;
 		return;
 	} else if (signupFormGroups[1].classList.contains("d-block")) {
+		loadSecondSignupPage.unloadSecondSignupPage();
+		loadThirdSignupPage();
 		signupFormGroups[1].classList.remove("d-block");
 		signupFormGroups[2].classList.remove("d-none");
 		signupFormGroups[1].classList.add("d-none");
 		signupFormGroups[2].classList.add("d-block");
-		signupNextBtn.disabled = true;
 		return;
 	} else if (signupFormGroups[2].classList.contains("d-block")) {
 		signupFormGroups[2].classList.remove("d-block");
 		signupFormGroups[3].classList.remove("d-none");
 		signupFormGroups[2].classList.add("d-none");
 		signupFormGroups[3].classList.add("d-block");
-		signupNextBtn.disabled = true;
 		return;
 	} else if (signupFormGroups[3].classList.contains("d-block")) {
 		signupFormGroups[3].classList.remove("d-block");
 		signupFormGroups[4].classList.remove("d-none");
 		signupFormGroups[3].classList.add("d-none");
 		signupFormGroups[4].classList.add("d-block");
-		signupNextBtn.disabled = true;
 		return;
 	}
 }

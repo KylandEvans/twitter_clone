@@ -13,4 +13,8 @@ app.get("/", (req, res) => {
 	res.render("index");
 });
 
+app.get("/emptylink", (req, res) => {
+	res.render("emptylink");
+});
+
 app.listen(port, console.log(`Listening on port ${port}`));
