@@ -309,7 +309,7 @@ a {
 
 .modal-outer {
 	min-height: 450px;
-	max-width: 40vw;
+	max-width: 600px;
 	max-height: 90vh;
 	background-color: black;
 	min-width: 600px;
@@ -375,7 +375,7 @@ a {
 .input-label-wrapper {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
+	width: 95%;
 	background-color: transparent;
 	border: solid 1px rgba(255, 255, 255, 0.3);
 	height: 4rem;
@@ -385,6 +385,7 @@ a {
 	font-size: 1rem;
 	color: var(--primary-text);
 	margin-top: 30px;
+	position: relative;
 }
 
 .form-text-input,
@@ -720,6 +721,51 @@ a {
 	align-items: center;
 	height: 100vh;
 	width: 100vw;
+}
+
+.header-verify-signup {
+	margin-top: 0;
+}
+
+.verify-subheader {
+	margin-top: 10px;
+	font-weight: 400;
+}
+
+.input-border-blue:focus-within {
+	border: solid 2px var(--twitter-blue);
+}
+
+.new-verify-link {
+	padding-left: 7px;
+}
+
+.password-text-box {
+	width: 90%;
+	display: inline-block;
+}
+
+.password-show-hide-btn {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	height: 21px;
+	width: 21px;
+	z-index: 10;
+}
+
+.password-show-hide-btn:hover {
+	cursor: pointer;
+}
+
+.signup-btn-end {
+	background-color: var(--twitter-blue);
+	color: white;
+}
+
+.signup-btn-end:disabled {
+	background-color: #1d9bf033;
+	color: white;
 }
 
 @media (max-width: 1024px) {
