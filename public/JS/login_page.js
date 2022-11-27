@@ -6,8 +6,101 @@ const loginPageScript = {
 		);
 		loginPageScript.vars.signupNextBtn.addEventListener("click", function (e) {
 			e.preventDefault();
+			loginPageScript.updateFormValues();
 			loginPageScript.getNextFormPage();
 		});
+	},
+
+	formValues: {
+		name: null,
+		phone: null,
+		email: null,
+		DOB: null,
+		track: false,
+		password: null,
+	},
+
+	parseStringToDate(month, day, year) {
+		if (month === "January") {
+			return new Date(`${year}-01-${day}`);
+		}
+		if (month === "February") {
+			return new Date(`${year}-02-${day}`);
+		}
+		if (month === "March") {
+			return new Date(`${year}-03-${day}`);
+		}
+		if (month === "April") {
+			return new Date(`${year}-04-${day}`);
+		}
+		if (month === "May") {
+			return new Date(`${year}-05-${day}`);
+		}
+		if (month === "June") {
+			return new Date(`${year}-06-${day}`);
+		}
+		if (month === "July") {
+			return new Date(`${year}-07-${day}`);
+		}
+		if (month === "August") {
+			return new Date(`${year}-08-${day}`);
+		}
+		if (month === "September") {
+			return new Date(`${year}-09-${day}`);
+		}
+		if (month === "October") {
+			return new Date(`${year}-10-${day}`);
+		}
+		if (month === "November") {
+			return new Date(`${year}-11-${day}`);
+		}
+		if (month === "December") {
+			return new Date(`${year}-12-${day}`);
+		}
+	},
+
+	updateFormValues() {
+		const vars = loginPageScript.vars;
+		const inputValues = document.querySelectorAll("input");
+		for (let i = 0; i < inputValues.length; i++) {
+			if (inputValues[i].value) {
+				if (i === 0) {
+					loginPageScript.formValues.name = inputValues[i].value;
+				}
+				if (i === 1) {
+					if (!(getComputedStyle(vars.signupInputPhone).display === "none")) {
+						loginPageScript.formValues.phone = inputValues[i].value;
+						loginPageScript.formValues.email = null;
+					}
+				}
+				if (i === 2) {
+					if (!(getComputedStyle(vars.signupInputEmail).display === "none")) {
+						loginPageScript.formValues.email = inputValues[i].value;
+						loginPageScript.formValues.phone = null;
+					}
+				}
+				if (i === 3) {
+					if (vars.checkboxHidden.checked) {
+						loginPageScript.formValues.track = true;
+					} else if (!vars.checkboxHidden.checked) {
+						loginPageScript.formValues.track = null;
+					}
+				}
+
+				if (i === 9) {
+					loginPageScript.formValues.password = inputValues[i].value;
+				}
+			}
+		}
+
+		if (vars.signupGroup1.classList.contains("d-block")) {
+			const stringDate = loginPageScript.parseStringToDate(
+				loginPageScript.vars.signupInputDOBMonth.value,
+				loginPageScript.vars.signupInputDOBDay.value,
+				loginPageScript.vars.signupInputDOBYear.value
+			);
+			loginPageScript.formValues.DOB = stringDate;
+		}
 	},
 
 	vars: {
@@ -31,6 +124,7 @@ const loginPageScript = {
 		signupGroup4: document.querySelector("[data-signup-group-4]"),
 		signupGroup5: document.querySelector("[data-signup-group-5]"),
 		checkboxShown: document.querySelector("[data-checkbox-shown]"),
+		checkboxHidden: document.querySelector("[data-checkbox-hidden]"),
 		DOBMonthDefault: document.querySelector("[data-DOBMonth-default]"),
 		DOBDayDefault: document.querySelector("[data-DOBDay-default]"),
 		DOBYearDefault: document.querySelector("[data-DOBYear-default]"),
@@ -41,6 +135,7 @@ const loginPageScript = {
 		passwordLabel: document.querySelector("[data-signup-password-label]"),
 		passwordInput: document.querySelector("[data-signup-password-input]"),
 		showHidePassword: document.querySelector("[data-show-hide-password]"),
+		emailPhoneVerifyDisplay: document.querySelector("[data-signup-verify-email-phone]"),
 	},
 
 	openSignupModal() {
@@ -91,16 +186,16 @@ const loginPageScript = {
 			emailSignup.style.display = "flex";
 			vars.switcherText.innerHTML = "Use phone instead";
 			vars.invalidText[1].style.display = "none";
-			vars.signupInputEmail.value = "";
-			vars.signupInputPhone.value = "";
+			vars.signupInputEmail.value = null;
+			vars.signupInputPhone.value = null;
 			loginPageScript.validateAllFields();
 		} else if (getComputedStyle(emailSignup).display === "flex") {
 			phoneSignup.style.display = "flex";
 			emailSignup.style.display = "none";
 			vars.switcherText.innerHTML = "Use email instead";
 			vars.invalidText[2].style.display = "none";
-			vars.signupInputPhone.value = "";
-			vars.signupInputEmail.value = "";
+			vars.signupInputPhone.value = null;
+			vars.signupInputEmail.value = null;
 			loginPageScript.validateAllFields();
 		}
 	},
@@ -168,23 +263,14 @@ const loginPageScript = {
 
 		vars.signupInputPhone.addEventListener("focusout", loginPageScript.validatePhoneSignup);
 		vars.signupInputEmail.addEventListener("focusout", loginPageScript.validateEmailSignup);
-
 		vars.signupNameInput.focus();
-
 		vars.signupNameInput.addEventListener("focusout", loginPageScript.validateAllFields);
-
 		vars.signupInputPhone.addEventListener("input", loginPageScript.validateAllFields);
-
 		vars.signupInputPhone.addEventListener("focusout", loginPageScript.validateAllFields);
-
 		vars.signupInputEmail.addEventListener("input", loginPageScript.validateAllFields);
-
 		vars.signupInputEmail.addEventListener("focusout", loginPageScript.validateAllFields);
-
 		vars.signupInputDOBMonth.addEventListener("change", loginPageScript.validateAllFields);
-
 		vars.signupInputDOBDay.addEventListener("change", loginPageScript.validateAllFields);
-
 		vars.signupInputDOBYear.addEventListener("change", loginPageScript.validateAllFields);
 	},
 
@@ -217,17 +303,24 @@ const loginPageScript = {
 		const vars = loginPageScript.vars;
 		vars.signupNameInput.removeEventListener("focusin", loginPageScript.validateAllFields);
 		vars.signupNameInput.removeEventListener("focusout", loginPageScript.validateAllFields);
+		vars.signupInputPhone.removeEventListener("focusout", loginPageScript.validateAllFields);
+		vars.signupInputEmail.removeEventListener("focusout", loginPageScript.validateAllFields);
+		vars.signupInputEmail.removeEventListener("focusout", loginPageScript.validateEmailSignup);
 		vars.signupNameInput.removeEventListener("input", loginPageScript.validateAllFields);
 		vars.signupInputDOBMonth.removeEventListener("change", loginPageScript.validateAllFields);
 		vars.signupInputDOBDay.removeEventListener("change", loginPageScript.validateAllFields);
 		vars.signupInputDOBYear.removeEventListener("change", loginPageScript.validateAllFields);
 		vars.signupInputPhone.removeEventListener("input", loginPageScript.validateAllFields);
-		vars.signupInputPhone.removeEventListener("focusout", loginPageScript.validateAllFields);
 		vars.signupInputEmail.removeEventListener("input", loginPageScript.validateAllFields);
-		vars.signupInputEmail.removeEventListener("focusout", loginPageScript.validateAllFields);
-		vars.signupInputEmail.removeEventListener("focusout", loginPageScript.validateEmailSignup);
 		vars.signupModalClose.removeEventListener("click", loginPageScript.closeSignupModal);
 		vars.switcherText.removeEventListener("click", loginPageScript.emailPhoneSwap);
+		vars.signupNameInput.value = null;
+		vars.signupInputPhone.value = null;
+		vars.signupInputEmail.value = null;
+		vars.signupInputEmail.value = null;
+		vars.DOBMonthDefault.selected = true;
+		vars.DOBDayDefault.selected = true;
+		vars.DOBYearDefault.selected = true;
 	},
 
 	getNextFormPage() {
@@ -239,6 +332,13 @@ const loginPageScript = {
 			signupFormGroups[1].classList.remove("d-none");
 			signupFormGroups[0].classList.add("d-none");
 			signupFormGroups[1].classList.add("d-block");
+			// Remove block from all others and add d-none
+			// signupFormGroups[2].classList.add("d-none");
+			// signupFormGroups[2].classList.remove("d-block");
+			// signupFormGroups[3].classList.add("d-none");
+			// signupFormGroups[3].classList.remove("d-block");
+			// signupFormGroups[4].classList.add("d-none");
+			// signupFormGroups[4].classList.remove("d-block");
 			return;
 		} else if (signupFormGroups[1].classList.contains("d-block")) {
 			loginPageScript.unloadSecondSignupPage();
@@ -275,6 +375,7 @@ const loginPageScript = {
 			vars.signupModalClose.classList.add("d-none");
 			vars.signupModalBackBtn.classList.add("d-inline-block");
 			vars.signupModalBackBtn.classList.remove("d-none");
+			vars.signupNextBtn.disabled = false;
 		}
 		headerSetup();
 
@@ -327,6 +428,7 @@ const loginPageScript = {
 		const vars = loginPageScript.vars;
 		const headerSetup = () => {
 			vars.headerText.innerHTML = "Step 3 of 5";
+			vars.signupNextBtn.disabled = false;
 		};
 
 		headerSetup();
@@ -348,53 +450,56 @@ const loginPageScript = {
 
 			let parseDate = month => {
 				switch (month) {
-					case "January":
+					case 0:
 						return "Jan";
-					case "February":
+					case 1:
 						return "Feb";
-					case "March":
+					case 2:
 						return "Mar";
-					case "April":
+					case 3:
 						return "Apr";
-					case "May":
+					case 4:
 						return "May";
-					case "June":
+					case 5:
 						return "June";
-					case "July":
+					case 6:
 						return "July";
-					case "August":
+					case 7:
 						return "Aug";
-					case "September":
+					case 8:
 						return "Sep";
-					case "October":
+					case 9:
 						return "Oct";
-					case "November":
+					case 10:
 						return "Nov";
-					case "December":
+					case 11:
 						return "Dec";
 				}
 			};
 
-			if (vars.signupNameInput.value) {
-				confNameInput.value = vars.signupNameInput.value;
-				console.log(vars.signupNameInput.value);
+			if (loginPageScript.formValues.name) {
+				confNameInput.value = loginPageScript.formValues.name;
 			}
-			if (vars.signupInputPhone.value) {
-				confPhoneInput.value = vars.signupInputPhone.value;
-				console.log(vars.signupInputPhone.value);
+			if (loginPageScript.formValues.phone) {
+				confPhoneInput.value = loginPageScript.formValues.phone;
+				confPhoneField.style.display = "block";
+				confEmailField.style.display = "none";
 			}
-			if (vars.signupInputEmail.value) {
-				confEmailInput.value = vars.signupInputEmail.value;
-				console.log(vars.signupInputEmail.value);
+			if (loginPageScript.formValues.email) {
+				confEmailInput.value = loginPageScript.formValues.email;
+				confEmailField.style.display = "block";
+				confPhoneField.style.display = "none";
 			}
-			if (vars.signupInputEmail.value && vars.signupInputPhone.value) {
-				vars.signupInputEmail.value = null;
-				confEmailInput.value = null;
+			if (loginPageScript.formValues.phone && loginPageScript.formValues.email) {
+				loginPageScript.formValues.email = null;
 			}
-			if (DOBMonth.value && DOBDay.value && DOBYear.value) {
-				let parsedMonth = parseDate(DOBMonth.value);
-				confDOBInput.value = `${parsedMonth} ${DOBDay.value}, ${DOBYear.value}`;
-			}
+
+			let dateDOB = loginPageScript.formValues.DOB;
+			let month = dateDOB.getMonth();
+			let day = dateDOB.getDate();
+			let year = dateDOB.getFullYear();
+			let parsedMonth = parseDate(month);
+			confDOBInput.value = `${parsedMonth} ${day}, ${year}`;
 
 			let editInputField = () => {
 				const vars = loginPageScript.vars;
@@ -480,13 +585,33 @@ const loginPageScript = {
 		};
 		headerSetup();
 
+		const displayEmailPhone = () => {
+			const DNRText = document.querySelector("[data-verify-text-dnr]");
+			if (loginPageScript.formValues.phone) {
+				const phoneNumber = loginPageScript.formValues.phone;
+				let areaCode = phoneNumber.substring(0, 3);
+				let localCode = phoneNumber.substring(3, 6);
+				let phoneCode = phoneNumber.substring(6, 10);
+				loginPageScript.vars.emailPhoneVerifyDisplay.innerHTML = `(${areaCode}) - ${localCode}-${phoneCode}`;
+				DNRText.innerHTML = "a text";
+				return;
+			}
+			if (loginPageScript.formValues.email) {
+				loginPageScript.vars.emailPhoneVerifyDisplay.innerHTML = `${loginPageScript.formValues.email}`;
+				DNRText.innerHTML = "an email";
+				return;
+			}
+		};
+
+		vars.verifyInput.addEventListener("focusout", loginPageScript.onFocusOutVerifyInput);
+
 		vars.verifyOuter.addEventListener("click", loginPageScript.focusVerifyInput);
 
 		vars.verifyInput.addEventListener("focusin", loginPageScript.onFocusVerifyInput);
 
-		vars.verifyInput.addEventListener("focusout", loginPageScript.onFocusOutVerifyInput);
-
 		vars.verifyInput.addEventListener("input", loginPageScript.onChangeVerifyInput);
+
+		displayEmailPhone();
 	},
 
 	focusVerifyInput() {
@@ -494,15 +619,13 @@ const loginPageScript = {
 	},
 
 	onFocusVerifyInput() {
-		loginPageScript.vars.verifyInput.placeHolder = null;
+		loginPageScript.vars.verifyInput.placeHolder = "";
 		loginPageScript.vars.verifyLabel.style.display = "flex";
 	},
 
 	onFocusOutVerifyInput() {
-		if (!loginPageScript.vars.verifyInput.value) {
-			loginPageScript.vars.verifyInput.placeHolder = "Verification Code";
-			loginPageScript.vars.verifyLabel.style.display = "none";
-		}
+		loginPageScript.vars.verifyInput.placeHolder = "Verification Code";
+		loginPageScript.vars.verifyLabel.style.display = "none";
 	},
 
 	onChangeVerifyInput() {
@@ -530,6 +653,7 @@ const loginPageScript = {
 		vars.verifyInput.removeEventListener("focusout", loginPageScript.onFocusOutVerifyInput);
 		vars.verifyInput.removeEventListener("input", loginPageScript.onChangeVerifyInput);
 		vars.signupModalBackBtn.removeEventListener("click", loginPageScript.backToThirdPage);
+		vars.verifyInput.value = null;
 	},
 
 	loadFithSignupPage() {
@@ -542,10 +666,12 @@ const loginPageScript = {
 		headerSetup();
 
 		loginPageScript.nextButtonChangeToSignup();
+		const submitBtn = document.querySelector(".signup-btn-end");
+		submitBtn.addEventListener("click", loginPageScript.submitForm);
 
 		vars.passwordInput.addEventListener("click", loginPageScript.focusPasswordInput);
 		vars.passwordInput.addEventListener("focusin", loginPageScript.onFocusPasswordInput);
-		vars.passwordInput.addEventListener("focusout", loginPageScript.onFocusOutVerifyInput);
+		vars.passwordInput.addEventListener("focusout", loginPageScript.onFocusOutPasswordInput);
 		vars.passwordInput.addEventListener("input", loginPageScript.verifyPasswordLength);
 		vars.showHidePassword.addEventListener("click", loginPageScript.showHidePassword);
 	},
@@ -572,7 +698,7 @@ const loginPageScript = {
 		loginPageScript.vars.passwordLabel.style.display = "flex";
 	},
 
-	onFocusOutVerifyInput() {
+	onFocusOutPasswordInput() {
 		if (!loginPageScript.vars.passwordInput.value) {
 			loginPageScript.vars.passwordInput.placeHolder = "Password";
 			loginPageScript.vars.passwordLabel.style.display = "none";
@@ -599,6 +725,25 @@ const loginPageScript = {
 		}
 	},
 
+	submitForm() {
+		let vals = loginPageScript.formValues;
+		if (vals.name) {
+			if (vals.phone || vals.email) {
+				if (vals.DOB) {
+					if (vals.password) {
+						loginPageScript.sendFormData();
+					}
+				}
+			}
+		}
+	},
+
+	async sendFormData() {
+		let data = loginPageScript.formValues;
+		// FIXME: This needs fixed. Can't get it to redirect after receiving response.
+		// 		 Data needs to be sent to server and get a response redirecting if everything is ok
+	},
+
 	backToFourthPage() {
 		const vars = loginPageScript.vars;
 		vars.signupGroup5.classList.remove("d-block");
@@ -610,10 +755,15 @@ const loginPageScript = {
 	},
 
 	unloadFithSignupPage() {
+		const submitBtn = document.querySelector(".signup-btn-end");
+		submitBtn.removeEventListener("click", loginPageScript.submitForm);
 		loginPageScript.nextButtonChangeToNext();
+		loginPageScript.vars.passwordInput.value = null;
+		loginPageScript.vars.signupModalBackBtn.removeEventListener(
+			"click",
+			loginPageScript.backToFourthPage
+		);
 	},
 };
 
 document.addEventListener("DOMContentLoaded", loginPageScript.init());
-
-// close modal broken
