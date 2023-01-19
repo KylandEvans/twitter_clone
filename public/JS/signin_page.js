@@ -37,7 +37,9 @@ const signinPageScript = {
 		const vars = signinPageScript.vars;
 		vars.signinModal.style.display = "none";
 		document.querySelector("html").classList.remove("noscroll");
+		vars.usernameInput.value = null;
 		signinPageScript.unloadFirstLoginPage();
+		signinPageScript.unloadSecondPage();
 	},
 
 	loadFirstLoginPage() {
@@ -45,7 +47,24 @@ const signinPageScript = {
 		vars.usernameField.addEventListener("click", signinPageScript.focusUsernameInput);
 		vars.usernameInput.addEventListener("focusout", signinPageScript.focusOutUsernameInput);
 		signinPageScript.vars.modalClose.addEventListener("click", signinPageScript.modalClose);
-		vars.signinNextBtn.addEventListener("click", signinPageScript.loadSecondPage);
+		// vars.signinNextBtn.addEventListener("click", signinPageScript.loadSecondPage);
+		vars.signinNextBtn.addEventListener("click", signinPageScript.checkUser);
+	},
+
+	async checkUser() {
+		const usn = document.querySelector("[data-signin-username-input]");
+		const data = { username: usn.value };
+		// console.log(data);
+		const response = await fetch("/getuser", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data),
+		});
+		if (response.ok) {
+			signinPageScript.loadSecondPage();
+		}
 	},
 
 	focusUsernameInput() {
@@ -84,7 +103,7 @@ const signinPageScript = {
 		vars.signinFirstPage.classList.remove("d-block");
 		vars.signinFirstPage.classList.add("d-none");
 		vars.signinSecondPage.classList.add("d-block");
-		vars.signinSecondPage.classList.remove("[d-none]");
+		vars.signinSecondPage.classList.remove("d-none");
 		vars.signinBtn.classList.remove("d-none");
 		vars.signinBtn.classList.add("d-block");
 		vars.signinSecondPageUsn.value = vars.usernameInput.value;
@@ -92,6 +111,22 @@ const signinPageScript = {
 		vars.passwordInput.addEventListener("focusout", signinPageScript.focusOutPasswordInput);
 		vars.showHidePassword.addEventListener("click", signinPageScript.showHidePasswordHandler);
 		vars.passwordInput.addEventListener("input", signinPageScript.showLoginBtn);
+		vars.signinButton.addEventListener("click", signinPageScript.checkPwd);
+	},
+
+	unloadSecondPage() {
+		const vars = signinPageScript.vars;
+		vars.signinFirstPage.classList.add("d-block");
+		vars.signinFirstPage.classList.remove("d-none");
+		vars.signinSecondPage.classList.remove("d-block");
+		vars.signinSecondPage.classList.add("d-none");
+		vars.signinBtn.classList.add("d-none");
+		vars.signinBtn.classList.remove("d-block");
+		vars.signinSecondPageUsn.value = vars.usernameInput.value;
+		vars.passwordInput.removeEventListener("focusin", signinPageScript.focusPasswordInput);
+		vars.passwordInput.removeEventListener("focusout", signinPageScript.focusOutPasswordInput);
+		vars.showHidePassword.removeEventListener("click", signinPageScript.showHidePasswordHandler);
+		vars.passwordInput.removeEventListener("input", signinPageScript.showLoginBtn);
 	},
 
 	focusPasswordInput() {
@@ -132,6 +167,26 @@ const signinPageScript = {
 			return;
 		}
 		vars.signinButton.disabled = false;
+	},
+
+	async checkPwd() {
+		const usn = document.querySelector("[data-signin-page-2-username]");
+		const pwd = document.querySelector("[data-password-input]");
+		const data = {
+			username: usn.value,
+			password: pwd.value,
+		};
+		const response = await fetch("/signin", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			redirect: "follow",
+			body: JSON.stringify(data),
+		});
+		if (response.ok) {
+			location.reload();
+		}
 	},
 };
 

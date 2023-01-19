@@ -16,7 +16,7 @@ const loginPageScript = {
 		phone: null,
 		email: null,
 		DOB: null,
-		track: false,
+		track: true,
 		password: null,
 	},
 
@@ -389,9 +389,11 @@ const loginPageScript = {
 		const checkboxHidden = document.querySelector("[data-checkbox-hidden]");
 		if (checkboxHidden.checked) {
 			checkboxHidden.checked = false;
+			loginPageScript.formValues.track = false;
 			return;
 		} else if (!checkboxHidden.checked) {
 			checkboxHidden.checked = true;
+			loginPageScript.formValues.track = true;
 			return;
 		}
 	},
@@ -742,6 +744,27 @@ const loginPageScript = {
 		let data = loginPageScript.formValues;
 		// FIXME: This needs fixed. Can't get it to redirect after receiving response.
 		// 		 Data needs to be sent to server and get a response redirecting if everything is ok
+
+		const response = await fetch("/signup", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			redirect: "follow",
+			body: JSON.stringify(data),
+		})
+			.then(response => {
+				if (response.ok) {
+					console.log("There is no error. This will redirect you!");
+					console.log(response);
+					window.location.href = response.url;
+				} else {
+					throw "This is not right";
+				}
+			})
+			.catch(e => {
+				console.log(e);
+			});
 	},
 
 	backToFourthPage() {
