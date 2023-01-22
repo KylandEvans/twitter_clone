@@ -176,12 +176,12 @@ const signinPageScript = {
 			username: usn.value,
 			password: pwd.value,
 		};
+
 		const response = await fetch("/signin", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			redirect: "follow",
 			body: JSON.stringify(data),
 		});
 		if (response.ok) {

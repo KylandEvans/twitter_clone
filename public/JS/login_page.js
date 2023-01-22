@@ -757,7 +757,7 @@ const loginPageScript = {
 				if (response.ok) {
 					console.log("There is no error. This will redirect you!");
 					console.log(response);
-					window.location.href = response.url;
+					location.reload();
 				} else {
 					throw "This is not right";
 				}

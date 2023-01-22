@@ -13,12 +13,25 @@ const passport = require("passport");
 const session = require("express-session");
 const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
-const { type } = require("os");
+var mysql2 = require("mysql2/promise");
+const MySQLStore = require("express-mysql-session")(session);
+
+const sessionStoreOptions = {
+	host: "localhost",
+	port: 3306,
+	user: "root",
+	password: process.env.dbPass,
+	database: "twitter_clone",
+};
+
+const connection = mysql2.createPool(sessionStoreOptions);
+const sessionStore = new MySQLStore(sessionStoreOptions, connection);
 
 const sessionOptions = {
 	secret: "secret",
 	resave: false,
 	saveUninitialized: false,
+	store: sessionStore,
 };
 
 const db = mysql.createConnection({
@@ -37,52 +50,81 @@ app.use(session(sessionOptions));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(passport.initialize());
+app.use(passport.session());
+passport.serializeUser((user, done) => {
+	done(null, user.id);
+});
 
-let currUser;
+passport.deserializeUser((id, done) => {
+	db.query(`SELECT * FROM users	WHERE id = ${id}`, (err, results, fields) => {
+		if (err) return done(err);
+		return done(null, results[0]);
+	});
+});
 
 function validateNewUserData(data) {
 	if (!data.name) {
-		// console.log("No mane");
 		return true;
 	}
 	if (!data.phone && !data.email) {
-		// console.log("No phone & email");
 		return true;
 	}
 	if (data.phone && data.email) {
-		// console.log("Both phone & email");
 		return true;
 	}
 	if (!data.password) {
-		// console.log("No pass");
 		return true;
 	}
 }
 
-// function getUserByPhone(phone)
+passport.use(
+	new LocalStrategy((username, password, done) => {
+		db.query(
+			`SELECT * FROM users WHERE email = ${JSON.stringify(username)} OR phone = ${JSON.stringify(
+				username
+			)};`,
+			async (err, results, fields) => {
+				if (!results[0].id) {
+					return done(null, false, { message: "User does not exist" });
+				}
+				try {
+					if (await bcrypt.compare(JSON.stringify(password), results[0].password)) {
+						return done(null, results[0]);
+					} else {
+						return done(null, false, { message: "Password incorrect" });
+					}
+				} catch {
+					return done(e);
+				}
+			}
+		);
+	})
+);
 
-function authenticateUser(email, phone, password, done) {
-	const userByPhone = getUserByPhone(phone);
-	const userByEmail = getUserByEmail(email);
-	if (userByPhone) {
-		return done(null, userByPhone);
+function checkAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
 	}
-	if (userByEmail) {
-		return done(null, userByEmail);
-	}
-	return done(null, false, { message: "email or phone not valid" });
+	res.redirect("/");
 }
 
-passport.use(new LocalStrategy({ usernameField: "email" || "phone" }, authenticateUser));
+function checkNotAuthenticated(req, res, next) {
+	if (!req.isAuthenticated()) {
+		return res.redirect("/");
+	}
+	next();
+}
 
 app.get("/", (req, res) => {
-	if (currUser) {
-		return res.render("index_feed");
+	if (req.user) {
+		res.render("index_feed", { user: req.user });
+	} else {
+		res.render("index_login");
 	}
-	return res.render("index_login");
 });
 
-app.post("/signup", async (req, res) => {
+app.post("/signup", async (req, res, next) => {
 	const data = req.body;
 	if (validateNewUserData(data)) {
 		currUser = null;
@@ -105,8 +147,18 @@ app.post("/signup", async (req, res) => {
 		(err, results, fields) => {
 			if (err) throw err;
 			if (results.insertId) {
-				currUser = results.insertId;
-				return res.redirect("/");
+				// currUser = results.insertId;
+				db.query(
+					`SELECT * FROM users WHERE id = ${results.insertId}`,
+					(err, results, fields) => {
+						if (err) return res.redirect("/");
+						req.login(results[0], err => {
+							console.log(results);
+							if (err) return next(err);
+							res.sendStatus(200);
+						});
+					}
+				);
 			}
 		}
 	);
@@ -127,31 +179,15 @@ app.post("/getuser", (req, res) => {
 	);
 });
 
-app.post("/signin", (req, res) => {
-	const usn = JSON.stringify(req.body.username);
-	const pwd = JSON.stringify(req.body.password);
-	db.query(
-		`SELECT * FROM users WHERE email = ${usn} OR phone = ${usn};`,
-		async (err, results, fields) => {
-			// console.log(results);
-			if (err) {
-				return res.status(500).send(err);
-			}
-			if (results[0].id) {
-				const user = results[0];
-				const isMatch = await bcrypt.compare(pwd, user.password);
-				console.log(isMatch);
-				console.log(`isMatch is ${isMatch}`);
-				if (isMatch) {
-					currUser = user.id;
-					return res.sendStatus(200);
-				} else {
-					currUser = null;
-					return res.sendStatus(404, "incorrect password");
-				}
-			}
-		}
-	);
+app.post("/signin", passport.authenticate("local"), (req, res) => {
+	res.sendStatus(200);
+});
+
+app.post("/logout", checkAuthenticated, (req, res, next) => {
+	req.logOut(err => {
+		if (err) return next(err);
+		res.redirect("/");
+	});
 });
 
 app.get("/emptylink", (req, res) => {
