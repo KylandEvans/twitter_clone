@@ -118,7 +118,7 @@ function checkNotAuthenticated(req, res, next) {
 
 app.get("/", (req, res) => {
 	if (req.user) {
-		res.render("index_feed", { user: req.user });
+		res.render("feed/index_feed", { user: req.user });
 	} else {
 		res.render("index_login");
 	}

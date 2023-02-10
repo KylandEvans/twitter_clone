@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100mm"
+   height="88.610832mm"
+   viewBox="0 0 100 88.610832"
+   version="1.1"
+   id="svg1282"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="mobile_messages_icon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1284"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.74118967"
+     inkscape:cx="429.71457"
+     inkscape:cy="400.03256"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="1072"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs1279" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-1.998,-14.389169)">
+    <path
+       id="path1448"
+       d="m 1.998,26.696228 c 0,-6.798419 5.5949999,-12.307059 12.5,-12.307059 h 74.999999 c 6.905,0 12.500001,5.50864 12.500001,12.307059 V 90.692941 C 101.998,97.49136 96.402999,103 89.497999,103 H 14.498 c -6.9050001,0 -12.5,-5.50864 -12.5,-12.307059 z m 12.5,-2.461412 c -1.38,0 -2.5,1.102714 -2.5,2.461412 V 40.302915 L 51.998001,58.212148 91.998,40.312761 V 26.696228 c 0,-1.358698 -1.12,-2.461412 -2.500001,-2.461412 z M 91.998,51.128205 51.998001,69.027592 11.998,51.118359 v 39.574582 c 0,1.358699 1.12,2.461412 2.5,2.461412 h 74.999999 c 1.380001,0 2.500001,-1.102713 2.500001,-2.461412 z"
+       style="fill:#f9f9f9;stroke-width:4.96127" />
+  </g>
+</svg>
