@@ -111,17 +111,19 @@ function checkAuthenticated(req, res, next) {
 
 function checkNotAuthenticated(req, res, next) {
 	if (!req.isAuthenticated()) {
-		return res.redirect("/");
+		return next();
 	}
-	next();
+	res.redirect("/home");
 }
 
-app.get("/", (req, res) => {
-	if (req.user) {
-		res.render("feed/index_feed", { user: req.user });
-	} else {
-		res.render("index_login");
-	}
+app.get("/", checkNotAuthenticated, (req, res) => {
+	res.render("index_login");
+});
+
+app.get("/home", checkAuthenticated, (req, res) => {
+	db.query(`SELECT * FROM tweets WHERE tweetId <= 50`, (err, results) => {
+		res.render("feed/index_feed", { user: req.user, tweets: results });
+	});
 });
 
 app.post("/signup", async (req, res, next) => {
@@ -177,6 +179,12 @@ app.post("/getuser", (req, res) => {
 			}
 		}
 	);
+});
+
+app.get("/compose/tweet", checkAuthenticated, (req, res) => {
+	db.query(`SELECT * FROM tweets WHERE tweetId <= 50`, (err, results) => {
+		res.render("compose/tweet", { user: req.user, tweets: results });
+	});
 });
 
 app.post("/signin", passport.authenticate("local"), (req, res) => {

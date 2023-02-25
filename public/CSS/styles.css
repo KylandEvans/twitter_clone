@@ -9,6 +9,11 @@
 	--primary-text: #e7e9eaff;
 	--twitter-blue: #1d9bf0;
 	--faded-white: #ffffff66;
+	--faded-twitter-blue: #1d9bf01a;
+	--green: #00ba7c;
+	--faded-green: #00ba7c1a;
+	--red: rgba(249, 24, 128);
+	--faded-red: rgba(249, 24, 128, 0.1);
 }
 
 html {
@@ -66,8 +71,29 @@ a:hover {
 	border: none;
 }
 
+.bg-gray-hover:hover {
+	background-color: rgba(117, 117, 117, 0.192);
+}
+
+.cursor-pointer:hover {
+	cursor: pointer;
+}
+
 .text-muted {
-	color: #ffffff46;
+	color: #ffffff63;
+	font-weight: 100;
+}
+
+.opacity-half {
+	opacity: 0.5;
+}
+
+.opacity-none {
+	opacity: 0;
+}
+
+.pointer-events-none {
+	pointer-events: none;
 }
 
 .text-align-center {
@@ -928,6 +954,13 @@ a {
 	}
 }
 
+@media (max-width: 700px) {
+	.modal-outer {
+		min-height: 100vh;
+		min-width: 100vw;
+	}
+}
+
 @media (max-width: 600px) {
 	.login-container {
 		margin: 0;
@@ -946,10 +979,19 @@ a {
 	.login-container {
 		margin-left: 15px;
 	}
+
+	.modal-form-outer {
+		max-width: 80%;
+	}
 }
 
 @media (max-width: 400px) {
 	.login-container {
 		margin: 0;
+	}
+
+	.modal-form-outer {
+		max-width: 100%;
+		/* min-width: 100%; */
 	}
 }
