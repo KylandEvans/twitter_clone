@@ -17,10 +17,10 @@ const app = {
 	windowResize() {
 		if (window.innerWidth <= 500) {
 			app.loadMobile();
-			app.unloadDesktop();
+			// app.unloadDesktop();
 			console.log(window.innerWidth);
 		} else {
-			app.loadDesktop();
+			// app.loadDesktop();
 			app.unloadMobile();
 		}
 	},

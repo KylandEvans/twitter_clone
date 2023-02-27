@@ -5,6 +5,176 @@
 <script src="/JS/composeTweet.js" defer></script>
 <main>
 	<div class="modal-container new-tweet-modal">
+		<div class="mobile-selection-container d-none" data-mobile-audience-selection data-menu>
+			<div class="mobile-selection-outer fixed-bottom">
+				<h2 class="popout-selection-header">Choose audience </h2>
+				<div
+					class="audience-selection-item bg-gray-hover cursor-pointer"
+					data-audience-everyone
+				>
+					<div class="audience-selection-text-img-container">
+						<div class="audience-selection-img-container blue-bg">
+							<svg viewBox="0 0 24 24" class="audience-selection-img">
+								<g>
+									<path
+										d="M4.65 8.24c-.57 1.13-.9 2.41-.9 3.76 0 4.56 3.69 8.25 8.25 8.25 2.87 0 5.4-1.47 6.88-3.69l-2.99-1.5.56-3.32-3.01-4.21 4.16-1.59c-1.27-1.17-2.91-1.95-4.72-2.14l-.5 2.38-2.08 1.04-.53 1.41 4.82 1.93-2.16 2.87-1.23 5.54-3.7-1.85V13.1l-.53-2.68.26-.71-2.58-1.47zm1.13-1.66l2.16 1.23.77-2.03 1.91-.96.21-.99c-2.01.29-3.78 1.3-5.05 2.75zm3.26 4l.46 2.32v2.98l.3.15.77-3.46.85-1.13-2.35-.94-.03.08zm9.92-3.02l-2.39.91 1.99 2.79-.45 2.68 1.67.83c.3-.87.47-1.8.47-2.77 0-1.63-.47-3.16-1.29-4.44zM1.75 12C1.75 6.34 6.34 1.75 12 1.75S22.25 6.34 22.25 12 17.66 22.25 12 22.25 1.75 17.66 1.75 12z"
+									></path>
+								</g>
+							</svg>
+						</div>
+						<div class="autience-selection-text-container">
+							<h3 class="audience-selection-text">Everyone</h3>
+						</div>
+					</div>
+					<div class="check-container selected" data-audience-everyone-check>
+						<svg viewBox="0 0 24 24" class="check">
+							<g>
+								<path
+									d="M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z"
+								></path>
+							</g>
+						</svg>
+					</div>
+				</div>
+				<div
+					class="audience-selection-item bg-gray-hover cursor-pointer border-bottom-round"
+					data-audience-circle
+				>
+					<div class="audience-selection-text-img-container">
+						<div class="audience-selection-img-container green-bg">
+							<svg viewBox="0 0 24 24" class="audience-selection-img">
+								<g>
+									<path
+										d="M14 6c0 2.21-1.791 4-4 4S6 8.21 6 6s1.791-4 4-4 4 1.79 4 4zm-4 5c-2.352 0-4.373.85-5.863 2.44-1.477 1.58-2.366 3.8-2.632 6.46l-.11 1.1h17.21l-.11-1.1c-.266-2.66-1.155-4.88-2.632-6.46C14.373 11.85 12.352 11 10 11zm13.759-3.83c-.355-.69-1.059-1.13-1.84-1.17-.66-.03-1.347.22-1.918.79-.573-.57-1.259-.82-1.92-.79-.781.04-1.485.48-1.84 1.17-.358.71-.339 1.62.206 2.59.541.97 1.601 1.99 3.352 2.98l.202.12.201-.12c1.751-.99 2.811-2.01 3.352-2.98.544-.97.563-1.88.205-2.59z"
+									></path>
+								</g>
+							</svg>
+						</div>
+						<div class="autience-selection-text-container">
+							<h3 class="audience-selection-text">Twitter Circle</h3>
+							<div class="twitter-circle-people-container">
+								<span class="circle-count bold-white-text">0</span>
+								<p class="text-muted">People</p>
+								<div class="twitter-circle-edit-wrapper bg-gray-hover">
+									<a href="#" class="bold-white-text text-underline">Edit</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="check-container d-none" data-audience-circle-check>
+						<svg viewBox="0 0 24 24" class="check">
+							<g>
+								<path
+									d="M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z"
+								></path>
+							</g>
+						</svg>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mobile-selection-container d-none" data-mobile-reply-selection data-menu>
+			<div class="mobile-selection-outer fixed-bottom">
+				<div class="mobile-hover-popout-inner">
+					<h4 class="reply-selection-header-text text-white mobile-reply-padding"
+						>Who can reply?</h4
+					>
+					<p class="text-muted reply-selection-subheader mobile-reply-padding"
+						>Choose who can reply to this Tweet.
+					</p>
+					<p class="text-muted reply-selection-subheader pb-1 mobile-reply-padding"
+						>Anyone mentioned can always reply.
+					</p>
+					<div
+						class="audience-selection-item bg-gray-hover cursor-pointer mobile-reply-padding"
+						data-reply-selection-everyone
+					>
+						<div class="audience-selection-text-img-container">
+							<div class="audience-selection-img-container blue-bg">
+								<svg viewBox="0 0 24 24" class="audience-selection-img">
+									<g>
+										<path
+											d="M4.65 8.24c-.57 1.13-.9 2.41-.9 3.76 0 4.56 3.69 8.25 8.25 8.25 2.87 0 5.4-1.47 6.88-3.69l-2.99-1.5.56-3.32-3.01-4.21 4.16-1.59c-1.27-1.17-2.91-1.95-4.72-2.14l-.5 2.38-2.08 1.04-.53 1.41 4.82 1.93-2.16 2.87-1.23 5.54-3.7-1.85V13.1l-.53-2.68.26-.71-2.58-1.47zm1.13-1.66l2.16 1.23.77-2.03 1.91-.96.21-.99c-2.01.29-3.78 1.3-5.05 2.75zm3.26 4l.46 2.32v2.98l.3.15.77-3.46.85-1.13-2.35-.94-.03.08zm9.92-3.02l-2.39.91 1.99 2.79-.45 2.68 1.67.83c.3-.87.47-1.8.47-2.77 0-1.63-.47-3.16-1.29-4.44zM1.75 12C1.75 6.34 6.34 1.75 12 1.75S22.25 6.34 22.25 12 17.66 22.25 12 22.25 1.75 17.66 1.75 12z"
+										></path>
+									</g>
+								</svg>
+							</div>
+							<div class="autience-selection-text-container">
+								<h3 class="audience-selection-text">Everyone</h3>
+							</div>
+						</div>
+						<div class="check-container selected" data-reply-everyone-check>
+							<svg viewBox="0 0 24 24" class="check">
+								<g>
+									<path
+										d="M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z"
+									></path>
+								</g>
+							</svg>
+						</div>
+					</div>
+					<div
+						class="audience-selection-item bg-gray-hover cursor-pointer mobile-reply-padding"
+						data-reply-selection-follow
+					>
+						<div class="audience-selection-text-img-container">
+							<div class="audience-selection-img-container blue-bg">
+								<svg viewBox="0 0 24 24" class="audience-selection-img">
+									<g>
+										<path
+											d="M10 4c-1.105 0-2 .9-2 2s.895 2 2 2 2-.9 2-2-.895-2-2-2zM6 6c0-2.21 1.791-4 4-4s4 1.79 4 4-1.791 4-4 4-4-1.79-4-4zM3.651 19h12.698c-.337-1.8-1.023-3.21-1.945-4.19C13.318 13.65 11.838 13 10 13s-3.317.65-4.404 1.81c-.922.98-1.608 2.39-1.945 4.19zm.486-5.56C5.627 11.85 7.648 11 10 11s4.373.85 5.863 2.44c1.477 1.58 2.366 3.8 2.632 6.46l.11 1.1H1.395l.11-1.1c.266-2.66 1.155-4.88 2.632-6.46zm19.75-7.22l-4.141 6.21L16.1 9.7l1.2-1.6 1.954 1.47 2.969-4.46 1.664 1.11z"
+										></path>
+									</g>
+								</svg>
+							</div>
+							<div class="autience-selection-text-container">
+								<h3 class="audience-selection-text">People you follow</h3>
+							</div>
+						</div>
+						<div class="check-container d-none" data-reply-follow-check>
+							<svg viewBox="0 0 24 24" class="check">
+								<g>
+									<path
+										d="M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z"
+									></path>
+								</g>
+							</svg>
+						</div>
+					</div>
+					<div
+						class="audience-selection-item bg-gray-hover cursor-pointer mobile-reply-padding"
+						data-reply-selection-mention
+					>
+						<div class="audience-selection-text-img-container">
+							<div class="audience-selection-img-container blue-bg">
+								<svg viewBox="0 0 24 24" class="audience-selection-img">
+									<g>
+										<path
+											d="M12 3.786c-4.556 0-8.25 3.694-8.25 8.25s3.694 8.25 8.25 8.25c1.595 0 3.081-.451 4.341-1.233l1.054 1.7c-1.568.972-3.418 1.534-5.395 1.534-5.661 0-10.25-4.589-10.25-10.25S6.339 1.786 12 1.786s10.25 4.589 10.25 10.25c0 .901-.21 1.77-.452 2.477-.592 1.731-2.343 2.477-3.917 2.334-1.242-.113-2.307-.74-3.013-1.647-.961 1.253-2.45 2.011-4.092 1.78-2.581-.363-4.127-2.971-3.76-5.578.366-2.606 2.571-4.688 5.152-4.325 1.019.143 1.877.637 2.519 1.342l1.803.258-.507 3.549c-.187 1.31.761 2.509 2.079 2.629.915.083 1.627-.356 1.843-.99.2-.585.345-1.224.345-1.83 0-4.556-3.694-8.25-8.25-8.25zm-.111 5.274c-1.247-.175-2.645.854-2.893 2.623-.249 1.769.811 3.143 2.058 3.319 1.247.175 2.645-.854 2.893-2.623.249-1.769-.811-3.144-2.058-3.319z"
+										></path>
+									</g>
+								</svg>
+							</div>
+							<div class="autience-selection-text-container">
+								<h3 class="audience-selection-text">Only people you mention</h3>
+							</div>
+						</div>
+						<div class="check-container d-none" data-reply-mention-check>
+							<svg viewBox="0 0 24 24" class="check">
+								<g>
+									<path
+										d="M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z"
+									></path>
+								</g>
+							</svg>
+						</div>
+					</div>
+					<div class="mobile-selection-cancel-btn-wrapper">
+						<button class="mobile-selection-cancel-btn">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="modal-outer">
 			<div class="modal-inner">
 				<div class="modal-header">
@@ -13,13 +183,16 @@
 							<svg viewBox="0 0 24 24" class="modal-back-img">
 								<g>
 									<path
+										class="modal-back-path"
 										d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z"
 									></path>
 								</g>
 							</svg>
 						</div>
 					</a>
-					<button class="submit-tweet-btn" disabled data-submit-tweet>Tweet</button>
+					<button class="submit-tweet-btn submit-tweet-btn-mobile" disabled data-submit-tweet
+						>Tweet</button
+					>
 				</div>
 				<div class="modal-body">
 					<div class="profile-img-wrapper">
@@ -43,7 +216,7 @@
 							</svg>
 						</div>
 						<div class="relative-container-0x0">
-							<div class="hover-popout-outer d-none" data-audience-select-popout>
+							<div class="hover-popout-outer d-none" data-audience-select-popout data-menu>
 								<div class="hover-popout-inner">
 									<h2 class="popout-selection-header">Choose audience </h2>
 									<div
@@ -125,11 +298,16 @@
 							<div class="placeholder" data-tweetBoxPlaceholder>What's happening?</div>
 							<div
 								class="tweet"
-								contenteditable="true"
 								role="textbox"
 								autofocus
 								data-tweetBox
-							></div>
+								contenteditable="true"
+							>
+								<span data-good-text-wrapper><span data-good-text></span></span
+								><span data-bad-text-wrapper class="red-bg"
+									><span data-bad-text></span
+								></span>
+							</div>
 						</div>
 						<div class="reply-choice-container">
 							<div
@@ -158,6 +336,7 @@
 									<div
 										class="hover-popout-outer reply-popout d-none"
 										data-reply-selection-menu
+										data-menu
 									>
 										<div class="hover-popout-inner">
 											<h4 class="reply-selection-header-text text-color"
@@ -318,22 +497,31 @@
 									</svg>
 								</div>
 							</div>
-							<div class="progress-addTweet-buttons d-none" data-progress-add-tweet-btn>
-								<div class="progress-container">
-									<div class="outer-circle" data-progress-bar>
-										<div class="inner-circle"></div>
+							<div class="d-flex">
+								<div class="d-none progress-addTweet-buttons" data-progress-add-tweet-btn>
+									<div class="progress-container">
+										<div class="outer-circle" data-progress-bar>
+											<div class="inner-circle"></div>
+										</div>
+									</div>
+									<div class="vertical-divider"></div>
+									<div class="add-tweet-container">
+										<div class="add-tweet-btn">
+											<svg viewBox="0 0 24 24" class="add-tweet-img">
+												<g>
+													<path d="M11 11V4h2v7h7v2h-7v7h-2v-7H4v-2h7z"></path>
+												</g>
+											</svg>
+										</div>
 									</div>
 								</div>
-								<div class="vertical-divider"></div>
-								<div class="add-tweet-container">
-									<div class="add-tweet-btn">
-										<svg viewBox="0 0 24 24" class="add-tweet-img">
-											<g>
-												<path d="M11 11V4h2v7h7v2h-7v7h-2v-7H4v-2h7z"></path>
-											</g>
-										</svg>
-									</div>
-								</div>
+
+								<button
+									class="submit-tweet-btn submit-tweet-btn-desktop"
+									disabled
+									data-submit-tweet
+									>Tweet</button
+								>
 							</div>
 						</div>
 					</div>
@@ -341,6 +529,7 @@
 			</div>
 		</div>
 	</div>
+
 	<aside class="mobile-aside d-none" data-mobile-aside>
 		<div class="mobile-aside-inner">
 			<div class="mobile-aside-header">

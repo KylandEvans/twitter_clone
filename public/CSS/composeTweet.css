@@ -2,6 +2,11 @@ html {
 	overflow-y: hidden;
 }
 
+/* Change this later */
+span:focus-visible {
+	outline: none;
+}
+
 .new-tweet-modal {
 	display: flex;
 	z-index: 50;
@@ -53,16 +58,19 @@ html {
 }
 
 .submit-tweet-btn {
-	height: 32px;
-	width: 80px;
 	margin: 0;
 	border-radius: 20px;
 	border: none;
-	margin-right: 18px;
 	background-color: var(--twitter-blue);
 	font-weight: 700;
 	color: var(--primary-text);
 	font-size: 1rem;
+}
+
+.submit-tweet-btn-mobile {
+	margin-right: 18px;
+	height: 32px;
+	width: 80px;
 }
 
 .submit-tweet-btn:disabled {
@@ -73,6 +81,12 @@ html {
 	font-weight: 600;
 	height: 32px;
 	font-size: 1rem;
+}
+
+.submit-tweet-btn-desktop {
+	display: none;
+	width: 70px;
+	margin-left: 5px;
 }
 
 .modal-body {
@@ -163,6 +177,10 @@ html {
 
 .blue-bg {
 	background-color: var(--twitter-blue);
+}
+
+.red-bg {
+	background-color: red;
 }
 
 .green-text {
@@ -266,7 +284,7 @@ html {
 }
 
 .modal-tweet-container {
-	width: 100%;
+	width: calc(100% - 85px);
 	display: flex;
 	flex-direction: column;
 }
@@ -274,7 +292,6 @@ html {
 .tweet-input-wrapper {
 	margin-top: 25px;
 	min-height: 110px;
-	margin-right: 18px;
 	height: auto;
 	border: none;
 	outline: none;
@@ -296,7 +313,9 @@ html {
 	position: relative;
 	overflow-wrap: break-word;
 	z-index: 2;
-	max-width: 510px;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	flex-wrap: wrap;
 }
 
 .placeholder {
@@ -391,6 +410,7 @@ html {
 .extra-buttons {
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 15px;
 }
 
 .progress-addTweet-buttons {
@@ -454,6 +474,40 @@ html {
 	fill: var(--twitter-blue);
 }
 
+.mobile-hover-popout-inner {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.mobile-selection-cancel-btn-wrapper {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mobile-selection-cancel-btn {
+	width: 100%;
+	background-color: transparent;
+	border: solid 1px var(--faded-white);
+	border-radius: 24px;
+	outline: none;
+	color: var(--primary-text);
+	margin: 10px 15px;
+	padding: 12px;
+	font-size: 1.2rem;
+}
+
+.mobile-selection-cancel-btn:hover {
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-reply-padding {
+	padding-left: 20px;
+}
+
 /* Need to add the add tweet button and then setup to sent to backend */
 
 @media (min-width: 700px) {
@@ -463,9 +517,33 @@ html {
 	.modal-outer {
 		margin-top: 40px;
 		border-radius: 18px;
-		height: 315px;
+		/* height: 315px; */
 		width: 600px;
 		min-height: 315px;
-		max-height: 315px;
+		max-height: calc(100vh - 40px);
+	}
+
+	.modal-inner {
+		width: 97%;
+	}
+
+	.modal-back-path {
+		d: path(
+			"M10.59 12L4.54 5.96l1.42-1.42L12 10.59l6.04-6.05 1.42 1.42L13.41 12l6.05 6.04-1.42 1.42L12 13.41l-6.04 6.05-1.42-1.42L10.59 12z"
+		);
+	}
+
+	.submit-tweet-btn-mobile {
+		display: none;
+	}
+
+	.submit-tweet-btn-desktop {
+		display: inline-block;
+	}
+}
+
+@media (max-width: 600px) {
+	.modal-inner {
+		width: 98%;
 	}
 }
