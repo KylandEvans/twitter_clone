@@ -63,6 +63,14 @@ passport.deserializeUser((id, done) => {
 	});
 });
 
+app.use((req, res, next) => {
+	res.locals.message = req.session.message || null;
+	res.locals.newTweet = req.session.newTweet || null;
+	delete req.session.message;
+	delete req.session.newTweet;
+	next();
+});
+
 function validateNewUserData(data) {
 	if (!data.name) {
 		return true;
@@ -76,6 +84,18 @@ function validateNewUserData(data) {
 	if (!data.password) {
 		return true;
 	}
+}
+
+function checkTweet(body) {
+	let issues = [];
+	console.log(body);
+	if (body.tweet.length <= 0) {
+		issues.push("You can not post nothing");
+	}
+	if (body.tweet.length > 280) {
+		issues.push("Tweet is too long!");
+	}
+	return issues;
 }
 
 passport.use(
@@ -196,6 +216,35 @@ app.post("/logout", checkAuthenticated, (req, res, next) => {
 		if (err) return next(err);
 		res.redirect("/");
 	});
+});
+
+app.post("/post/tweet", (req, res) => {
+	let issues = checkTweet(req.body);
+	console.log(issues.length);
+	if (issues.length) {
+		req.session.message = {
+			message: issues[0],
+			tweet: req.body.tweet,
+		};
+		return res.redirect("/compose/tweet");
+	}
+	// console.log(req.us  er);
+
+	db.query(
+		`INSERT INTO tweets (user_id, tweet_body, likes, retweets, comments, views)
+				VALUES('${req.user.id}', '${req.body.tweet}', 0, 0, 0, 0)
+	`,
+		(err, results) => {
+			if (err) throw err;
+			if (results.insertId) {
+				console.log(results.insertId);
+				req.session.newTweet = {
+					body: req.body.tweet,
+				};
+				res.redirect("/home");
+			}
+		}
+	);
 });
 
 app.get("/emptylink", (req, res) => {

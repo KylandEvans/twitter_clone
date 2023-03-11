@@ -4,6 +4,11 @@
 <script src="/JS/feed/index_feed.js" defer></script>
 <script src="/JS/composeTweet.js" defer></script>
 <main>
+	<% if(message) {%>
+	<div class="error-message-container">
+		<div class="error-message"><%= message.message %></div>
+	</div>
+	<% } %>
 	<div class="modal-container new-tweet-modal">
 		<div class="mobile-selection-container d-none" data-mobile-audience-selection data-menu>
 			<div class="mobile-selection-outer fixed-bottom">
@@ -175,7 +180,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal-outer">
+		<div class="modal-outer dekstop-tweet-modal">
 			<div class="modal-inner">
 				<div class="modal-header">
 					<a href="/home" class="modal-back-wrpper">
@@ -303,11 +308,15 @@
 								data-tweetBox
 								contenteditable="true"
 							>
+								<% if(message) {%> <%= message.tweet %> <% } %>
 								<span data-good-text-wrapper><span data-good-text></span></span
 								><span data-bad-text-wrapper class="red-bg"
 									><span data-bad-text></span
 								></span>
 							</div>
+						</div>
+						<div class="media-display-wrapper">
+							<div class="media-display"></div>
 						</div>
 						<div class="reply-choice-container">
 							<div
@@ -500,8 +509,14 @@
 							<div class="d-flex">
 								<div class="d-none progress-addTweet-buttons" data-progress-add-tweet-btn>
 									<div class="progress-container">
-										<div class="outer-circle" data-progress-bar>
-											<div class="inner-circle"></div>
+										<div class="outer-circle" data-progress-bar data-outer-circle>
+											<div class="inner-circle" data-inner-circle>
+												<p
+													class="character-count-warning-text d-none faded-grey-text"
+													data-character-warning-text
+													>20</p
+												>
+											</div>
 										</div>
 									</div>
 									<div class="vertical-divider"></div>
@@ -528,6 +543,9 @@
 				</div>
 			</div>
 		</div>
+		<form action="/post/tweet" class="d-none" method="POST" data-tweet-form>
+			<textarea name="tweet" id="tweet" data-tweet-text></textarea>
+		</form>
 	</div>
 
 	<aside class="mobile-aside d-none" data-mobile-aside>

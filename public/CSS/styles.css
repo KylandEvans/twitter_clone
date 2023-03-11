@@ -14,6 +14,12 @@
 	--faded-green: #00ba7c1a;
 	--red: rgba(249, 24, 128);
 	--faded-red: rgba(249, 24, 128, 0.1);
+	--faded-grey: rgba(255, 255, 255, 0.2);
+	--warning-color: rgb(255, 212, 0);
+	--faded-warning: rgba(255, 212, 0, 0.1);
+	--danger-color: rgb(255, 12, 12);
+	--faded-danger-color: rgb(255, 12, 12, 0.3);
+	--white-bg: #ffffff21;
 }
 
 html {
@@ -47,6 +53,26 @@ a:hover {
 
 .invalid-text-color {
 	color: rgb(255, 12, 12) !important;
+}
+
+.warning-bg {
+	background-color: rgb(255, 212, 0);
+}
+
+.faded-warning-bg {
+	background-color: rgba(189, 209, 75, 0.1);
+}
+
+.warning-text {
+	color: rgb(255, 212, 0);
+}
+
+.danger-text {
+	color: rgb(255, 12, 12);
+}
+
+.faded-grey-text {
+	color: var(--faded-grey);
 }
 
 .invalid-text {
@@ -373,10 +399,11 @@ a {
 	background-color: black;
 	min-width: 600px;
 	border-radius: 20px;
-	/* height: 650px; */
+	height: 650px;
 	display: flex;
 	justify-content: space-between;
 	flex-direction: column;
+	position: relative;
 }
 
 .modal-close-container {
@@ -953,6 +980,31 @@ a {
 .fixed-bottom {
 	position: fixed;
 	bottom: 0;
+}
+
+.relative-container-0x0 {
+	height: 0;
+	width: 0;
+	position: relative;
+}
+
+.error-message-container {
+	height: 50px;
+	position: absolute;
+	bottom: 20px;
+	background-color: var(--twitter-blue);
+	left: 50%;
+	z-index: 2521525;
+	border-radius: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: -50px;
+}
+
+.error-message {
+	color: var(--primary-text);
+	padding: 10px;
 }
 
 @media (max-width: 1024px) {

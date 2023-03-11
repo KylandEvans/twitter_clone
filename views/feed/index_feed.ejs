@@ -1,7 +1,229 @@
 <% layout('layout/boilerplate') -%>
 <link rel="stylesheet" href="/CSS/index_feed.css" />
 <script src="/JS/feed/index_feed.js" defer></script>
+<script src="/JS/composeTweetDesktop.js" defer></script>
 <main>
+	<!-- In progress - Fixing to position based on screen size -->
+	<div class="popout-outer d-none" data-desktop-aside-extras-menu>
+		<div class="popout-item-outer">
+			<div class="popout-item-inner">
+				<div class="popout-item-img-wrapper">
+					<svg class="popout-item-img">
+						<g>
+							<path
+								d="M12 3.75C7.99 3.75 4.75 7 4.75 11s3.24 7.25 7.25 7.25h1v2.44c1.13-.45 2.42-1.3 3.54-2.54 1.52-1.67 2.66-3.95 2.71-6.67.07-4.46-3.28-7.73-7.25-7.73zM2.75 11c0-5.11 4.14-9.25 9.25-9.25s9.34 4.23 9.25 9.77c-.06 3.28-1.44 6.01-3.23 7.97-1.76 1.94-3.99 3.21-5.87 3.5l-1.15.17V20.2c-4.64-.5-8.25-4.43-8.25-9.2zM15 10H9V8h6v2zm-2 4H9v-2h4v2z"
+							></path>
+						</g>
+					</svg>
+				</div>
+				<h3 class="popout-item-text">Topics</h3>
+			</div>
+		</div>
+		<div class="popout-item-outer">
+			<div class="popout-item-inner">
+				<div class="popout-item-img-wrapper">
+					<svg class="popout-item-img">
+						<g>
+							<path
+								d="M3 4.5C3 3.12 4.12 2 5.5 2h13C19.88 2 21 3.12 21 4.5v15c0 1.38-1.12 2.5-2.5 2.5h-13C4.12 22 3 20.88 3 19.5v-15zM5.5 4c-.28 0-.5.22-.5.5v15c0 .28.22.5.5.5h13c.28 0 .5-.22.5-.5v-15c0-.28-.22-.5-.5-.5h-13zM16 10H8V8h8v2zm-8 2h8v2H8v-2z"
+							></path>
+						</g>
+					</svg>
+				</div>
+				<h3 class="popout-item-text">Lists</h3>
+			</div>
+		</div>
+		<div class="popout-item-outer">
+			<div class="popout-item-inner">
+				<div class="popout-item-img-wrapper">
+					<svg class="popout-item-img">
+						<g>
+							<path
+								d="M10 4c-1.105 0-2 .9-2 2s.895 2 2 2 2-.9 2-2-.895-2-2-2zM6 6c0-2.21 1.791-4 4-4s4 1.79 4 4-1.791 4-4 4-4-1.79-4-4zM3.651 19h12.698c-.337-1.8-1.023-3.21-1.945-4.19C13.318 13.65 11.838 13 10 13s-3.317.65-4.404 1.81c-.922.98-1.608 2.39-1.945 4.19zm.486-5.56C5.627 11.85 7.648 11 10 11s4.373.85 5.863 2.44c1.477 1.58 2.366 3.8 2.632 6.46l.11 1.1H1.395l.11-1.1c.266-2.66 1.155-4.88 2.632-6.46zm19.417-3.68c-.541.97-1.601 1.99-3.352 2.98l-.201.12-.202-.12c-1.751-.99-2.811-2.01-3.352-2.98-.545-.97-.564-1.88-.206-2.59.355-.69 1.059-1.13 1.84-1.17.661-.03 1.348.22 1.92.79.571-.57 1.258-.82 1.918-.79.781.04 1.485.48 1.84 1.17.358.71.339 1.62-.205 2.59z"
+							></path>
+						</g>
+					</svg>
+				</div>
+				<h3 class="popout-item-text">Twitter Circle</h3>
+			</div>
+		</div>
+		<div class="divider-wrapper">
+			<div class="divider"></div>
+		</div>
+		<div class="popout-item-outer">
+			<div class="popout-item-inner">
+				<div class="popout-item-dropdown-wrapper">
+					<h4 class="popout-item-dropdown-text">Creator Studio</h4>
+					<div class="popout-item-dropdown-img-wrapper">
+						<svg viewBox="0 0 24 24" class="popout-item-dropdown-img">
+							<g>
+								<path
+									d="M3.543 8.96l1.414-1.42L12 14.59l7.043-7.05 1.414 1.42L12 17.41 3.543 8.96z"
+								></path>
+							</g>
+						</svg>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="dropdown-items-list">
+			<div class="popout-item-outer">
+				<div class="popout-item-inner">
+					<div class="popout-dropdown-item-outer">
+						<svg viewBox="0 0 24 24" class="popout-dropdown-item-img">
+							<g>
+								<path
+									d="M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z"
+								></path>
+							</g>
+						</svg>
+						<h4 class="popout-dropdown-item-text">Analytics</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="popout-item-outer">
+			<div class="popout-item-inner">
+				<div class="popout-item-dropdown-wrapper">
+					<h4 class="popout-item-dropdown-text">Professional Tools</h4>
+					<div class="popout-item-dropdown-img-wrapper">
+						<svg viewBox="0 0 24 24" class="popout-item-dropdown-img">
+							<g>
+								<path
+									d="M3.543 8.96l1.414-1.42L12 14.59l7.043-7.05 1.414 1.42L12 17.41 3.543 8.96z"
+								></path>
+							</g>
+						</svg>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="dropdown-items-list">
+			<div class="popout-item-outer">
+				<div class="popout-item-inner">
+					<div class="popout-dropdown-item-outer">
+						<svg viewBox="0 0 24 24" class="popout-dropdown-item-img">
+							<g>
+								<path
+									d="M5 22H2v-3c0-1.654 1.346-3 3-3s3 1.346 3 3-1.346 3-3 3zm-1-2h1c.551 0 1-.449 1-1s-.449-1-1-1-1 .449-1 1v1zm7.594 1.282l-.336-1.145c-.271-.923-.664-1.807-1.166-2.627-.452-.736-.992-1.421-1.607-2.036-.626-.625-1.322-1.173-2.069-1.627-.821-.499-1.706-.888-2.63-1.157l-1.151-.335L5.312 7h5.192c.613-.636 2.015-2.077 2.758-2.744C15.673 2.09 20.704 2.003 20.918 2l1.025-.013-.013 1.025c-.003.213-.09 5.245-2.256 7.656-.643.715-2.004 2.043-2.671 2.688v5.239l-5.407 2.688h-.002zm.64-4.046c.207.396.393.802.557 1.217l2.21-1.099v-2.333l-2.768 2.214zm-3.839-4.468c.531.391 1.034.823 1.503 1.292.459.459.883.951 1.267 1.471l4.104-3.284c.269-.257 2.169-2.084 2.916-2.915 1.084-1.208 1.531-3.667 1.681-5.269-1.602.149-4.061.596-5.268 1.68-.832.748-2.658 2.647-2.916 2.916l-3.287 4.109zM5.47 11.154c.414.163.819.347 1.214.551l2.165-2.706H6.548l-1.077 2.154z"
+								></path>
+							</g>
+						</svg>
+						<h4 class="popout-dropdown-item-text">Twitter for Professionals</h4>
+					</div>
+				</div>
+			</div>
+			<div class="popout-item-outer">
+				<div class="popout-item-inner">
+					<div class="popout-dropdown-item-outer">
+						<svg viewBox="0 0 24 24" class="popout-dropdown-item-img">
+							<g>
+								<path
+									d="M1.996 5.5c0-1.38 1.119-2.5 2.5-2.5h15c1.38 0 2.5 1.12 2.5 2.5v13c0 1.38-1.12 2.5-2.5 2.5h-15c-1.381 0-2.5-1.12-2.5-2.5v-13zm2.5-.5c-.277 0-.5.22-.5.5v13c0 .28.223.5.5.5h15c.276 0 .5-.22.5-.5v-13c0-.28-.224-.5-.5-.5h-15zm8.085 5H8.996V8h7v7h-2v-3.59l-5.293 5.3-1.415-1.42L12.581 10z"
+								></path>
+							</g>
+						</svg>
+						<h4 class="popout-dropdown-item-text">Twitter Ads</h4>
+					</div>
+				</div>
+			</div>
+			<div class="popout-item-outer">
+				<div class="popout-item-inner">
+					<div class="popout-dropdown-item-outer">
+						<svg viewBox="0 0 24 24" class="popout-dropdown-item-img">
+							<g>
+								<path
+									d="M23 3v14h-2V5H5V3h18zM10 17c1.1 0 2-1.34 2-3s-.9-3-2-3-2 1.34-2 3 .9 3 2 3zM1 7h18v14H1V7zm16 10c-1.1 0-2 .9-2 2h2v-2zm-2-8c0 1.1.9 2 2 2V9h-2zM3 11c1.1 0 2-.9 2-2H3v2zm0 4c2.21 0 4 1.79 4 4h6c0-2.21 1.79-4 4-4v-2c-2.21 0-4-1.79-4-4H7c0 2.21-1.79 4-4 4v2zm0 4h2c0-1.1-.9-2-2-2v2z"
+								></path>
+							</g>
+						</svg>
+						<h4 class="popout-dropdown-item-text">Monetization</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="popout-item-outer">
+			<div class="popout-item-inner">
+				<div class="popout-item-dropdown-wrapper">
+					<h4 class="popout-item-dropdown-text">Settings and Support</h4>
+					<div class="popout-item-dropdown-img-wrapper">
+						<svg viewBox="0 0 24 24" class="popout-item-dropdown-img">
+							<g>
+								<path
+									d="M3.543 8.96l1.414-1.42L12 14.59l7.043-7.05 1.414 1.42L12 17.41 3.543 8.96z"
+								></path>
+							</g>
+						</svg>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="dropdown-items-list">
+			<div class="popout-item-outer">
+				<div class="popout-item-inner">
+					<div class="popout-dropdown-item-outer">
+						<svg viewBox="0 0 24 24" class="popout-dropdown-item-img">
+							<g>
+								<path
+									d="M10.54 1.75h2.92l1.57 2.36c.11.17.32.25.53.21l2.53-.59 2.17 2.17-.58 2.54c-.05.2.04.41.21.53l2.36 1.57v2.92l-2.36 1.57c-.17.12-.26.33-.21.53l.58 2.54-2.17 2.17-2.53-.59c-.21-.04-.42.04-.53.21l-1.57 2.36h-2.92l-1.58-2.36c-.11-.17-.32-.25-.52-.21l-2.54.59-2.17-2.17.58-2.54c.05-.2-.03-.41-.21-.53l-2.35-1.57v-2.92L4.1 8.97c.18-.12.26-.33.21-.53L3.73 5.9 5.9 3.73l2.54.59c.2.04.41-.04.52-.21l1.58-2.36zm1.07 2l-.98 1.47C10.05 6.08 9 6.5 7.99 6.27l-1.46-.34-.6.6.33 1.46c.24 1.01-.18 2.07-1.05 2.64l-1.46.98v.78l1.46.98c.87.57 1.29 1.63 1.05 2.64l-.33 1.46.6.6 1.46-.34c1.01-.23 2.06.19 2.64 1.05l.98 1.47h.78l.97-1.47c.58-.86 1.63-1.28 2.65-1.05l1.45.34.61-.6-.34-1.46c-.23-1.01.18-2.07 1.05-2.64l1.47-.98v-.78l-1.47-.98c-.87-.57-1.28-1.63-1.05-2.64l.34-1.46-.61-.6-1.45.34c-1.02.23-2.07-.19-2.65-1.05l-.97-1.47h-.78zM12 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5c.82 0 1.5-.67 1.5-1.5s-.68-1.5-1.5-1.5zM8.5 12c0-1.93 1.56-3.5 3.5-3.5 1.93 0 3.5 1.57 3.5 3.5s-1.57 3.5-3.5 3.5c-1.94 0-3.5-1.57-3.5-3.5z"
+								></path>
+							</g>
+						</svg>
+						<h4 class="popout-dropdown-item-text">Settings and privacy</h4>
+					</div>
+				</div>
+			</div>
+			<div class="popout-item-outer">
+				<div class="popout-item-inner">
+					<div class="popout-dropdown-item-outer">
+						<svg viewBox="0 0 24 24" class="popout-dropdown-item-img">
+							<g>
+								<path
+									d="M11.57 11.96l.99-.79c.33-.26.56-.53.7-.8.15-.27.22-.57.22-.91 0-.41-.12-.74-.38-.97s-.62-.35-1.09-.35-.85.12-1.13.37c-.26.25-.4.59-.4 1.03 0 .2.03.42.08.65l-2.07-.15c-.06-.29-.09-.55-.09-.79 0-.84.33-1.51.98-2.01.67-.49 1.55-.74 2.66-.74 1.17 0 2.07.24 2.71.73.63.48.95 1.16.95 2.04 0 .98-.47 1.86-1.4 2.65l-.87.73c-.17.15-.29.28-.36.4-.06.11-.09.26-.09.45v.46h-2.1v-.67c0-.3.06-.55.17-.75.12-.2.29-.39.52-.58zm-.52 5.17c.24.25.56.37.93.37.39 0 .7-.12.94-.37.25-.25.37-.56.37-.94 0-.39-.12-.7-.37-.95-.24-.25-.55-.37-.94-.37-.37 0-.69.12-.93.37s-.36.56-.36.95c0 .38.12.69.36.94zM22.25 12c0 5.66-4.59 10.25-10.25 10.25S1.75 17.66 1.75 12 6.34 1.75 12 1.75 22.25 6.34 22.25 12zM12 20.25c4.56 0 8.25-3.69 8.25-8.25S16.56 3.75 12 3.75 3.75 7.44 3.75 12s3.69 8.25 8.25 8.25z"
+								></path>
+							</g>
+						</svg>
+						<h4 class="popout-dropdown-item-text">Help center</h4>
+					</div>
+				</div>
+			</div>
+			<div class="popout-item-outer">
+				<div class="popout-item-inner">
+					<div class="popout-dropdown-item-outer">
+						<svg viewBox="0 0 24 24" class="popout-dropdown-item-img">
+							<g>
+								<path
+									d="M20 12h2v6.5c0 1.38-1.12 2.5-2.5 2.5h-15C3.12 21 2 19.88 2 18.5v-13C2 4.12 3.12 3 4.5 3H11v2H4.5c-.28 0-.5.22-.5.5v13c0 .28.22.5.5.5h15c.27 0 .5-.22.5-.5V12zm2.31-6.78l-6.33 7.18c-.2 2.02-1.91 3.6-3.98 3.6H8v-4c0-2.07 1.58-3.78 3.6-3.98l7.18-6.33c.99-.88 2.49-.83 3.43.1.93.94.98 2.44.1 3.43zm-1.52-2.01c-.19-.19-.49-.2-.69-.02l-6.08 5.36c.59.35 1.08.84 1.43 1.43l5.36-6.08c.18-.2.17-.5-.02-.69z"
+								></path>
+							</g>
+						</svg>
+						<svg viewBox="0 0 24 24" class="svg-colored-dot">
+							<g>
+								<path d="M14 12c0-1.1-.9-2-2-2-1.11 0-2 .9-2 2v2h2c1.1 0 2-.9 2-2z"></path>
+							</g>
+						</svg>
+						<h4 class="popout-dropdown-item-text">Display</h4>
+					</div>
+				</div>
+			</div>
+			<div class="popout-item-outer">
+				<div class="popout-item-inner">
+					<div class="popout-dropdown-item-outer">
+						<svg viewBox="0 0 24 24" class="popout-dropdown-item-img">
+							<g>
+								<path
+									d="M11.999 22.25c-5.652 0-10.25-4.598-10.25-10.25S6.347 1.75 11.999 1.75 22.249 6.348 22.249 12s-4.598 10.25-10.25 10.25zm0-18.5c-4.549 0-8.25 3.701-8.25 8.25s3.701 8.25 8.25 8.25 8.25-3.701 8.25-8.25-3.701-8.25-8.25-8.25zm.445 6.992c1.747-.096 3.748-.689 3.768-.695l.575 1.916c-.077.022-1.616.48-3.288.689v.498c.287 1.227 1.687 2.866 2.214 3.405l-1.428 1.4c-.188-.191-1.518-1.576-2.286-3.144-.769 1.568-2.098 2.952-2.286 3.144l-1.428-1.4c.527-.54 1.927-2.178 2.214-3.405v-.498c-1.672-.209-3.211-.667-3.288-.689l.575-1.916c.02.006 2.021.6 3.768.695m0 0c.301.017.59.017.891 0M12 6.25c-.967 0-1.75.78-1.75 1.75s.783 1.75 1.75 1.75 1.75-.78 1.75-1.75-.784-1.75-1.75-1.75z"
+								></path>
+							</g>
+						</svg>
+						<h4 class="popout-dropdown-item-text">Keyboard shortcuts</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End In progress -->
 	<aside class="mobile-aside d-none" data-mobile-aside>
 		<div class="mobile-aside-inner">
 			<div class="mobile-aside-header">
@@ -378,9 +600,289 @@
 			</div>
 		</div>
 	</aside>
+	<aside class="desktop-aside">
+		<div class="desktop-aside-links-wrapper">
+			<div class="desktop-logo-wrapper">
+				<svg viewBox="0 0 24 24" class="desktop-logo">
+					<g>
+						<path
+							d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"
+						></path>
+					</g>
+				</svg>
+			</div>
+			<div class="desktop-links-wrapper">
+				<div class="desktop-icon-outer">
+					<div class="desktop-aside-icon-wrapper">
+						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
+							<g>
+								<path
+									d="M12 1.696L.622 8.807l1.06 1.696L3 9.679V19.5C3 20.881 4.119 22 5.5 22h13c1.381 0 2.5-1.119 2.5-2.5V9.679l1.318.824 1.06-1.696L12 1.696zM12 16.5c-1.933 0-3.5-1.567-3.5-3.5s1.567-3.5 3.5-3.5 3.5 1.567 3.5 3.5-1.567 3.5-3.5 3.5z"
+								></path>
+							</g>
+						</svg>
+					</div>
+				</div>
+
+				<div class="desktop-icon-outer">
+					<div class="desktop-aside-icon-wrapper">
+						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
+							<g>
+								<path
+									d="M10.25 3.75c-3.59 0-6.5 2.91-6.5 6.5s2.91 6.5 6.5 6.5c1.795 0 3.419-.726 4.596-1.904 1.178-1.177 1.904-2.801 1.904-4.596 0-3.59-2.91-6.5-6.5-6.5zm-8.5 6.5c0-4.694 3.806-8.5 8.5-8.5s8.5 3.806 8.5 8.5c0 1.986-.682 3.815-1.824 5.262l4.781 4.781-1.414 1.414-4.781-4.781c-1.447 1.142-3.276 1.824-5.262 1.824-4.694 0-8.5-3.806-8.5-8.5z"
+								></path>
+							</g>
+						</svg>
+					</div>
+				</div>
+				<div class="desktop-icon-outer">
+					<div class="desktop-aside-icon-wrapper">
+						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
+							<g>
+								<path
+									d="M19.993 9.042C19.48 5.017 16.054 2 11.996 2s-7.49 3.021-7.999 7.051L2.866 18H7.1c.463 2.282 2.481 4 4.9 4s4.437-1.718 4.9-4h4.236l-1.143-8.958zM12 20c-1.306 0-2.417-.835-2.829-2h5.658c-.412 1.165-1.523 2-2.829 2zm-6.866-4l.847-6.698C6.364 6.272 8.941 4 11.996 4s5.627 2.268 6.013 5.295L18.864 16H5.134z"
+								></path>
+							</g>
+						</svg>
+					</div>
+				</div>
+				<div class="desktop-icon-outer">
+					<div class="desktop-aside-icon-wrapper">
+						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
+							<g>
+								<path
+									d="M1.998 5.5c0-1.381 1.119-2.5 2.5-2.5h15c1.381 0 2.5 1.119 2.5 2.5v13c0 1.381-1.119 2.5-2.5 2.5h-15c-1.381 0-2.5-1.119-2.5-2.5v-13zm2.5-.5c-.276 0-.5.224-.5.5v2.764l8 3.638 8-3.636V5.5c0-.276-.224-.5-.5-.5h-15zm15.5 5.463l-8 3.636-8-3.638V18.5c0 .276.224.5.5.5h15c.276 0 .5-.224.5-.5v-8.037z"
+								></path>
+							</g>
+						</svg>
+					</div>
+				</div>
+				<div class="desktop-icon-outer">
+					<div class="desktop-aside-icon-wrapper">
+						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
+							<g>
+								<path
+									d="M4 4.5C4 3.12 5.119 2 6.5 2h11C18.881 2 20 3.12 20 4.5v18.44l-8-5.71-8 5.71V4.5zM6.5 4c-.276 0-.5.22-.5.5v14.56l6-4.29 6 4.29V4.5c0-.28-.224-.5-.5-.5h-11z"
+								></path>
+							</g>
+						</svg>
+					</div>
+				</div>
+				<div class="desktop-icon-outer">
+					<div class="desktop-aside-icon-wrapper">
+						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
+							<g>
+								<path
+									d="M15.704 8.99c.457-.05.891-.17 1.296-.35-.302.45-.685.84-1.125 1.15.004.1.006.19.006.29 0 2.94-2.269 6.32-6.421 6.32-1.274 0-2.46-.37-3.459-1 .177.02.357.03.539.03 1.057 0 2.03-.35 2.803-.95-.988-.02-1.821-.66-2.109-1.54.138.03.28.04.425.04.206 0 .405-.03.595-.08-1.033-.2-1.811-1.1-1.811-2.18v-.03c.305.17.652.27 1.023.28-.606-.4-1.004-1.08-1.004-1.85 0-.4.111-.78.305-1.11 1.113 1.34 2.775 2.22 4.652 2.32-.038-.17-.058-.33-.058-.51 0-1.23 1.01-2.22 2.256-2.22.649 0 1.235.27 1.647.7.514-.1.997-.28 1.433-.54-.168.52-.526.96-.992 1.23zM2 21h15c3.038 0 5.5-2.46 5.5-5.5 0-1.4-.524-2.68-1.385-3.65-.08-.09-.089-.22-.023-.32.574-.87.908-1.91.908-3.03C22 5.46 19.538 3 16.5 3H2v18zM16.5 5C18.433 5 20 6.57 20 8.5c0 1.01-.43 1.93-1.12 2.57-.468.43-.414 1.19.111 1.55.914.63 1.509 1.69 1.509 2.88 0 1.93-1.567 3.5-3.5 3.5H4V5h12.5z"
+								></path>
+							</g>
+						</svg>
+					</div>
+				</div>
+				<div class="desktop-icon-outer">
+					<div class="desktop-aside-icon-wrapper">
+						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
+							<g>
+								<path
+									d="M5.651 19h12.698c-.337-1.8-1.023-3.21-1.945-4.19C15.318 13.65 13.838 13 12 13s-3.317.65-4.404 1.81c-.922.98-1.608 2.39-1.945 4.19zm.486-5.56C7.627 11.85 9.648 11 12 11s4.373.85 5.863 2.44c1.477 1.58 2.366 3.8 2.632 6.46l.11 1.1H3.395l.11-1.1c.266-2.66 1.155-4.88 2.632-6.46zM12 4c-1.105 0-2 .9-2 2s.895 2 2 2 2-.9 2-2-.895-2-2-2zM8 6c0-2.21 1.791-4 4-4s4 1.79 4 4-1.791 4-4 4-4-1.79-4-4z"
+								></path>
+							</g>
+						</svg>
+					</div>
+				</div>
+				<div class="desktop-icon-outer">
+					<div class="desktop-aside-icon-wrapper">
+						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
+							<g>
+								<path
+									d="M3.75 12c0-4.56 3.69-8.25 8.25-8.25s8.25 3.69 8.25 8.25-3.69 8.25-8.25 8.25S3.75 16.56 3.75 12zM12 1.75C6.34 1.75 1.75 6.34 1.75 12S6.34 22.25 12 22.25 22.25 17.66 22.25 12 17.66 1.75 12 1.75zm-4.75 11.5c.69 0 1.25-.56 1.25-1.25s-.56-1.25-1.25-1.25S6 11.31 6 12s.56 1.25 1.25 1.25zm9.5 0c.69 0 1.25-.56 1.25-1.25s-.56-1.25-1.25-1.25-1.25.56-1.25 1.25.56 1.25 1.25 1.25zM13.25 12c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"
+								></path>
+							</g>
+						</svg>
+					</div>
+				</div>
+			</div>
+			<a href="/compose/tweet" class="desktop-newTweet-wrapper">
+				<svg viewBox="0 0 24 24" class="desktop-newTweet">
+					<g>
+						<path
+							d="M23 3c-6.62-.1-10.38 2.421-13.05 6.03C7.29 12.61 6 17.331 6 22h2c0-1.007.07-2.012.19-3H12c4.1 0 7.48-3.082 7.94-7.054C22.79 10.147 23.17 6.359 23 3zm-7 8h-1.5v2H16c.63-.016 1.2-.08 1.72-.188C16.95 15.24 14.68 17 12 17H8.55c.57-2.512 1.57-4.851 3-6.78 2.16-2.912 5.29-4.911 9.45-5.187C20.95 8.079 19.9 11 16 11zM4 9V6H1V4h3V1h2v3h3v2H6v3H4z"
+						></path>
+					</g>
+				</svg>
+			</a>
+		</div>
+		<div class="desktop-aside-profile-link">
+			<img src="/Images/test_Image.jpg" alt="" class="desktop-aside-profile-img" />
+		</div>
+	</aside>
+	<aside class="large-desktop-aside">
+		<div class="large-desktop-link-wrapper-outer">
+			<a href="/home" class="large-desktop-logo-wrapper">
+				<svg viewBox="0 0 24 24" class="large-desktop-logo">
+					<g>
+						<path
+							d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"
+						></path>
+					</g>
+				</svg>
+			</a>
+			<a href="/home" class="large-desktop-link-wrapper">
+				<div class="large-desktop-link-inner">
+					<svg viewBox="0 0 24 24" class="large-desktop-link-img-wrapper">
+						<g>
+							<path
+								d="M12 1.696L.622 8.807l1.06 1.696L3 9.679V19.5C3 20.881 4.119 22 5.5 22h13c1.381 0 2.5-1.119 2.5-2.5V9.679l1.318.824 1.06-1.696L12 1.696zM12 16.5c-1.933 0-3.5-1.567-3.5-3.5s1.567-3.5 3.5-3.5 3.5 1.567 3.5 3.5-1.567 3.5-3.5 3.5z"
+							></path>
+						</g>
+					</svg>
+					<div class="large-desktop-text-outer current-tab">
+						<span class="large-desktop-link-text-wrapper">Home</span>
+					</div>
+				</div>
+			</a>
+			<a href="/explore" class="large-desktop-link-wrapper">
+				<div class="large-desktop-link-inner">
+					<svg viewBox="0 0 24 24" class="large-desktop-link-img-wrapper">
+						<g>
+							<path
+								d="M10.09 3.098L9.72 7h5.99l.39-4.089 1.99.187L17.72 7h3.78v2h-3.97l-.56 6h3.53v2h-3.72l-.38 4.089-1.99-.187.36-3.902H8.78l-.38 4.089-1.99-.187L6.77 17H2.5v-2h4.46l.56-6H3.5V7h4.21l.39-4.089 1.99.187zM14.96 15l.56-6H9.53l-.56 6h5.99z"
+							></path>
+						</g>
+					</svg>
+					<div class="large-desktop-text-outer">
+						<span class="large-desktop-link-text-wrapper">Explore</span>
+					</div>
+				</div>
+			</a>
+			<a href="/notifications" class="large-desktop-link-wrapper">
+				<div class="large-desktop-link-inner">
+					<svg viewBox="0 0 24 24" class="large-desktop-link-img-wrapper">
+						<g>
+							<path
+								d="M19.993 9.042C19.48 5.017 16.054 2 11.996 2s-7.49 3.021-7.999 7.051L2.866 18H7.1c.463 2.282 2.481 4 4.9 4s4.437-1.718 4.9-4h4.236l-1.143-8.958zM12 20c-1.306 0-2.417-.835-2.829-2h5.658c-.412 1.165-1.523 2-2.829 2zm-6.866-4l.847-6.698C6.364 6.272 8.941 4 11.996 4s5.627 2.268 6.013 5.295L18.864 16H5.134z"
+							></path>
+						</g>
+					</svg>
+					<div class="large-desktop-text-outer">
+						<span class="large-desktop-link-text-wrapper">Notifications</span>
+					</div>
+				</div>
+			</a>
+			<a href="/messages" class="large-desktop-link-wrapper">
+				<div class="large-desktop-link-inner">
+					<svg viewBox="0 0 24 24" class="large-desktop-link-img-wrapper">
+						<g>
+							<path
+								d="M1.998 5.5c0-1.381 1.119-2.5 2.5-2.5h15c1.381 0 2.5 1.119 2.5 2.5v13c0 1.381-1.119 2.5-2.5 2.5h-15c-1.381 0-2.5-1.119-2.5-2.5v-13zm2.5-.5c-.276 0-.5.224-.5.5v2.764l8 3.638 8-3.636V5.5c0-.276-.224-.5-.5-.5h-15zm15.5 5.463l-8 3.636-8-3.638V18.5c0 .276.224.5.5.5h15c.276 0 .5-.224.5-.5v-8.037z"
+							></path>
+						</g>
+					</svg>
+					<div class="large-desktop-text-outer">
+						<span class="large-desktop-link-text-wrapper">Messages</span>
+					</div>
+				</div>
+			</a>
+			<a href="/i/bookmarks" class="large-desktop-link-wrapper bookmarks-item">
+				<div class="large-desktop-link-inner">
+					<svg viewBox="0 0 24 24" class="large-desktop-link-img-wrapper">
+						<g>
+							<path
+								d="M4 4.5C4 3.12 5.119 2 6.5 2h11C18.881 2 20 3.12 20 4.5v18.44l-8-5.71-8 5.71V4.5zM6.5 4c-.276 0-.5.22-.5.5v14.56l6-4.29 6 4.29V4.5c0-.28-.224-.5-.5-.5h-11z"
+							></path>
+						</g>
+					</svg>
+					<div class="large-desktop-text-outer">
+						<span class="large-desktop-link-text-wrapper">Bookmarks</span>
+					</div>
+				</div>
+			</a>
+			<a href="/i/twitter_blue_sign_up" class="large-desktop-link-wrapper">
+				<div class="large-desktop-link-inner">
+					<svg viewBox="0 0 24 24" class="large-desktop-link-img-wrapper">
+						<g>
+							<path
+								d="M15.704 8.99c.457-.05.891-.17 1.296-.35-.302.45-.685.84-1.125 1.15.004.1.006.19.006.29 0 2.94-2.269 6.32-6.421 6.32-1.274 0-2.46-.37-3.459-1 .177.02.357.03.539.03 1.057 0 2.03-.35 2.803-.95-.988-.02-1.821-.66-2.109-1.54.138.03.28.04.425.04.206 0 .405-.03.595-.08-1.033-.2-1.811-1.1-1.811-2.18v-.03c.305.17.652.27 1.023.28-.606-.4-1.004-1.08-1.004-1.85 0-.4.111-.78.305-1.11 1.113 1.34 2.775 2.22 4.652 2.32-.038-.17-.058-.33-.058-.51 0-1.23 1.01-2.22 2.256-2.22.649 0 1.235.27 1.647.7.514-.1.997-.28 1.433-.54-.168.52-.526.96-.992 1.23zM2 21h15c3.038 0 5.5-2.46 5.5-5.5 0-1.4-.524-2.68-1.385-3.65-.08-.09-.089-.22-.023-.32.574-.87.908-1.91.908-3.03C22 5.46 19.538 3 16.5 3H2v18zM16.5 5C18.433 5 20 6.57 20 8.5c0 1.01-.43 1.93-1.12 2.57-.468.43-.414 1.19.111 1.55.914.63 1.509 1.69 1.509 2.88 0 1.93-1.567 3.5-3.5 3.5H4V5h12.5z"
+							></path>
+						</g>
+					</svg>
+					<div class="large-desktop-text-outer">
+						<span class="large-desktop-link-text-wrapper">Twitter Blue</span>
+					</div>
+				</div>
+			</a>
+			<a href="/Kyland_Evans" class="large-desktop-link-wrapper">
+				<div class="large-desktop-link-inner">
+					<svg viewBox="0 0 24 24" class="large-desktop-link-img-wrapper">
+						<g>
+							<path
+								d="M5.651 19h12.698c-.337-1.8-1.023-3.21-1.945-4.19C15.318 13.65 13.838 13 12 13s-3.317.65-4.404 1.81c-.922.98-1.608 2.39-1.945 4.19zm.486-5.56C7.627 11.85 9.648 11 12 11s4.373.85 5.863 2.44c1.477 1.58 2.366 3.8 2.632 6.46l.11 1.1H3.395l.11-1.1c.266-2.66 1.155-4.88 2.632-6.46zM12 4c-1.105 0-2 .9-2 2s.895 2 2 2 2-.9 2-2-.895-2-2-2zM8 6c0-2.21 1.791-4 4-4s4 1.79 4 4-1.791 4-4 4-4-1.79-4-4z"
+							></path>
+						</g>
+					</svg>
+					<div class="large-desktop-text-outer">
+						<span class="large-desktop-link-text-wrapper">Profile</span>
+					</div>
+				</div>
+			</a>
+			<div class="large-desktop-link-wrapper" data-desktop-extra-links-button>
+				<div class="large-desktop-link-inner">
+					<svg viewBox="0 0 24 24" class="large-desktop-link-img-wrapper">
+						<g>
+							<path
+								d="M3.75 12c0-4.56 3.69-8.25 8.25-8.25s8.25 3.69 8.25 8.25-3.69 8.25-8.25 8.25S3.75 16.56 3.75 12zM12 1.75C6.34 1.75 1.75 6.34 1.75 12S6.34 22.25 12 22.25 22.25 17.66 22.25 12 17.66 1.75 12 1.75zm-4.75 11.5c.69 0 1.25-.56 1.25-1.25s-.56-1.25-1.25-1.25S6 11.31 6 12s.56 1.25 1.25 1.25zm9.5 0c.69 0 1.25-.56 1.25-1.25s-.56-1.25-1.25-1.25-1.25.56-1.25 1.25.56 1.25 1.25 1.25zM13.25 12c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"
+							></path>
+						</g>
+					</svg>
+					<div class="large-desktop-text-outer">
+						<span class="large-desktop-link-text-wrapper">More</span>
+					</div>
+				</div>
+			</div>
+			<div class="large-desktop-newTweet-wrapper">
+				<button class="large-desktop-newTweet-button" onclick="location.href='/compose/tweet'"
+					>Tweet</button
+				>
+			</div>
+		</div>
+		<div class="large-desktop-account-wrapper" data-large-desktop-account-button>
+			<div class="large-desktop-profile-name-image-wrapper">
+				<div class="large-desktop-profile-image-outer">
+					<img src="/Images/test_Image.jpg" alt="" class="large-desktop-profile-image" />
+				</div>
+				<div class="large-desktop-profile-name-wrapper">
+					<p class="large-desktop-profile-name">Kyland Evans</p>
+					<p class="large-desktop-profile-handle text-muted">@Kyland_Evans</p>
+				</div>
+			</div>
+			<div class="large-desktop-account-options-wrapper">
+				<div class="options-button">
+					<svg viewBox="0 0 24 24" class="large-desktop-options-img">
+						<g>
+							<path
+								d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"
+							></path>
+						</g>
+					</svg>
+				</div>
+			</div>
+			<div class="desktop-account-popout d-none" data-large-desktop-account-popout>
+				<div class="desktop-account-popout-item-outer">
+					<span class="text-white">Add an existing account</span>
+				</div>
+				<div class="desktop-account-popout-item-outer">
+					<form action="/logout" method="POST">
+						<button type="submit" class="text-white large-desktop-logout"
+							>Log out @Kyland_Evans</button
+						>
+					</form>
+				</div>
+			</div>
+		</div>
+	</aside>
 	<section class="feed-outer" data-feed-outer>
 		<header class="header-outer bg-black-semi-trans sticky-top">
-			<div class="header-head d-flex" data-header-logo-area>
+			<div class="header-head" data-header-logo-area>
 				<div class="profile-image-outer">
 					<div>
 						<img
@@ -396,12 +898,14 @@
 				</div>
 				<div class="header-filler-blank"></div>
 			</div>
+			<div class="desktop-header-head">
+				<h1 class="desktop-header text-color">Home</h1>
+			</div>
 			<div class="header-buttons" data-header-buttons>
 				<button class="for-you-header-btn header-text-active">For you</button>
 				<button class="following-header-btn">Following</button>
 			</div>
 		</header>
-
 		<a class="mobile-tweet-container" href="/compose/tweet">
 			<div class="mobile-tweet-button">
 				<svg viewBox="0 0 24 24" class="mobile-tweet-img">
@@ -415,7 +919,289 @@
 		</a>
 
 		<section class="feed">
-			<% for(let i = 0; i < 50; i++) {%>
+			<div class="desktop-feed-newTweet-wrapper">
+				<div class="desktop-tweet-profile-img">
+					<img src="/Images/test_Image.jpg" alt="" class="desktop-tweet-img" />
+				</div>
+				<div class="desktop-tweet-body-outer">
+					<div class="desktop-audience-selection-wrapper d-none" data-default-hidden>
+						<div class="desktop-audience-selection" data-audience-select>
+							<h5 class="desktop-tweet-audience-text" data-audience-select-text>Everyone</h5>
+							<svg
+								viewBox="0 0 24 24"
+								class="dropdown blue-fill"
+								data-audience-select-dropdown
+							>
+								<g>
+									<path
+										class="dropdown-path"
+										d="M3.543 8.96l1.414-1.42L12 14.59l7.043-7.05 1.414 1.42L12 17.41 3.543 8.96z"
+									></path>
+								</g>
+							</svg>
+						</div>
+						<div
+							class="desktop-audience-selection-popout d-none"
+							data-audience-select-popout
+							data-menu
+						>
+							<div class="desktop-audience-select-inner">
+								<h2 class="desktop-audience-select-header">Choose audience </h2>
+								<div class="desktop-audience-selection-item" data-audience-everyone>
+									<div class="desktop-audience-selection-text-img-container">
+										<div class="desktop-audience-selection-img-container blue-bg">
+											<svg viewBox="0 0 24 24" class="desktop-audience-selection-img">
+												<g>
+													<path
+														d="M4.65 8.24c-.57 1.13-.9 2.41-.9 3.76 0 4.56 3.69 8.25 8.25 8.25 2.87 0 5.4-1.47 6.88-3.69l-2.99-1.5.56-3.32-3.01-4.21 4.16-1.59c-1.27-1.17-2.91-1.95-4.72-2.14l-.5 2.38-2.08 1.04-.53 1.41 4.82 1.93-2.16 2.87-1.23 5.54-3.7-1.85V13.1l-.53-2.68.26-.71-2.58-1.47zm1.13-1.66l2.16 1.23.77-2.03 1.91-.96.21-.99c-2.01.29-3.78 1.3-5.05 2.75zm3.26 4l.46 2.32v2.98l.3.15.77-3.46.85-1.13-2.35-.94-.03.08zm9.92-3.02l-2.39.91 1.99 2.79-.45 2.68 1.67.83c.3-.87.47-1.8.47-2.77 0-1.63-.47-3.16-1.29-4.44zM1.75 12C1.75 6.34 6.34 1.75 12 1.75S22.25 6.34 22.25 12 17.66 22.25 12 22.25 1.75 17.66 1.75 12z"
+													></path>
+												</g>
+											</svg>
+										</div>
+										<h3 class="text-white">Everyone</h3>
+									</div>
+									<div class="check-container selected" data-audience-everyone-check>
+										<svg viewBox="0 0 24 24" class="check">
+											<g>
+												<path
+													d="M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z"
+												></path>
+											</g>
+										</svg>
+									</div>
+								</div>
+								<div
+									class="desktop-audience-selection-item border-bottom-round"
+									data-audience-circle
+								>
+									<div class="desktop-audience-selection-text-img-container">
+										<div class="desktop-audience-selection-img-container green-bg">
+											<svg viewBox="0 0 24 24" class="desktop-audience-selection-img">
+												<g>
+													<path
+														d="M14 6c0 2.21-1.791 4-4 4S6 8.21 6 6s1.791-4 4-4 4 1.79 4 4zm-4 5c-2.352 0-4.373.85-5.863 2.44-1.477 1.58-2.366 3.8-2.632 6.46l-.11 1.1h17.21l-.11-1.1c-.266-2.66-1.155-4.88-2.632-6.46C14.373 11.85 12.352 11 10 11zm13.759-3.83c-.355-.69-1.059-1.13-1.84-1.17-.66-.03-1.347.22-1.918.79-.573-.57-1.259-.82-1.92-.79-.781.04-1.485.48-1.84 1.17-.358.71-.339 1.62.206 2.59.541.97 1.601 1.99 3.352 2.98l.202.12.201-.12c1.751-.99 2.811-2.01 3.352-2.98.544-.97.563-1.88.205-2.59z"
+													></path>
+												</g>
+											</svg>
+										</div>
+										<div class="audience-selection-text-container">
+											<h3 class="text-white">Twitter Circle</h3>
+											<div class="twitter-circle-people-container">
+												<span class="circle-count bold-white-text">0</span>
+												<p class="text-muted">People</p>
+												<div class="twitter-circle-edit-wrapper bg-gray-hover">
+													<a href="#" class="bold-white-text text-underline">Edit</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="check-container d-none" data-audience-circle-check>
+										<svg viewBox="0 0 24 24" class="check">
+											<g>
+												<path
+													d="M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z"
+												></path>
+											</g>
+										</svg>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tweetBox-outer">
+						<div class="tweetBox-placeholder" data-tweetBoxPlaceholder>What's Happening?</div>
+						<div class="tweetBox" contenteditable="true" data-tweetBox></div>
+					</div>
+					<div class="desktop-reply-container d-none" data-default-hidden>
+						<div class="desktop-reply-outer" data-reply-selection-menu-btn>
+							<div class="desktop-reply-img-container">
+								<svg viewBox="0 0 24 24" class="desktop-reply-img">
+									<g>
+										<path
+											data-reply-selected-img
+											d="M12 1.75C6.34 1.75 1.75 6.34 1.75 12S6.34 22.25 12 22.25 22.25 17.66 22.25 12 17.66 1.75 12 1.75zm-.25 10.48L10.5 17.5l-2-1.5v-3.5L7.5 9 5.03 7.59c1.42-2.24 3.89-3.75 6.72-3.84L11 6l-2 .5L8.5 9l5 1.5-1.75 1.73zM17 14v-3l-1.5-3 2.88-1.23c1.17 1.42 1.87 3.24 1.87 5.23 0 1.3-.3 2.52-.83 3.61L17 14z"
+										></path>
+									</g>
+								</svg>
+							</div>
+							<div class="desktop-reply-selection-text" data-reply-selection-text
+								>Everyone can reply</div
+							>
+						</div>
+						<div
+							class="desktop-reply-selection-popout d-none"
+							data-reply-selection-menu
+							data-menu
+						>
+							<div class="desktop-reply-selection-innner">
+								<h5 class="text-color desktop-reply-header-text">Who can reply?</h5>
+								<h5 class="desktop-reply-subheader-text text-muted"
+									>Choose who can reply to this Tweet.
+								</h5>
+								<h5 class="desktop-reply-subheader-text text-muted"
+									>Anyone mentioned can always reply.</h5
+								>
+							</div>
+							<div class="desktop-audience-selection-item" data-reply-selection-everyone>
+								<div class="desktop-audience-selection-text-img-container">
+									<div class="desktop-audience-selection-img-container blue-bg">
+										<svg viewBox="0 0 24 24" class="desktop-audience-selection-img">
+											<g>
+												<path
+													d="M4.65 8.24c-.57 1.13-.9 2.41-.9 3.76 0 4.56 3.69 8.25 8.25 8.25 2.87 0 5.4-1.47 6.88-3.69l-2.99-1.5.56-3.32-3.01-4.21 4.16-1.59c-1.27-1.17-2.91-1.95-4.72-2.14l-.5 2.38-2.08 1.04-.53 1.41 4.82 1.93-2.16 2.87-1.23 5.54-3.7-1.85V13.1l-.53-2.68.26-.71-2.58-1.47zm1.13-1.66l2.16 1.23.77-2.03 1.91-.96.21-.99c-2.01.29-3.78 1.3-5.05 2.75zm3.26 4l.46 2.32v2.98l.3.15.77-3.46.85-1.13-2.35-.94-.03.08zm9.92-3.02l-2.39.91 1.99 2.79-.45 2.68 1.67.83c.3-.87.47-1.8.47-2.77 0-1.63-.47-3.16-1.29-4.44zM1.75 12C1.75 6.34 6.34 1.75 12 1.75S22.25 6.34 22.25 12 17.66 22.25 12 22.25 1.75 17.66 1.75 12z"
+												></path>
+											</g>
+										</svg>
+									</div>
+									<h3 class="text-white text-small">Everyone</h3>
+								</div>
+								<div class="check-container selected" data-reply-everyone-check>
+									<svg viewBox="0 0 24 24" class="check">
+										<g>
+											<path
+												d="M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z"
+											></path>
+										</g>
+									</svg>
+								</div>
+							</div>
+							<div class="desktop-audience-selection-item" data-reply-selection-follow>
+								<div class="desktop-audience-selection-text-img-container">
+									<div class="desktop-audience-selection-img-container blue-bg">
+										<svg viewBox="0 0 24 24" class="desktop-audience-selection-img">
+											<g>
+												<path
+													d="M10 4c-1.105 0-2 .9-2 2s.895 2 2 2 2-.9 2-2-.895-2-2-2zM6 6c0-2.21 1.791-4 4-4s4 1.79 4 4-1.791 4-4 4-4-1.79-4-4zM3.651 19h12.698c-.337-1.8-1.023-3.21-1.945-4.19C13.318 13.65 11.838 13 10 13s-3.317.65-4.404 1.81c-.922.98-1.608 2.39-1.945 4.19zm.486-5.56C5.627 11.85 7.648 11 10 11s4.373.85 5.863 2.44c1.477 1.58 2.366 3.8 2.632 6.46l.11 1.1H1.395l.11-1.1c.266-2.66 1.155-4.88 2.632-6.46zm19.75-7.22l-4.141 6.21L16.1 9.7l1.2-1.6 1.954 1.47 2.969-4.46 1.664 1.11z"
+												></path>
+											</g>
+										</svg>
+									</div>
+									<h3 class="text-white text-small">People you follow</h3>
+								</div>
+								<div class="check-container d-none" data-reply-follow-check>
+									<svg viewBox="0 0 24 24" class="check">
+										<g>
+											<path
+												d="M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z"
+											></path>
+										</g>
+									</svg>
+								</div>
+							</div>
+							<div class="desktop-audience-selection-item" data-reply-selection-mention>
+								<div class="desktop-audience-selection-text-img-container">
+									<div class="desktop-audience-selection-img-container blue-bg">
+										<svg viewBox="0 0 24 24" class="desktop-audience-selection-img">
+											<g>
+												<path
+													d="M12 3.786c-4.556 0-8.25 3.694-8.25 8.25s3.694 8.25 8.25 8.25c1.595 0 3.081-.451 4.341-1.233l1.054 1.7c-1.568.972-3.418 1.534-5.395 1.534-5.661 0-10.25-4.589-10.25-10.25S6.339 1.786 12 1.786s10.25 4.589 10.25 10.25c0 .901-.21 1.77-.452 2.477-.592 1.731-2.343 2.477-3.917 2.334-1.242-.113-2.307-.74-3.013-1.647-.961 1.253-2.45 2.011-4.092 1.78-2.581-.363-4.127-2.971-3.76-5.578.366-2.606 2.571-4.688 5.152-4.325 1.019.143 1.877.637 2.519 1.342l1.803.258-.507 3.549c-.187 1.31.761 2.509 2.079 2.629.915.083 1.627-.356 1.843-.99.2-.585.345-1.224.345-1.83 0-4.556-3.694-8.25-8.25-8.25zm-.111 5.274c-1.247-.175-2.645.854-2.893 2.623-.249 1.769.811 3.143 2.058 3.319 1.247.175 2.645-.854 2.893-2.623.249-1.769-.811-3.144-2.058-3.319z"
+												></path>
+											</g>
+										</svg>
+									</div>
+									<h3 class="text-white text-small">Only people you mention</h3>
+								</div>
+								<div class="check-container d-none" data-reply-mention-check>
+									<svg viewBox="0 0 24 24" class="check">
+										<g>
+											<path
+												d="M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z"
+											></path>
+										</g>
+									</svg>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="br d-none" data-default-hidden></div>
+					<div class="desktop-extra-buttons-wrapper">
+						<div class="desktop-extra-buttons-outer">
+							<div class="desktop-extra-button-outer">
+								<svg viewBox="0 0 24 24" class="desktop-extra-button">
+									<g>
+										<path
+											d="M3 5.5C3 4.119 4.119 3 5.5 3h13C19.881 3 21 4.119 21 5.5v13c0 1.381-1.119 2.5-2.5 2.5h-13C4.119 21 3 19.881 3 18.5v-13zM5.5 5c-.276 0-.5.224-.5.5v9.086l3-3 3 3 5-5 3 3V5.5c0-.276-.224-.5-.5-.5h-13zM19 15.414l-3-3-5 5-3-3-3 3V18.5c0 .276.224.5.5.5h13c.276 0 .5-.224.5-.5v-3.086zM9.75 7C8.784 7 8 7.784 8 8.75s.784 1.75 1.75 1.75 1.75-.784 1.75-1.75S10.716 7 9.75 7z"
+										></path>
+									</g>
+								</svg>
+							</div>
+							<div class="desktop-extra-button-outer">
+								<svg viewBox="0 0 24 24" class="desktop-extra-button">
+									<g>
+										<path
+											d="M3 5.5C3 4.119 4.12 3 5.5 3h13C19.88 3 21 4.119 21 5.5v13c0 1.381-1.12 2.5-2.5 2.5h-13C4.12 21 3 19.881 3 18.5v-13zM5.5 5c-.28 0-.5.224-.5.5v13c0 .276.22.5.5.5h13c.28 0 .5-.224.5-.5v-13c0-.276-.22-.5-.5-.5h-13zM18 10.711V9.25h-3.74v5.5h1.44v-1.719h1.7V11.57h-1.7v-.859H18zM11.79 9.25h1.44v5.5h-1.44v-5.5zm-3.07 1.375c.34 0 .77.172 1.02.43l1.03-.86c-.51-.601-1.28-.945-2.05-.945C7.19 9.25 6 10.453 6 12s1.19 2.75 2.72 2.75c.85 0 1.54-.344 2.05-.945v-2.149H8.38v1.032H9.4v.515c-.17.086-.42.172-.68.172-.76 0-1.36-.602-1.36-1.375 0-.688.6-1.375 1.36-1.375z"
+										></path>
+									</g>
+								</svg>
+							</div>
+							<div class="desktop-extra-button-outer poll-img">
+								<svg viewBox="0 0 24 24" class="desktop-extra-button">
+									<g>
+										<path
+											d="M6 5c-1.1 0-2 .895-2 2s.9 2 2 2 2-.895 2-2-.9-2-2-2zM2 7c0-2.209 1.79-4 4-4s4 1.791 4 4-1.79 4-4 4-4-1.791-4-4zm20 1H12V6h10v2zM6 15c-1.1 0-2 .895-2 2s.9 2 2 2 2-.895 2-2-.9-2-2-2zm-4 2c0-2.209 1.79-4 4-4s4 1.791 4 4-1.79 4-4 4-4-1.791-4-4zm20 1H12v-2h10v2zM7 7c0 .552-.45 1-1 1s-1-.448-1-1 .45-1 1-1 1 .448 1 1z"
+										></path>
+									</g>
+								</svg>
+							</div>
+							<div class="desktop-extra-button-outer">
+								<svg viewBox="0 0 24 24" class="desktop-extra-button">
+									<g>
+										<path
+											d="M8 9.5C8 8.119 8.672 7 9.5 7S11 8.119 11 9.5 10.328 12 9.5 12 8 10.881 8 9.5zm6.5 2.5c.828 0 1.5-1.119 1.5-2.5S15.328 7 14.5 7 13 8.119 13 9.5s.672 2.5 1.5 2.5zM12 16c-2.224 0-3.021-2.227-3.051-2.316l-1.897.633c.05.15 1.271 3.684 4.949 3.684s4.898-3.533 4.949-3.684l-1.896-.638c-.033.095-.83 2.322-3.053 2.322zm10.25-4.001c0 5.652-4.598 10.25-10.25 10.25S1.75 17.652 1.75 12 6.348 1.75 12 1.75 22.25 6.348 22.25 12zm-2 0c0-4.549-3.701-8.25-8.25-8.25S3.75 7.451 3.75 12s3.701 8.25 8.25 8.25 8.25-3.701 8.25-8.25z"
+										></path>
+									</g>
+								</svg>
+							</div>
+							<div class="desktop-extra-button-outer schedule-img">
+								<svg viewBox="0 0 24 24" class="desktop-extra-button">
+									<g>
+										<path
+											d="M6 3V2h2v1h6V2h2v1h1.5C18.88 3 20 4.119 20 5.5v2h-2v-2c0-.276-.22-.5-.5-.5H16v1h-2V5H8v1H6V5H4.5c-.28 0-.5.224-.5.5v12c0 .276.22.5.5.5h3v2h-3C3.12 20 2 18.881 2 17.5v-12C2 4.119 3.12 3 4.5 3H6zm9.5 8c-2.49 0-4.5 2.015-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.015 4.5-4.5-2.01-4.5-4.5-4.5zM9 15.5C9 11.91 11.91 9 15.5 9s6.5 2.91 6.5 6.5-2.91 6.5-6.5 6.5S9 19.09 9 15.5zm5.5-2.5h2v2.086l1.71 1.707-1.42 1.414-2.29-2.293V13z"
+										></path>
+									</g>
+								</svg>
+							</div>
+							<div class="desktop-extra-button-outer">
+								<svg viewBox="0 0 24 24" class="desktop-extra-button">
+									<g>
+										<path
+											d="M12 7c-1.93 0-3.5 1.57-3.5 3.5S10.07 14 12 14s3.5-1.57 3.5-3.5S13.93 7 12 7zm0 5c-.827 0-1.5-.673-1.5-1.5S11.173 9 12 9s1.5.673 1.5 1.5S12.827 12 12 12zm0-10c-4.687 0-8.5 3.813-8.5 8.5 0 5.967 7.621 11.116 7.945 11.332l.555.37.555-.37c.324-.216 7.945-5.365 7.945-11.332C20.5 5.813 16.687 2 12 2zm0 17.77c-1.665-1.241-6.5-5.196-6.5-9.27C5.5 6.916 8.416 4 12 4s6.5 2.916 6.5 6.5c0 4.073-4.835 8.028-6.5 9.27z"
+										></path>
+									</g>
+								</svg>
+							</div>
+						</div>
+						<div class="d-flex">
+							<div class="progress-addTweet-buttons d-none" data-progress-add-tweet-btn>
+								<div class="progress-container">
+									<div class="outer-circle" data-progress-bar data-outer-circle>
+										<div class="inner-circle" data-inner-circle>
+											<p
+												class="character-count-warning-text d-none faded-grey-text"
+												data-character-warning-text
+												>20</p
+											>
+										</div>
+									</div>
+								</div>
+								<div class="vertical-divider"></div>
+								<div class="add-tweet-container">
+									<div class="add-tweet-btn">
+										<svg viewBox="0 0 24 24" class="add-tweet-img">
+											<g>
+												<path d="M11 11V4h2v7h7v2h-7v7h-2v-7H4v-2h7z"></path>
+											</g>
+										</svg>
+									</div>
+								</div>
+							</div>
+							<button class="submit-tweet-btn" disabled data-submit-tweet>Tweet</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% if(newTweet) {%>
 			<div class="feed-item-outer" onclick="location.href='/newlocation'">
 				<div class="feed-proile-image-wrapper">
 					<div class="image-border-wrapper">
@@ -428,7 +1214,113 @@
 					<div class="feed-item-header">
 						<div class="feed-item-header-wrapper">
 							<h4 class="feed-item-name feed-text">Kyland Evans</h4>
-							<h4 class="text-muted">@Kyland_Evans</h4>
+							<h4 class="text-muted handle-text">@Kyland_Evans</h4>
+							<div class="seperator"></div>
+							<h4 class="text-muted">2h</h4>
+						</div>
+						<div class="feed-item-options-button-wrapper">
+							<!-- <img src="/Icons/options.svg" alt="" class="options-img" /> -->
+							<div class="options-button">
+								<svg viewBox="0 0 24 24" class="options-img">
+									<g>
+										<path
+											d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"
+										></path>
+									</g>
+								</svg>
+							</div>
+						</div>
+					</div>
+					<div class="feed-item-text-wrapper">
+						<div class="feed-item-text-body">
+							<p class="feed-text"><%= newTweet.body %></p>
+						</div>
+					</div>
+					<div class="feed-item-action-buttons">
+						<div class="action-button-wrapper">
+							<div class="action-button-image comments-button">
+								<svg
+									viewBox="0 0 24 24"
+									aria-hidden="true"
+									class="action-button-defaults comments-image"
+								>
+									<g>
+										<path
+											d="M 1.751 10 c 0 -4.42 3.584 -8 8.005 -8 h 4.366 c 4.49 0 8.129 3.64 8.129 8.13 c 0 2.96 -1.607 5.68 -4.196 7.11 l -8.054 4.46 v -3.69 h -0.067 c -4.49 0.1 -8.183 -3.51 -8.183 -8.01 Z m 8.005 -6 c -3.317 0 -6.005 2.69 -6.005 6 c 0 3.37 2.77 6.08 6.138 6.01 l 0.351 -0.01 h 1.761 v 2.3 l 5.087 -2.81 c 1.951 -1.08 3.163 -3.13 3.163 -5.36 c 0 -3.39 -2.744 -6.13 -6.129 -6.13 H 9.756 Z"
+										></path>
+									</g>
+								</svg>
+							</div>
+							<div class="action-button-text comments-text">0</div>
+						</div>
+						<div class="action-button-wrapper">
+							<div class="action-button-image retweets-button">
+								<svg viewBox="0 0 24 24" class="action-button-defaults retweets-image">
+									<g>
+										<path
+											d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"
+										></path>
+									</g>
+								</svg>
+							</div>
+							<div class="action-button-text retweets-text">0</div>
+						</div>
+						<div class="action-button-wrapper">
+							<div class="action-button-image likes-button">
+								<svg viewBox="0 0 24 24" class="action-button-defaults likes-image">
+									<g>
+										<path
+											d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"
+										></path>
+									</g>
+								</svg>
+							</div>
+							<div class="action-button-text likes-text">0</div>
+						</div>
+						<div class="action-button-wrapper views-wrapper">
+							<div class="action-button-image views-button">
+								<svg viewBox="0 0 24 24" class="action-button-defaults views-image">
+									<g>
+										<path
+											d="M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z"
+										></path>
+									</g>
+								</svg>
+							</div>
+							<div class="action-button-text views-text">0</div>
+						</div>
+						<div class="action-button-wrapper">
+							<div class="action-button-image share-button">
+								<svg viewBox="0 0 24 24" class="action-button-defaults share-image">
+									<g>
+										<path
+											d="M12 2.59l5.7 5.7-1.41 1.42L13 6.41V16h-2V6.41l-3.3 3.3-1.41-1.42L12 2.59zM21 15l-.02 3.51c0 1.38-1.12 2.49-2.5 2.49H5.5C4.11 21 3 19.88 3 18.5V15h2v3.5c0 .28.22.5.5.5h12.98c.28 0 .5-.22.5-.5L19 15h2z"
+										></path>
+									</g>
+								</svg>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% } %> <% for(let i = 0; i < 50; i++) {%>
+			<div class="feed-item-outer" onclick="location.href='/newlocation'">
+				<div class="feed-proile-image-wrapper">
+					<div class="image-border-wrapper">
+						<a href="#">
+							<img src="/Images/test_image.jpg" alt="" class="feed-profile-image" />
+						</a>
+					</div>
+				</div>
+				<div class="feed-item-inner-body">
+					<div class="feed-item-header">
+						<div class="feed-item-header-wrapper">
+							<div class="feed-name-wrapper">
+								<div class="feed-item-name feed-text">Kyland Evans</div>
+							</div>
+							<div class="feed-name-wrapper">
+								<div class="feed-item-name text-muted">@Kyland_Evans</div>
+							</div>
 							<div class="seperator"></div>
 							<h4 class="text-muted">2h</h4>
 						</div>
@@ -491,7 +1383,7 @@
 							</div>
 							<div class="action-button-text likes-text"><%= tweets[i].likes %></div>
 						</div>
-						<div class="action-button-wrapper">
+						<div class="action-button-wrapper views-wrapper">
 							<div class="action-button-image views-button">
 								<svg viewBox="0 0 24 24" class="action-button-defaults views-image">
 									<g>
@@ -542,4 +1434,199 @@
 			</div>
 		</section>
 	</section>
+	<section class="desktop-extras-bar">
+		<div class="searchbar-item">
+			<div class="desktop-extras-searchbar-wrapper" data-desktop-searchbox-wrapper>
+				<div class="desktop-search-icon">
+					<svg viewBox="0 0 24 24" class="searchbar-search-icon">
+						<g>
+							<path
+								d="M10.25 3.75c-3.59 0-6.5 2.91-6.5 6.5s2.91 6.5 6.5 6.5c1.795 0 3.419-.726 4.596-1.904 1.178-1.177 1.904-2.801 1.904-4.596 0-3.59-2.91-6.5-6.5-6.5zm-8.5 6.5c0-4.694 3.806-8.5 8.5-8.5s8.5 3.806 8.5 8.5c0 1.986-.682 3.815-1.824 5.262l4.781 4.781-1.414 1.414-4.781-4.781c-1.447 1.142-3.276 1.824-5.262 1.824-4.694 0-8.5-3.806-8.5-8.5z"
+							></path>
+						</g>
+					</svg>
+				</div>
+				<div class="searchbox">
+					<div class="desktop-searchbox-placeholder d-flex" data-dekstop-search-placeholder
+						>Search Twitter</div
+					>
+					<input
+						type="text"
+						name="search"
+						id="search"
+						class="desktop-extras-search"
+						data-desktop-searchbox
+						autocapitalize="false"
+						autocomplete="false"
+						spellcheck="false"
+					/>
+				</div>
+				<div class="desktop-clear-search-wrapper d-none" data-desktop-searchbox-clear>
+					<div class="desktop-clear-search d-flex">
+						<svg viewBox="0 0 15 15" class="desktop-clear-search-img">
+							<g>
+								<path
+									d="M6.09 7.5L.04 1.46 1.46.04 7.5 6.09 13.54.04l1.42 1.42L8.91 7.5l6.05 6.04-1.42 1.42L7.5 8.91l-6.04 6.05-1.42-1.42L6.09 7.5z"
+								></path>
+							</g>
+						</svg>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="stick-bottom">
+			<article class="desktop-extras-outer">
+				<h2 class="desktop-extras-article-title">What's Happening</h2>
+				<div class="desktop-sports-news-outer">
+					<div class="article-info-outer">
+						<div class="title-header-item">
+							<h4 class="sport-name light-white-light-weight">Sport Name</h4>
+							<div class="seperator light-white-light-weight"></div>
+							<div class="post-time light-white-light-weight">3 hours ago</div>
+						</div>
+						<h2 class="article-title text-white">Article Title Here</h2>
+					</div>
+					<div class="img-item">
+						<img src="/Images/desktop_article_test_img.jpg" alt="" class="article-img" />
+					</div>
+				</div>
+				<div class="desktop-promoted-item-outer">
+					<h2 class="article-title text-color">#ParamountPlus</h2>
+					<h4 class="light-white-light-weight promoted-text"
+						>Stream A Mountain of Entertainment™</h4
+					>
+					<div class="external-link-wrapper">
+						<svg viewBox="0 0 24 24" class="external-link-img">
+							<g>
+								<path
+									d="M19.498 3h-15c-1.381 0-2.5 1.12-2.5 2.5v13c0 1.38 1.119 2.5 2.5 2.5h15c1.381 0 2.5-1.12 2.5-2.5v-13c0-1.38-1.119-2.5-2.5-2.5zm-3.502 12h-2v-3.59l-5.293 5.3-1.414-1.42L12.581 10H8.996V8h7v7z"
+								></path>
+							</g>
+						</svg>
+						<h4 class="light-white-light-weight promoted-text">Promoted by Paramount+</h4>
+					</div>
+				</div>
+				<div class="desktop-trending-item-outer">
+					<div class="trending-item-text-outer">
+						<h4 class="light-white-light-weight">Trending</h4>
+						<h2 class="article-title text-color">Cocaine</h2>
+						<h4 class="light-white-light-weight pt-5">30.2k Tweets</h4>
+					</div>
+					<div class="feed-item-options-button-wrapper">
+						<div class="options-button">
+							<svg viewBox="0 0 24 24" class="options-img">
+								<g>
+									<path
+										d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"
+									></path>
+								</g>
+							</svg>
+						</div>
+					</div>
+				</div>
+				<div class="desktop-trending-item-outer">
+					<div class="trending-item-text-outer">
+						<h4 class="light-white-light-weight">Trending</h4>
+						<h2 class="article-title text-color">Adderall</h2>
+						<h4 class="light-white-light-weight pt-5">2,358 Tweets</h4>
+					</div>
+					<div class="feed-item-options-button-wrapper">
+						<div class="options-button">
+							<svg viewBox="0 0 24 24" class="options-img">
+								<g>
+									<path
+										d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"
+									></path>
+								</g>
+							</svg>
+						</div>
+					</div>
+				</div>
+				<div class="desktop-trending-item-outer">
+					<div class="trending-item-text-outer">
+						<h4 class="light-white-light-weight">Trending</h4>
+						<h2 class="article-title text-color">Udemy</h2>
+						<h4 class="light-white-light-weight pt-5">1,296 Tweets</h4>
+					</div>
+					<div class="feed-item-options-button-wrapper">
+						<div class="options-button">
+							<svg viewBox="0 0 24 24" class="options-img">
+								<g>
+									<path
+										d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"
+									></path>
+								</g>
+							</svg>
+						</div>
+					</div>
+				</div>
+				<div class="desktop-extras-more-link-wrapper">
+					<a href="" class="desktop-extras-more-link">Show more</a>
+				</div>
+			</article>
+			<article class="desktop-extras-outer">
+				<h2 class="desktop-extras-article-title follow-title">Who to follow</h2>
+				<div class="desktop-extras-follow-person-outer">
+					<div class="desktop-extras-follow-person-inner">
+						<div class="feed-proile-image-wrapper extras-person-profile-img">
+							<div class="image-border-wrapper">
+								<a href="#">
+									<img src="/Images/test_image.jpg" alt="" class="feed-profile-image" />
+								</a>
+							</div>
+						</div>
+						<div class="profile-name-handle-outer">
+							<span class="extras-profile-name">Kyland Evans</span>
+							<span class="extras-profile-handle light-white-light-weight"
+								>@Kyland_Evans</span
+							>
+						</div>
+					</div>
+					<button class="desktop-extras-follow-button">Follow</button>
+				</div>
+				<div class="desktop-extras-follow-person-outer">
+					<div class="desktop-extras-follow-person-inner">
+						<div class="feed-proile-image-wrapper extras-person-profile-img">
+							<div class="image-border-wrapper">
+								<a href="#">
+									<img src="/Images/test_image.jpg" alt="" class="feed-profile-image" />
+								</a>
+							</div>
+						</div>
+						<div class="profile-name-handle-outer">
+							<span class="extras-profile-name">Kyland Evansfdssdfds</span>
+							<span class="extras-profile-handle light-white-light-weight"
+								>@Kyland_Evans</span
+							>
+						</div>
+					</div>
+					<button class="desktop-extras-follow-button">Follow</button>
+				</div>
+				<div class="desktop-extras-follow-person-outer">
+					<div class="desktop-extras-follow-person-inner">
+						<div class="feed-proile-image-wrapper extras-person-profile-img">
+							<div class="image-border-wrapper">
+								<a href="#">
+									<img src="/Images/test_image.jpg" alt="" class="feed-profile-image" />
+								</a>
+							</div>
+						</div>
+						<div class="profile-name-handle-outer">
+							<span class="extras-profile-name">Kyland Evans</span>
+							<span class="extras-profile-handle light-white-light-weight"
+								>@Kyland_Evans</span
+							>
+						</div>
+					</div>
+					<button class="desktop-extras-follow-button">Follow</button>
+				</div>
+				<div class="desktop-extras-more-link-wrapper">
+					<a href="" class="desktop-extras-more-link">Show more</a>
+				</div>
+			</article>
+		</div>
+	</section>
+	<form action="/post/tweet" class="d-none" method="POST" data-tweet-form>
+		<textarea name="tweet" id="tweet" data-tweet-text></textarea>
+	</form>
 </main>

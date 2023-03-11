@@ -1,9 +1,27 @@
 const app = {
 	init() {
 		app.addListeners();
-		console.log("JS Init");
 	},
 	addListeners() {
+		const searchbox = document.querySelector("[data-desktop-searchbox]");
+		const largeAccountButton = document.querySelector("[data-large-desktop-account-button]");
+		searchbox.addEventListener("focus", app.searchboxFocused);
+		searchbox.addEventListener("blur", app.searchboxBlured);
+		searchbox.addEventListener("input", app.searchboxChange);
+		largeAccountButton.addEventListener("click", app.largeDesktopOpenAccountOptions);
+		window.addEventListener("click", app.largeDesktopCloseAccountOptions);
+		const largeDesktopAside = document.querySelector(".large-desktop-aside");
+		const desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button]");
+		desktopMoreItemsButton.addEventListener("click", () => {
+			let elePos = desktopMoreItemsButton.getBoundingClientRect();
+			const extraItemsMenu = document.querySelector("[data-desktop-aside-extras-menu]");
+			if (extraItemsMenu.classList.contains("d-none")) {
+				console.log(`ele pos = ${window.innerWidth - elePos.left}`);
+				extraItemsMenu.classList.remove("d-none");
+				extraItemsMenu.style.right = window.innerWidth - elePos.left - 350 + "px";
+			}
+		});
+
 		window.addEventListener("resize", app.windowResize);
 		if (window.innerWidth <= 500) {
 			app.loadMobile();
@@ -21,7 +39,7 @@ const app = {
 			console.log(window.innerWidth);
 		} else {
 			// app.loadDesktop();
-			app.unloadMobile();
+			// app.unloadMobile();
 		}
 	},
 
@@ -116,9 +134,71 @@ const app = {
 		mobileHeaderImage.addEventListener("click", app.mobileAsideOpen);
 	},
 
-	unloadMobile() {
-		const mobileHeaderImage = document.querySelector("[data-mobile-aside-open]");
-		mobileHeaderImage.removeEventListener("click", app.mobileAsideOpen);
+	// unloadMobile() {
+	// 	const mobileHeaderImage = document.querySelector("[data-mobile-aside-open]");
+	// 	mobileHeaderImage.removeEventListener("click", app.mobileAsideOpen);
+	// },
+
+	searchboxFocused() {
+		const searchboxWrapper = document.querySelector("[data-desktop-searchbox-wrapper]");
+		const searchboxClear = document.querySelector("[data-desktop-searchbox-clear]");
+		const searchbox = document.querySelector("[data-desktop-searchbox]");
+		searchboxWrapper.style.backgroundColor = "transparent";
+		searchboxWrapper.style.border = "solid 1px var(--twitter-blue)";
+		if (searchbox.value.length > 0) {
+			searchboxClear.classList.add("d-flex");
+			searchboxClear.classList.remove("d-none");
+		} else {
+			searchboxClear.classList.remove("d-flex");
+			searchboxClear.classList.add("d-none");
+		}
+	},
+
+	searchboxBlured() {
+		const searchboxWrapper = document.querySelector("[data-desktop-searchbox-wrapper]");
+		const searchboxClear = document.querySelector("[data-desktop-searchbox-clear]");
+		const searchbox = document.querySelector("[data-desktop-searchbox]");
+		searchboxWrapper.style.backgroundColor = "rgba(32, 35, 39, 0.7)";
+		searchboxWrapper.style.border = "none";
+		searchboxClear.classList.add("d-none");
+		searchboxClear.classList.remove("d-flex");
+	},
+
+	searchboxChange() {
+		const searchboxWrapper = document.querySelector("[data-desktop-searchbox-wrapper]");
+		const searchboxClear = document.querySelector("[data-desktop-searchbox-clear]");
+		const searchbox = document.querySelector("[data-desktop-searchbox]");
+		const searchboxPlaceholder = document.querySelector("[data-dekstop-search-placeholder]");
+		if (searchbox.value.length > 0) {
+			searchboxPlaceholder.classList.remove("d-flex");
+			searchboxPlaceholder.classList.add("d-none");
+			searchboxClear.classList.add("d-flex");
+			searchboxClear.classList.remove("d-none");
+		} else {
+			searchboxPlaceholder.classList.add("d-flex");
+			searchboxPlaceholder.classList.remove("d-none");
+			searchboxClear.classList.remove("d-flex");
+			searchboxClear.classList.add("d-none");
+		}
+	},
+
+	largeDesktopOpenAccountOptions() {
+		const accountOptionsBox = document.querySelector("[data-large-desktop-account-popout]");
+		const main = document.querySelector("main");
+		if (accountOptionsBox.classList.contains("d-none")) {
+			accountOptionsBox.classList.remove("d-none");
+			main.classList.add("pointer-events-none");
+		}
+	},
+
+	largeDesktopCloseAccountOptions(e) {
+		const accountOptionsBox = document.querySelector("[data-large-desktop-account-popout]");
+		const element = document.querySelector("[data-large-desktop-account-button]");
+		const main = document.querySelector("main");
+		if (e.target !== element && !element.contains(e.target)) {
+			accountOptionsBox.classList.add("d-none");
+			main.classList.remove("pointer-events-none");
+		}
 	},
 };
 

@@ -15,6 +15,7 @@ span:focus-visible {
 .modal-outer {
 	border-radius: 0;
 	align-items: center;
+	height: auto;
 }
 
 .modal-inner {
@@ -73,6 +74,11 @@ span:focus-visible {
 	width: 80px;
 }
 
+.submit-tweet-btn:hover {
+	cursor: pointer;
+	opacity: 0.9;
+}
+
 .submit-tweet-btn:disabled {
 	opacity: 0.5;
 	background-color: var(--twitter-blue);
@@ -126,12 +132,6 @@ span:focus-visible {
 	height: 15px;
 	width: 15px;
 	padding-right: 5px;
-}
-
-.relative-container-0x0 {
-	height: 0;
-	width: 0;
-	position: relative;
 }
 
 .hover-popout-outer {
@@ -426,21 +426,45 @@ span:focus-visible {
 }
 
 .outer-circle {
-	height: 20px;
-	width: 20px;
+	height: 22px;
+	width: 22px;
 	border-radius: 50%;
-	background-color: var(--faded-white);
+	background-color: var(--faded-grey);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: conic-gradient(var(--twitter-blue) 0deg, var(--faded-white) 0deg);
+	background: conic-gradient(var(--twitter-blue) 0deg, var(--faded-grey) 0deg);
 }
 
 .inner-circle {
-	height: 16px;
-	width: 16px;
+	height: 18px;
+	width: 18px;
 	border-radius: 50%;
 	background-color: black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.outer-circle-warning {
+	height: 28px;
+	width: 28px;
+	border-radius: 50%;
+	background-color: var(--faded-grey);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: conic-gradient(var(--twitter-blue) 0deg, var(--faded-grey) 0deg);
+}
+
+.inner-circle-warning {
+	height: 24px;
+	width: 24px;
+	border-radius: 50%;
+	background-color: black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .vertical-divider {
@@ -508,6 +532,10 @@ span:focus-visible {
 	padding-left: 20px;
 }
 
+.character-count-warning-text {
+	text-align: center;
+}
+
 /* Need to add the add tweet button and then setup to sent to backend */
 
 @media (min-width: 700px) {
@@ -517,7 +545,6 @@ span:focus-visible {
 	.modal-outer {
 		margin-top: 40px;
 		border-radius: 18px;
-		/* height: 315px; */
 		width: 600px;
 		min-height: 315px;
 		max-height: calc(100vh - 40px);
@@ -545,5 +572,24 @@ span:focus-visible {
 @media (max-width: 600px) {
 	.modal-inner {
 		width: 98%;
+	}
+}
+
+.animate--font-expand {
+	animation: fontExpand linear 250ms;
+}
+
+@keyframes fontExpand {
+	0% {
+		font-size: initial;
+	}
+	50% {
+		font-size: 1.6rem;
+		opacity: 0.5;
+	}
+
+	100% {
+		font-size: 2.5rem;
+		opacity: 0;
 	}
 }
