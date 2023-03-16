@@ -3,7 +3,6 @@
 <script src="/JS/feed/index_feed.js" defer></script>
 <script src="/JS/composeTweetDesktop.js" defer></script>
 <main>
-	<!-- In progress - Fixing to position based on screen size -->
 	<div class="popout-outer d-none" data-desktop-aside-extras-menu>
 		<div class="popout-item-outer">
 			<div class="popout-item-inner">
@@ -17,6 +16,20 @@
 					</svg>
 				</div>
 				<h3 class="popout-item-text">Topics</h3>
+			</div>
+		</div>
+		<div class="popout-item-outer bookmarks-more-item">
+			<div class="popout-item-inner">
+				<div class="popout-item-img-wrapper">
+					<svg class="popout-item-img">
+						<g>
+							<path
+								d="M4 4.5C4 3.12 5.119 2 6.5 2h11C18.881 2 20 3.12 20 4.5v18.44l-8-5.71-8 5.71V4.5zM6.5 4c-.276 0-.5.22-.5.5v14.56l6-4.29 6 4.29V4.5c0-.28-.224-.5-.5-.5h-11z"
+							></path>
+						</g>
+					</svg>
+				</div>
+				<h3 class="popout-item-text">Bookmarks</h3>
 			</div>
 		</div>
 		<div class="popout-item-outer">
@@ -50,12 +63,16 @@
 		<div class="divider-wrapper">
 			<div class="divider"></div>
 		</div>
-		<div class="popout-item-outer">
+		<div class="popout-item-outer" data-large-desktop-creator-open-btn>
 			<div class="popout-item-inner">
 				<div class="popout-item-dropdown-wrapper">
 					<h4 class="popout-item-dropdown-text">Creator Studio</h4>
 					<div class="popout-item-dropdown-img-wrapper">
-						<svg viewBox="0 0 24 24" class="popout-item-dropdown-img">
+						<svg
+							viewBox="0 0 24 24"
+							class="popout-item-dropdown-img"
+							data-desktop-creator-dropdown-arrow
+						>
 							<g>
 								<path
 									d="M3.543 8.96l1.414-1.42L12 14.59l7.043-7.05 1.414 1.42L12 17.41 3.543 8.96z"
@@ -66,7 +83,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="dropdown-items-list">
+		<div class="dropdown-items-list d-none" data-desktop-creator-menu>
 			<div class="popout-item-outer">
 				<div class="popout-item-inner">
 					<div class="popout-dropdown-item-outer">
@@ -83,12 +100,16 @@
 			</div>
 		</div>
 
-		<div class="popout-item-outer">
+		<div class="popout-item-outer" data-large-desktop-professionals-open-btn>
 			<div class="popout-item-inner">
 				<div class="popout-item-dropdown-wrapper">
 					<h4 class="popout-item-dropdown-text">Professional Tools</h4>
 					<div class="popout-item-dropdown-img-wrapper">
-						<svg viewBox="0 0 24 24" class="popout-item-dropdown-img">
+						<svg
+							viewBox="0 0 24 24"
+							class="popout-item-dropdown-img"
+							data-desktop-professionals-dropdown-arrow
+						>
 							<g>
 								<path
 									d="M3.543 8.96l1.414-1.42L12 14.59l7.043-7.05 1.414 1.42L12 17.41 3.543 8.96z"
@@ -99,7 +120,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="dropdown-items-list">
+		<div class="dropdown-items-list d-none" data-desktop-professionals-menu>
 			<div class="popout-item-outer">
 				<div class="popout-item-inner">
 					<div class="popout-dropdown-item-outer">
@@ -143,12 +164,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="popout-item-outer">
+		<div class="popout-item-outer" data-large-desktop-settings-open-btn>
 			<div class="popout-item-inner">
 				<div class="popout-item-dropdown-wrapper">
 					<h4 class="popout-item-dropdown-text">Settings and Support</h4>
 					<div class="popout-item-dropdown-img-wrapper">
-						<svg viewBox="0 0 24 24" class="popout-item-dropdown-img">
+						<svg
+							viewBox="0 0 24 24"
+							class="popout-item-dropdown-img"
+							data-desktop-settings-dropdown-arrow
+						>
 							<g>
 								<path
 									d="M3.543 8.96l1.414-1.42L12 14.59l7.043-7.05 1.414 1.42L12 17.41 3.543 8.96z"
@@ -159,7 +184,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="dropdown-items-list">
+		<div class="dropdown-items-list d-none" data-desktop-settings-menu>
 			<div class="popout-item-outer">
 				<div class="popout-item-inner">
 					<div class="popout-dropdown-item-outer">
@@ -223,7 +248,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- End In progress -->
+
 	<aside class="mobile-aside d-none" data-mobile-aside>
 		<div class="mobile-aside-inner">
 			<div class="mobile-aside-header">
@@ -690,7 +715,7 @@
 						</svg>
 					</div>
 				</div>
-				<div class="desktop-icon-outer">
+				<div class="desktop-icon-outer" data-desktop-extra-links-button-sm>
 					<div class="desktop-aside-icon-wrapper">
 						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
 							<g>

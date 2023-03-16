@@ -1159,6 +1159,7 @@ main {
 	justify-content: center;
 	margin-bottom: 10px;
 	margin-top: 5px;
+	position: relative;
 }
 
 .desktop-aside-profile-link:hover {
@@ -1330,6 +1331,19 @@ main {
 	fill: var(--primary-text);
 	height: 22px;
 	width: 22px;
+	transform-origin: center;
+}
+
+.popout-item-dropdown-img-open {
+	transform: rotate(180deg);
+	fill: var(--twitter-blue);
+	transition-duration: 150ms;
+}
+
+.popout-item-dropdown-img-close {
+	transform: rotate(0deg);
+	fill: var(--primary-text);
+	transition-duration: 150ms;
 }
 
 .popout-dropdown-item-outer {
@@ -1444,6 +1458,10 @@ main {
 
 .desktop-account-popout-item-outer:hover {
 	background-color: var(--white-bg);
+}
+
+.bookmarks-more-item {
+	display: none;
 }
 
 .large-desktop-logout {
@@ -1979,6 +1997,10 @@ main {
 
 	.desktop-newTweet-wrapper {
 		margin: 0;
+	}
+
+	.bookmarks-more-item {
+		display: flex;
 	}
 
 	.bookmarks-item {

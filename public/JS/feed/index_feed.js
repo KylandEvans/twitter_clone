@@ -7,14 +7,35 @@ const app = {
 		const largeAccountButton = document.querySelector("[data-large-desktop-account-button]");
 		const largeDesktopAside = document.querySelector(".large-desktop-aside");
 		const desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button]");
+		const moreItemsButton = (extraItemsMenu = document.querySelector(
+			"[data-desktop-extra-links-button-sm]"
+		));
+		const openCreatorMenuBtn = document.querySelectorAll("[data-large-desktop-creator-open-btn]");
+		const openProfessionalsMenuBtn = document.querySelectorAll(
+			"[data-large-desktop-professionals-open-btn]"
+		);
+		const openSettingsMenuBtn = document.querySelectorAll(
+			"[data-large-desktop-settings-open-btn]"
+		);
 		searchbox.addEventListener("focus", app.searchboxFocused);
 		searchbox.addEventListener("blur", app.searchboxBlured);
 		searchbox.addEventListener("input", app.searchboxChange);
-		largeAccountButton.addEventListener("click", app.largeDesktopOpenAccountOptions);
-		desktopMoreItemsButton.addEventListener("click", app.setMoreButtonsPopoutPosition);
-		window.addEventListener("click", app.largeDesktopCloseAccountOptions);
+		// ATTENTION: MAKE THE DEKSTIOP ACCOUNT OPTIONS WORK FOR UNDER 1300PX NOT WORKING!!!!!!!!!!!!
+		largeAccountButton.addEventListener("click", app.desktopOpenAccountOptions);
+		desktopMoreItemsButton.addEventListener("click", app.openMoreItemsMenu);
+		moreItemsButton.addEventListener("click", app.openMoreItemsMenu);
+		openCreatorMenuBtn.forEach(ele => {
+			ele.addEventListener("click", app.toggleCreatorMenu);
+		});
+		openProfessionalsMenuBtn.forEach(ele => {
+			ele.addEventListener("click", app.toggleProfessionalsMenu);
+		});
+		openSettingsMenuBtn.forEach(ele => {
+			ele.addEventListener("click", app.toggleSettingsMenu);
+		});
+		window.addEventListener("click", app.desktopCloseAccountOptions);
+		window.addEventListener("click", app.closeMoreItemsMenu);
 		window.addEventListener("resize", app.setMoreButtonsPopoutPosition);
-
 		window.addEventListener("resize", app.windowResize);
 	},
 
@@ -22,7 +43,6 @@ const app = {
 		if (window.innerWidth <= 500) {
 			app.loadMobile();
 			// app.unloadDesktop();
-			console.log(window.innerWidth);
 		} else {
 			// app.loadDesktop();
 			// app.unloadMobile();
@@ -168,7 +188,7 @@ const app = {
 		}
 	},
 
-	largeDesktopOpenAccountOptions() {
+	desktopOpenAccountOptions() {
 		const accountOptionsBox = document.querySelector("[data-large-desktop-account-popout]");
 		const main = document.querySelector("main");
 		if (accountOptionsBox.classList.contains("d-none")) {
@@ -177,32 +197,127 @@ const app = {
 		}
 	},
 
-	largeDesktopCloseAccountOptions(e) {
+	desktopCloseAccountOptions(e) {
 		const accountOptionsBox = document.querySelector("[data-large-desktop-account-popout]");
 		const element = document.querySelector("[data-large-desktop-account-button]");
 		const main = document.querySelector("main");
-		if (e.target !== element && !element.contains(e.target)) {
+		if (
+			e.target !== element &&
+			!element.contains(e.target) &&
+			!accountOptionsBox.classList.contains("d-none")
+		) {
 			accountOptionsBox.classList.add("d-none");
 			main.classList.remove("pointer-events-none");
 		}
 	},
 
+	openMoreItemsMenu() {
+		let extraItemsMenu;
+		if (window.innerWidth >= 1300) {
+			extraItemsMenu = document.querySelector("[data-desktop-extra-links-button]");
+		} else if (window.innerWidth < 1300 && window.innerWidth >= 500) {
+			extraItemsMenu = document.querySelector("[data-desktop-extra-links-button-sm]");
+		}
+		extraItemsMenu = document.querySelector("[data-desktop-aside-extras-menu]");
+		const main = document.querySelector("main");
+		console.log(main);
+		if (extraItemsMenu.classList.contains("d-none")) {
+			extraItemsMenu.classList.remove("d-none");
+			app.setMoreButtonsPopoutPosition();
+			main.classList.add("pointer-events-none");
+		}
+	},
+
+	closeMoreItemsMenu(e) {
+		const extraItemsMenu = document.querySelector("[data-desktop-aside-extras-menu]");
+		const largedesktopItemsButton = document.querySelector("[data-desktop-extra-links-button]");
+		const desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button-sm]");
+		const main = document.querySelector("main");
+		if (!extraItemsMenu.classList.contains("d-none")) {
+			if (e.target !== largedesktopItemsButton && !largedesktopItemsButton.contains(e.target)) {
+				if (e.target !== desktopMoreItemsButton && !desktopMoreItemsButton.contains(e.target)) {
+					if (e.target !== extraItemsMenu && !extraItemsMenu.contains(e.target)) {
+						extraItemsMenu.classList.add("d-none");
+						main.classList.remove("pointer-events-none");
+						console.log("close menu");
+					}
+				}
+			}
+		}
+	},
+
 	setMoreButtonsPopoutPosition() {
-		const desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button]");
+		let desktopMoreItemsButton;
+		if (window.innerWidth >= 1300) {
+			desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button]");
+		} else if (window.innerWidth < 1300 && window.innerWidth >= 500) {
+			desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button-sm]");
+		}
 		const extraItemsMenu = document.querySelector("[data-desktop-aside-extras-menu]");
 		let elePos = desktopMoreItemsButton.getBoundingClientRect();
 		extraItemsMenu.style.right = window.innerWidth - elePos.left - 350 + "px";
 		extraItemsMenu.style.top = window.innerHeight - elePos.bottom - 100 + "px";
 
-		if (extraItemsMenu.classList.contains("d-none")) {
-			extraItemsMenu.classList.remove("d-none");
-		}
 		let menuPos = window.getComputedStyle(extraItemsMenu);
-		console.log(parseInt(menuPos.height) + parseInt(menuPos.top));
-		console.log(menuPos.bottom);
+		extraItemsMenu.style.bottom = "unset";
 		if (parseFloat(menuPos.bottom) < 0) {
 			extraItemsMenu.style.bottom = 0;
 		}
+	},
+
+	toggleCreatorMenu() {
+		const menu = document.querySelector("[data-desktop-creator-menu]");
+		const dropdown = document.querySelector("[data-desktop-creator-dropdown-arrow]");
+		if (menu.classList.contains("d-none")) {
+			if (dropdown.classList.contains("popout-item-dropdown-img-close")) {
+				dropdown.classList.remove("popout-item-dropdown-img-close");
+			}
+			dropdown.classList.add("popout-item-dropdown-img-open");
+			menu.classList.remove("d-none");
+		} else {
+			if (dropdown.classList.contains("popout-item-dropdown-img-open")) {
+				dropdown.classList.remove("popout-item-dropdown-img-open");
+			}
+			dropdown.classList.add("popout-item-dropdown-img-close");
+			menu.classList.add("d-none");
+		}
+		app.setMoreButtonsPopoutPosition();
+	},
+	toggleProfessionalsMenu() {
+		const menu = document.querySelector("[data-desktop-professionals-menu]");
+		const dropdown = document.querySelector("[data-desktop-professionals-dropdown-arrow]");
+		if (menu.classList.contains("d-none")) {
+			if (dropdown.classList.contains("popout-item-dropdown-img-close")) {
+				dropdown.classList.remove("popout-item-dropdown-img-close");
+			}
+			dropdown.classList.add("popout-item-dropdown-img-open");
+			menu.classList.remove("d-none");
+		} else {
+			if (dropdown.classList.contains("popout-item-dropdown-img-open")) {
+				dropdown.classList.remove("popout-item-dropdown-img-open");
+			}
+			dropdown.classList.add("popout-item-dropdown-img-close");
+			menu.classList.add("d-none");
+		}
+		app.setMoreButtonsPopoutPosition();
+	},
+	toggleSettingsMenu() {
+		const menu = document.querySelector("[data-desktop-settings-menu]");
+		const dropdown = document.querySelector("[data-desktop-settings-dropdown-arrow]");
+		if (menu.classList.contains("d-none")) {
+			if (dropdown.classList.contains("popout-item-dropdown-img-close")) {
+				dropdown.classList.remove("popout-item-dropdown-img-close");
+			}
+			dropdown.classList.add("popout-item-dropdown-img-open");
+			menu.classList.remove("d-none");
+		} else {
+			if (dropdown.classList.contains("popout-item-dropdown-img-open")) {
+				dropdown.classList.remove("popout-item-dropdown-img-open");
+			}
+			dropdown.classList.add("popout-item-dropdown-img-close");
+			menu.classList.add("d-none");
+		}
+		app.setMoreButtonsPopoutPosition();
 	},
 };
 
