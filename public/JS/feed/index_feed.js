@@ -5,31 +5,17 @@ const app = {
 	addListeners() {
 		const searchbox = document.querySelector("[data-desktop-searchbox]");
 		const largeAccountButton = document.querySelector("[data-large-desktop-account-button]");
+		const largeDesktopAside = document.querySelector(".large-desktop-aside");
+		const desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button]");
 		searchbox.addEventListener("focus", app.searchboxFocused);
 		searchbox.addEventListener("blur", app.searchboxBlured);
 		searchbox.addEventListener("input", app.searchboxChange);
 		largeAccountButton.addEventListener("click", app.largeDesktopOpenAccountOptions);
+		desktopMoreItemsButton.addEventListener("click", app.setMoreButtonsPopoutPosition);
 		window.addEventListener("click", app.largeDesktopCloseAccountOptions);
-		const largeDesktopAside = document.querySelector(".large-desktop-aside");
-		const desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button]");
-		desktopMoreItemsButton.addEventListener("click", () => {
-			let elePos = desktopMoreItemsButton.getBoundingClientRect();
-			const extraItemsMenu = document.querySelector("[data-desktop-aside-extras-menu]");
-			if (extraItemsMenu.classList.contains("d-none")) {
-				console.log(`ele pos = ${window.innerWidth - elePos.left}`);
-				extraItemsMenu.classList.remove("d-none");
-				extraItemsMenu.style.right = window.innerWidth - elePos.left - 350 + "px";
-			}
-		});
+		window.addEventListener("resize", app.setMoreButtonsPopoutPosition);
 
 		window.addEventListener("resize", app.windowResize);
-		if (window.innerWidth <= 500) {
-			app.loadMobile();
-			// app.unloadDesktop();
-		} else {
-			// app.loadDesktop();
-			// app.unloadMobile();
-		}
 	},
 
 	windowResize() {
@@ -198,6 +184,24 @@ const app = {
 		if (e.target !== element && !element.contains(e.target)) {
 			accountOptionsBox.classList.add("d-none");
 			main.classList.remove("pointer-events-none");
+		}
+	},
+
+	setMoreButtonsPopoutPosition() {
+		const desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button]");
+		const extraItemsMenu = document.querySelector("[data-desktop-aside-extras-menu]");
+		let elePos = desktopMoreItemsButton.getBoundingClientRect();
+		extraItemsMenu.style.right = window.innerWidth - elePos.left - 350 + "px";
+		extraItemsMenu.style.top = window.innerHeight - elePos.bottom - 100 + "px";
+
+		if (extraItemsMenu.classList.contains("d-none")) {
+			extraItemsMenu.classList.remove("d-none");
+		}
+		let menuPos = window.getComputedStyle(extraItemsMenu);
+		console.log(parseInt(menuPos.height) + parseInt(menuPos.top));
+		console.log(menuPos.bottom);
+		if (parseFloat(menuPos.bottom) < 0) {
+			extraItemsMenu.style.bottom = 0;
 		}
 	},
 };
