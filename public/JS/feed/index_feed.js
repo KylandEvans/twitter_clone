@@ -195,6 +195,7 @@ const app = {
 			accountOptionsBox.classList.remove("d-none");
 			main.classList.add("pointer-events-none");
 		}
+		app.positionAcountPopout();
 	},
 
 	desktopCloseAccountOptions(e) {
@@ -209,6 +210,21 @@ const app = {
 			accountOptionsBox.classList.add("d-none");
 			main.classList.remove("pointer-events-none");
 		}
+	},
+
+	positionAcountPopout() {
+		const accountOptionsBox = document.querySelector("[data-large-desktop-account-popout]");
+		let openAccountOptionsButton;
+		if (window.innerWidth >= 1300) {
+			openAccountOptionsButton = document.querySelector("[data-large-desktop-account-button]");
+		} else if (window.innerWidth < 1300 && window.innerWidth >= 500) {
+			openAccountOptionsButton = document.querySelector("[data-desktop-account-button]");
+		}
+
+		let btnPos = openAccountOptionsButton.getBoundingClientRect();
+		let eleStyles = document.getComputedStyle(accountOptionsBox);
+		console.log(btnPos);
+		accountOptionsBox.style.top = btnPos.top - parseFloat(eleStyles.height) + "px";
 	},
 
 	openMoreItemsMenu() {

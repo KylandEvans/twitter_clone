@@ -1440,11 +1440,11 @@ main {
 }
 
 .desktop-account-popout {
-	position: absolute;
+	position: fixed;
 	width: 250px;
 	background-color: black;
-	bottom: 70px;
-	left: 10px;
+	/* bottom: 70px;
+	left: 10px; */
 	z-index: 50;
 	border-radius: 20px;
 	box-shadow: 0 0 4px 2px rgb(114 114 114 / 50%);

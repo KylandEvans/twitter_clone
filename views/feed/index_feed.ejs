@@ -248,7 +248,18 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="desktop-account-popout d-none" data-large-desktop-account-popout>
+		<div class="desktop-account-popout-item-outer">
+			<span class="text-white">Add an existing account</span>
+		</div>
+		<div class="desktop-account-popout-item-outer">
+			<form action="/logout" method="POST">
+				<button type="submit" class="text-white large-desktop-logout"
+					>Log out @Kyland_Evans</button
+				>
+			</form>
+		</div>
+	</div>
 	<aside class="mobile-aside d-none" data-mobile-aside>
 		<div class="mobile-aside-inner">
 			<div class="mobile-aside-header">
@@ -737,7 +748,7 @@
 				</svg>
 			</a>
 		</div>
-		<div class="desktop-aside-profile-link">
+		<div class="desktop-aside-profile-link" data-desktop-account-button>
 			<img src="/Images/test_Image.jpg" alt="" class="desktop-aside-profile-img" />
 		</div>
 	</aside>
@@ -889,18 +900,6 @@
 							></path>
 						</g>
 					</svg>
-				</div>
-			</div>
-			<div class="desktop-account-popout d-none" data-large-desktop-account-popout>
-				<div class="desktop-account-popout-item-outer">
-					<span class="text-white">Add an existing account</span>
-				</div>
-				<div class="desktop-account-popout-item-outer">
-					<form action="/logout" method="POST">
-						<button type="submit" class="text-white large-desktop-logout"
-							>Log out @Kyland_Evans</button
-						>
-					</form>
 				</div>
 			</div>
 		</div>
