@@ -5,6 +5,7 @@ const app = {
 	addListeners() {
 		const searchbox = document.querySelector("[data-desktop-searchbox]");
 		const largeAccountButton = document.querySelector("[data-large-desktop-account-button]");
+		const accountButton = document.querySelector("[data-desktop-account-button]");
 		const largeDesktopAside = document.querySelector(".large-desktop-aside");
 		const desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button]");
 		const moreItemsButton = (extraItemsMenu = document.querySelector(
@@ -20,7 +21,8 @@ const app = {
 		searchbox.addEventListener("focus", app.searchboxFocused);
 		searchbox.addEventListener("blur", app.searchboxBlured);
 		searchbox.addEventListener("input", app.searchboxChange);
-		// ATTENTION: MAKE THE DEKSTIOP ACCOUNT OPTIONS WORK FOR UNDER 1300PX NOT WORKING!!!!!!!!!!!!
+
+		accountButton.addEventListener("click", app.desktopOpenAccountOptions);
 		largeAccountButton.addEventListener("click", app.desktopOpenAccountOptions);
 		desktopMoreItemsButton.addEventListener("click", app.openMoreItemsMenu);
 		moreItemsButton.addEventListener("click", app.openMoreItemsMenu);
@@ -40,12 +42,17 @@ const app = {
 	},
 
 	windowResize() {
+		const accountOptionsBox = document.querySelector("[data-large-desktop-account-popout]");
 		if (window.innerWidth <= 500) {
 			app.loadMobile();
 			// app.unloadDesktop();
 		} else {
 			// app.loadDesktop();
 			// app.unloadMobile();
+		}
+
+		if (!accountOptionsBox.classList.contains("d-none")) {
+			app.positionAcountPopout();
 		}
 	},
 
@@ -201,10 +208,19 @@ const app = {
 	desktopCloseAccountOptions(e) {
 		const accountOptionsBox = document.querySelector("[data-large-desktop-account-popout]");
 		const element = document.querySelector("[data-large-desktop-account-button]");
+		const elementSm = document.querySelector("[data-desktop-account-button]");
 		const main = document.querySelector("main");
+		if (!e) {
+			accountOptionsBox.classList.add("d-none");
+			main.classList.remove("pointer-events-none");
+			return;
+		}
 		if (
 			e.target !== element &&
+			e.target !== elementSm &&
 			!element.contains(e.target) &&
+			!elementSm.contains(e.target) &&
+			!accountOptionsBox.contains(e.target) &&
 			!accountOptionsBox.classList.contains("d-none")
 		) {
 			accountOptionsBox.classList.add("d-none");
@@ -213,18 +229,24 @@ const app = {
 	},
 
 	positionAcountPopout() {
-		const accountOptionsBox = document.querySelector("[data-large-desktop-account-popout]");
-		let openAccountOptionsButton;
-		if (window.innerWidth >= 1300) {
-			openAccountOptionsButton = document.querySelector("[data-large-desktop-account-button]");
-		} else if (window.innerWidth < 1300 && window.innerWidth >= 500) {
-			openAccountOptionsButton = document.querySelector("[data-desktop-account-button]");
-		}
+		if (window.innerWidth > 499) {
+			const accountOptionsBox = document.querySelector("[data-large-desktop-account-popout]");
+			let openAccountOptionsButton;
+			if (window.innerWidth >= 1300) {
+				openAccountOptionsButton = document.querySelector(
+					"[data-large-desktop-account-button]"
+				);
+			} else if (window.innerWidth < 1300 && window.innerWidth >= 500) {
+				openAccountOptionsButton = document.querySelector("[data-desktop-account-button]");
+			}
 
-		let btnPos = openAccountOptionsButton.getBoundingClientRect();
-		let eleStyles = document.getComputedStyle(accountOptionsBox);
-		console.log(btnPos);
-		accountOptionsBox.style.top = btnPos.top - parseFloat(eleStyles.height) + "px";
+			let btnPos = openAccountOptionsButton.getBoundingClientRect();
+			let eleStyles = window.getComputedStyle(accountOptionsBox);
+			accountOptionsBox.style.top = btnPos.top - parseFloat(eleStyles.height) - 35 + "px";
+			accountOptionsBox.style.left = btnPos.left + 10 + "px";
+		} else if (window.innerWidth <= 499) {
+			app.desktopCloseAccountOptions();
+		}
 	},
 
 	openMoreItemsMenu() {
@@ -236,7 +258,6 @@ const app = {
 		}
 		extraItemsMenu = document.querySelector("[data-desktop-aside-extras-menu]");
 		const main = document.querySelector("main");
-		console.log(main);
 		if (extraItemsMenu.classList.contains("d-none")) {
 			extraItemsMenu.classList.remove("d-none");
 			app.setMoreButtonsPopoutPosition();
@@ -249,13 +270,18 @@ const app = {
 		const largedesktopItemsButton = document.querySelector("[data-desktop-extra-links-button]");
 		const desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button-sm]");
 		const main = document.querySelector("main");
+		if (!e) {
+			extraItemsMenu.classList.add("d-none");
+			main.classList.remove("pointer-events-none");
+			return;
+		}
+
 		if (!extraItemsMenu.classList.contains("d-none")) {
 			if (e.target !== largedesktopItemsButton && !largedesktopItemsButton.contains(e.target)) {
 				if (e.target !== desktopMoreItemsButton && !desktopMoreItemsButton.contains(e.target)) {
 					if (e.target !== extraItemsMenu && !extraItemsMenu.contains(e.target)) {
 						extraItemsMenu.classList.add("d-none");
 						main.classList.remove("pointer-events-none");
-						console.log("close menu");
 					}
 				}
 			}
@@ -263,21 +289,25 @@ const app = {
 	},
 
 	setMoreButtonsPopoutPosition() {
-		let desktopMoreItemsButton;
-		if (window.innerWidth >= 1300) {
-			desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button]");
-		} else if (window.innerWidth < 1300 && window.innerWidth >= 500) {
-			desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button-sm]");
-		}
-		const extraItemsMenu = document.querySelector("[data-desktop-aside-extras-menu]");
-		let elePos = desktopMoreItemsButton.getBoundingClientRect();
-		extraItemsMenu.style.right = window.innerWidth - elePos.left - 350 + "px";
-		extraItemsMenu.style.top = window.innerHeight - elePos.bottom - 100 + "px";
+		if (window.innerWidth >= 500) {
+			let desktopMoreItemsButton;
+			if (window.innerWidth >= 1300) {
+				desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button]");
+			} else if (window.innerWidth < 1300 && window.innerWidth >= 500) {
+				desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button-sm]");
+			}
+			const extraItemsMenu = document.querySelector("[data-desktop-aside-extras-menu]");
+			let elePos = desktopMoreItemsButton.getBoundingClientRect();
+			extraItemsMenu.style.right = window.innerWidth - elePos.left - 350 + "px";
+			extraItemsMenu.style.top = window.innerHeight - elePos.bottom - 100 + "px";
 
-		let menuPos = window.getComputedStyle(extraItemsMenu);
-		extraItemsMenu.style.bottom = "unset";
-		if (parseFloat(menuPos.bottom) < 0) {
-			extraItemsMenu.style.bottom = 0;
+			let menuPos = window.getComputedStyle(extraItemsMenu);
+			extraItemsMenu.style.bottom = "unset";
+			if (parseFloat(menuPos.bottom) < 0) {
+				extraItemsMenu.style.bottom = 0;
+			}
+		} else if (window.innerWidth < 500) {
+			app.closeMoreItemsMenu();
 		}
 	},
 

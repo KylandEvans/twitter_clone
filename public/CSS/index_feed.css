@@ -1441,7 +1441,7 @@ main {
 
 .desktop-account-popout {
 	position: fixed;
-	width: 250px;
+	width: 300px;
 	background-color: black;
 	/* bottom: 70px;
 	left: 10px; */
@@ -1458,6 +1458,7 @@ main {
 
 .desktop-account-popout-item-outer:hover {
 	background-color: var(--white-bg);
+	cursor: pointer;
 }
 
 .bookmarks-more-item {
