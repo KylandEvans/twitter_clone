@@ -8,6 +8,7 @@ const app = {
 		const accountButton = document.querySelector("[data-desktop-account-button]");
 		const largeDesktopAside = document.querySelector(".large-desktop-aside");
 		const desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button]");
+		const newTweetBtn = document.querySelector("[data-submit-tweet-btn]");
 		const moreItemsButton = (extraItemsMenu = document.querySelector(
 			"[data-desktop-extra-links-button-sm]"
 		));
@@ -22,6 +23,7 @@ const app = {
 		searchbox.addEventListener("blur", app.searchboxBlured);
 		searchbox.addEventListener("input", app.searchboxChange);
 
+		newTweetBtn.addEventListener("click", app.getTweetBox);
 		accountButton.addEventListener("click", app.desktopOpenAccountOptions);
 		largeAccountButton.addEventListener("click", app.desktopOpenAccountOptions);
 		desktopMoreItemsButton.addEventListener("click", app.openMoreItemsMenu);
@@ -244,6 +246,7 @@ const app = {
 			let eleStyles = window.getComputedStyle(accountOptionsBox);
 			accountOptionsBox.style.top = btnPos.top - parseFloat(eleStyles.height) - 35 + "px";
 			accountOptionsBox.style.left = btnPos.left + 10 + "px";
+			console.log(btnPos);
 		} else if (window.innerWidth <= 499) {
 			app.desktopCloseAccountOptions();
 		}
@@ -364,6 +367,10 @@ const app = {
 			menu.classList.add("d-none");
 		}
 		app.setMoreButtonsPopoutPosition();
+	},
+	async getTweetBox() {
+		const response = await fetch("/compose/tweet");
+		console.log(await response.text());
 	},
 };
 

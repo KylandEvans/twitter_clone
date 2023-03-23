@@ -202,9 +202,8 @@ app.post("/getuser", (req, res) => {
 });
 
 app.get("/compose/tweet", checkAuthenticated, (req, res) => {
-	db.query(`SELECT * FROM tweets WHERE tweetId <= 50`, (err, results) => {
-		res.render("compose/tweet", { user: req.user, tweets: results });
-	});
+	// const json = JSON.stringify("/views/compose/tweet.ejs");
+	res.send("compose/temp.ejs");
 });
 
 app.post("/signin", passport.authenticate("local"), (req, res) => {
