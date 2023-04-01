@@ -511,6 +511,9 @@ main {
 	display: flex;
 	align-items: center;
 	min-width: 0;
+	max-width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .feed-item-header {
@@ -519,11 +522,15 @@ main {
 	justify-content: space-between;
 	max-width: calc(100% - 3px);
 	min-width: 0;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .feed-name-wrapper {
 	min-width: 0;
 	max-width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 .feed-item-name {
@@ -531,7 +538,17 @@ main {
 	min-width: 0;
 	padding-right: 8px;
 	text-overflow: ellipsis;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	white-space: nowrap;
+	word-wrap: normal;
+}
+
+.thing {
+	text-overflow: ellipsis;
 	overflow: hidden;
+	word-wrap: break-word;
+	min-width: 0;
 	white-space: nowrap;
 }
 

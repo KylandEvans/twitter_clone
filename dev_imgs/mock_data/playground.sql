@@ -32,9 +32,10 @@ SELECT * FROM tweets;
 SELECT * FROM users WHERE id > 1000;
 SELECT * FROM tweets WHERE user_id > 1000;
 
-INSERT INTO users(name, phone, email, dob, track, password)
-VALUES ("Kyland", "5555555555", null, "2022-05-23", true, "Kyland1");
+INSERT INTO users(name, handle, phone, email, dob, track, password)
+VALUES ("Kyland",  "Kyland_Evans","5555555555", null, "2022-05-23", true, "Kyland1");
 SELECT * FROM users WHERE email = "kyland@email.com";
+DELETE FROM users WHERE id < 1000;
 
 SELECT * FROM users WHERE email = "kyland@email.com" OR phone = "5555555555";
 
@@ -42,3 +43,5 @@ SHOW TABLES;
 
 DESC users;
 DESC tweets;
+
+select * from tweets, users where tweetId <= 50 AND tweets.user_id = users.id;

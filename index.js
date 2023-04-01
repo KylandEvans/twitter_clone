@@ -63,9 +63,20 @@ passport.deserializeUser((id, done) => {
 	});
 });
 
-app.use((req, res, next) => {
+async function getCurrentUser(id) {
+	let userObj = db.query(`SELECT * FROM users WHERE id = ${id}`, (err, results) => {
+		if (err) throw err;
+		console.log(results);
+		return results;
+	});
+	console.log(userObj);
+}
+
+app.use(async (req, res, next) => {
 	res.locals.message = req.session.message || null;
 	res.locals.newTweet = req.session.newTweet || null;
+	res.locals.currentUser = getCurrentUser(req.session.passport.user);
+	console.log(res.locals.currentUser);
 	delete req.session.message;
 	delete req.session.newTweet;
 	next();
@@ -136,14 +147,34 @@ function checkNotAuthenticated(req, res, next) {
 	res.redirect("/home");
 }
 
+function getHandle(name) {
+	let handle;
+	function randomIntFromInterval(min, max) {
+		return Math.floor(Math.random() * (max - min + 1) + min);
+	}
+
+	let fixedName = name.replace(" ", "_");
+	handle = `${fixedName}${randomIntFromInterval(1, 999999999)}`;
+	db.query(`SELECT * FROM users WHERE handle = ${handle}`, (err, results) => {
+		if (results) {
+			return getHandle(fixedName);
+		}
+		return handle;
+	});
+	return handle;
+}
+
 app.get("/", checkNotAuthenticated, (req, res) => {
 	res.render("index_login");
 });
 
 app.get("/home", checkAuthenticated, (req, res) => {
-	db.query(`SELECT * FROM tweets WHERE tweetId <= 50`, (err, results) => {
-		res.render("feed/index_feed", { user: req.user, tweets: results });
-	});
+	db.query(
+		`SELECT * FROM tweets, users WHERE tweetId <= 50 AND tweets.user_id = users.id;`,
+		(err, results) => {
+			res.render("feed/index_feed", { user: req.user, tweets: results });
+		}
+	);
 });
 
 app.post("/signup", async (req, res, next) => {
@@ -153,12 +184,15 @@ app.post("/signup", async (req, res, next) => {
 		return res.redirect("/");
 	}
 	const hashedpw = await bcrypt.hash(JSON.stringify(data.password), 10);
+	const handle = getHandle(data.name);
+	console.log(handle);
 
 	const newDOB = new Date(data.DOB).toISOString().split("T")[0];
 	db.query(
-		`INSERT INTO users (name, phone, email, dob, track, password)
+		`INSERT INTO users (name, handle, phone, email, dob, track, password)
 		 VALUES (
-			${JSON.stringify(data.name)}, 
+			${JSON.stringify(data.name)},
+			${JSON.stringify(handle)},
 			${JSON.stringify(data.phone)}, 
 			${JSON.stringify(data.email)}, 
 			${JSON.stringify(newDOB)},
@@ -202,8 +236,7 @@ app.post("/getuser", (req, res) => {
 });
 
 app.get("/compose/tweet", checkAuthenticated, (req, res) => {
-	// const json = JSON.stringify("/views/compose/tweet.ejs");
-	res.send("compose/temp.ejs");
+	res.render("compose/tweet");
 });
 
 app.post("/signin", passport.authenticate("local"), (req, res) => {
@@ -248,6 +281,10 @@ app.post("/post/tweet", (req, res) => {
 
 app.get("/emptylink", (req, res) => {
 	res.render("emptylink");
+});
+
+app.get("/:handle", (req, res) => {
+	res.send(req.params);
 });
 
 app.listen(port, console.log(`Listening on port ${port}`));

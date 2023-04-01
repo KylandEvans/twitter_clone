@@ -41,6 +41,9 @@ const app = {
 		window.addEventListener("click", app.closeMoreItemsMenu);
 		window.addEventListener("resize", app.setMoreButtonsPopoutPosition);
 		window.addEventListener("resize", app.windowResize);
+		if (window.innerWidth <= 500) {
+			app.loadMobile();
+		}
 	},
 
 	windowResize() {
