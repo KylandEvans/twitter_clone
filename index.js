@@ -66,17 +66,22 @@ passport.deserializeUser((id, done) => {
 async function getCurrentUser(id) {
 	let userObj = db.query(`SELECT * FROM users WHERE id = ${id}`, (err, results) => {
 		if (err) throw err;
-		console.log(results);
 		return results;
 	});
-	console.log(userObj);
 }
 
 app.use(async (req, res, next) => {
 	res.locals.message = req.session.message || null;
 	res.locals.newTweet = req.session.newTweet || null;
-	res.locals.currentUser = getCurrentUser(req.session.passport.user);
-	console.log(res.locals.currentUser);
+	// console.log(req.session.passport.user);
+	if (req.session.passport) {
+		db.query(`SELECT * FROM users WHERE id = ${req.session.passport.user}`, (err, results) => {
+			if (err) throw err;
+			res.locals.currentUser = results[0] || null;
+			console.log(results[0]);
+		});
+	}
+	console.log(res.locals);
 	delete req.session.message;
 	delete req.session.newTweet;
 	next();

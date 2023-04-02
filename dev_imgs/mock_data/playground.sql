@@ -2,6 +2,7 @@ use twitter_clone;
 
 drop table users;
 drop table tweets;
+drop table sessions;
 
 create table users (
 	id int AUTO_INCREMENT PRIMARY KEY,
@@ -26,8 +27,9 @@ CREATE TABLE tweets (
     REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-SELECT * FROM users;
+SELECT * FROM users;	
 SELECT * FROM tweets;
+SELECT * FROM sessions;
 
 SELECT * FROM users WHERE id > 1000;
 SELECT * FROM tweets WHERE user_id > 1000;
