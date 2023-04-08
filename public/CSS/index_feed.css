@@ -348,8 +348,6 @@ main {
 	min-height: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 }
 
 .header-outer {
@@ -1950,6 +1948,12 @@ main {
 	/* .feed-name-wrapper {
 		max-width: 250px;
 	} */
+}
+
+@media (min-width: 700px) {
+	.feed-outer {
+		min-width: 600px;
+	}
 }
 
 @media (min-width: 800px) {

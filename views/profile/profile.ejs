@@ -903,31 +903,6 @@
 		</div>
 	</aside>
 	<section class="feed-outer" data-feed-outer>
-		<header class="header-outer bg-black-semi-trans sticky-top">
-			<div class="header-head" data-header-logo-area>
-				<div class="profile-image-outer">
-					<div>
-						<img
-							src="/Images/test_Image.jpg"
-							alt=""
-							class="profile-image"
-							data-mobile-aside-open
-						/>
-					</div>
-				</div>
-				<div class="logo-image-outer">
-					<img src="/Icons/logo_blue.svg" alt="" class="logo-header" />
-				</div>
-				<div class="header-filler-blank"></div>
-			</div>
-			<div class="desktop-header-head">
-				<h1 class="desktop-header text-color">Home</h1>
-			</div>
-			<div class="header-buttons" data-header-buttons>
-				<button class="for-you-header-btn header-text-active">For you</button>
-				<button class="following-header-btn">Following</button>
-			</div>
-		</header>
 		<a class="mobile-tweet-container" href="/compose/tweet">
 			<div class="mobile-tweet-button">
 				<svg viewBox="0 0 24 24" class="mobile-tweet-img">
@@ -1325,7 +1300,7 @@
 					</div>
 				</div>
 			</div>
-			<% } %> <% for(let i = 0; i < 50; i++) {%>
+			<% } %> <% for(let i = 0; i <= tweets.length - 1; i++) {%>
 			<div class="feed-item-outer" onclick="location.href='/newlocation'">
 				<div class="feed-proile-image-wrapper">
 					<div class="image-border-wrapper">
@@ -1339,12 +1314,12 @@
 						<div class="feed-item-header-wrapper">
 							<div class="feed-name-wrapper">
 								<div class="feed-item-name feed-text">
-									<span class="thing"><%= tweets[i].name %></span>
+									<span class="thing"><%= user.name %></span>
 								</div>
 							</div>
 							<div class="feed-name-wrapper">
 								<div class="feed-item-name text-muted">
-									<span class="thing">@<%= tweets[i].handle %></span>
+									<span class="thing">@<%= user.handle %></span>
 								</div>
 							</div>
 							<div class="seperator"></div>
