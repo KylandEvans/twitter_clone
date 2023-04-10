@@ -35,6 +35,14 @@ button:disabled {
 	color: black;
 }
 
+button {
+	border: none;
+}
+
+button:active {
+	border-style: none;
+}
+
 a {
 	text-decoration: none;
 }
@@ -116,6 +124,14 @@ a:hover {
 
 .opacity-none {
 	opacity: 0;
+}
+
+.gap-1 {
+	gap: 7px;
+}
+
+.gap-2 {
+	gap: 15px;
 }
 
 .pointer-events-none {

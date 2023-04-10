@@ -42,15 +42,13 @@
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
-	padding: 15px 15px;
+	padding: 10px 15px 0 15px;
 	position: relative;
 }
 
 .profile-image-container {
 	max-width: fit-content;
 	padding: 4px;
-	/* height: calc(100% - -4px);
-	width: calc(100% - -4px); */
 	width: 25%;
 	height: auto;
 	border-radius: 50%;
@@ -79,4 +77,73 @@
 .edit-profile-btn:hover {
 	background-color: var(--white-bg);
 	cursor: pointer;
+}
+
+.name-wrapper {
+	margin: 15px 20px;
+}
+
+.profile-name {
+	padding-bottom: 3px;
+}
+
+.bio-wrapper {
+	padding: 5px 20px;
+}
+
+.profile-bio-svg {
+	height: 18px;
+	width: 18px;
+	fill: var(--faded-white);
+	padding: 12px 3px;
+}
+
+.profile-personal-font {
+	font-size: 16px;
+}
+
+.joined-date-text {
+	padding-top: 2px;
+}
+
+.follow-links-wrapper {
+	margin-bottom: 15px;
+}
+
+.followers-link {
+	color: var(--faded-white);
+	padding-left: 20px;
+}
+
+.followers-link:hover {
+	text-decoration: underline 1px var(--primary-text);
+}
+
+.header-tabs {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.tab-button {
+	height: 50px;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	color: var(--faded-white);
+	width: 100%;
+	font-size: 1.18rem;
+}
+
+.tab-button:hover {
+	background-color: var(--faded-grey);
+	cursor: pointer;
+}
+
+.tab-button-active {
+	color: var(--primary-text);
+	text-decoration: underline var(--twitter-blue) 4px;
+	text-underline-offset: 15px;
+	font-weight: 700;
 }
