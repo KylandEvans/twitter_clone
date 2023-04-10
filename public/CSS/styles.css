@@ -186,6 +186,10 @@ a:hover {
 	padding-top: 15px;
 }
 
+.pb-1 {
+	padding-bottom: 7px;
+}
+
 .px-2 {
 	padding: 0 15px;
 }
@@ -208,6 +212,10 @@ a:hover {
 
 .mt-4 {
 	margin-top: 50px;
+}
+
+.ml-1 {
+	margin-left: 12px;
 }
 
 .ml-3 {
@@ -272,6 +280,11 @@ a:hover {
 
 a {
 	color: var(--twitter-blue);
+}
+
+.back-btn {
+	height: 22px;
+	width: 22px;
 }
 
 .main {

@@ -77,7 +77,6 @@ app.use(async (req, res, next) => {
 						if (err) throw err;
 						if (results === undefined) {
 							reject(new Error("Data is undefined"));
-							console.log("rejected");
 						} else {
 							resolve(results);
 						}
@@ -86,15 +85,6 @@ app.use(async (req, res, next) => {
 			});
 		};
 		res.locals.currentUser = await retrieveUser();
-		// retrieveUser()
-		// 	.then(
-		// 		values => {
-		// 			res.locals.currentUser = values;
-		// 			// console.log(res.locals.currentUser[0]);
-		// 		},
-		// 		e => console.log(e)
-		// 	)
-		// 	.catch(e => console.log(e));
 	}
 
 	delete req.session.message;
@@ -119,7 +109,6 @@ function validateNewUserData(data) {
 
 function checkTweet(body) {
 	let issues = [];
-	// console.log(body);
 	if (body.tweet.length <= 0) {
 		issues.push("You can not post nothing");
 	}
@@ -205,7 +194,6 @@ app.post("/signup", async (req, res, next) => {
 	}
 	const hashedpw = await bcrypt.hash(JSON.stringify(data.password), 10);
 	const handle = getHandle(data.name);
-	// console.log(handle);
 
 	const newDOB = new Date(data.DOB).toISOString().split("T")[0];
 	db.query(
@@ -228,7 +216,6 @@ app.post("/signup", async (req, res, next) => {
 					(err, results, fields) => {
 						if (err) return res.redirect("/");
 						req.login(results[0], err => {
-							// console.log(results);
 							if (err) return next(err);
 							res.sendStatus(200);
 						});
@@ -271,15 +258,14 @@ app.post("/logout", checkAuthenticated, (req, res, next) => {
 
 app.post("/post/tweet", (req, res) => {
 	let issues = checkTweet(req.body);
-	// console.log(issues.length);
 	if (issues.length) {
 		req.session.message = {
 			message: issues[0],
 			tweet: req.body.tweet,
 		};
+
 		return res.redirect("/compose/tweet");
 	}
-	// console.log(req.us  er);
 
 	db.query(
 		`INSERT INTO tweets (user_id, tweet_body, likes, retweets, comments, views)
@@ -288,7 +274,6 @@ app.post("/post/tweet", (req, res) => {
 		(err, results) => {
 			if (err) throw err;
 			if (results.insertId) {
-				console.log(results.insertId);
 				req.session.newTweet = {
 					body: req.body.tweet,
 				};
@@ -302,13 +287,28 @@ app.get("/emptylink", (req, res) => {
 	res.render("emptylink");
 });
 
+app.get("/favicon.ico", (req, res) => {
+	return;
+});
+
 // Must be the last GET request!! Will hanldle all other get requests that don't match above
-app.get("/:handle", (req, res) => {
-	console.log(req.session.passport.user);
-	db.query(`SELECT * FROM tweets WHERE user_id = ${req.session.passport.user}`, (err, results) => {
+
+app.get("/:handle", async (req, res) => {
+	function getUserId() {
+		return new Promise((resolve, reject) => {
+			db.query(`SELECT * FROM users WHERE handle = "${req.params.handle}"`, (err, results) => {
+				if (err) throw err;
+				if (results === undefined) {
+					reject("No User");
+				} else {
+					resolve(results);
+				}
+			});
+		});
+	}
+	const userId = await getUserId();
+	db.query(`SELECT * FROM tweets WHERE user_id = "${userId[0].id}"`, (err, results) => {
 		if (err) throw err;
-		// console.log(results);
-		// console.log(results[0].tweet_body);
 		res.render("profile/profile", { user: req.user, tweets: results });
 	});
 });

@@ -278,7 +278,10 @@
 				<div class="mobile-aside-account-info-container">
 					<div class="mobile-aside-account-info-wrapper">
 						<div class="mobile-aside-account-img-wrapper">
-							<a href="/Kyland_Evans" class="mobile-aside-account-img image-40x40">
+							<a
+								href="/<%= currentUser[0].handle %>"
+								class="mobile-aside-account-img image-40x40"
+							>
 								<img
 									src="/Images/test_Image.jpg"
 									alt=""
@@ -294,28 +297,32 @@
 							</a>
 						</div>
 						<div class="mobile-aside-name">
-							<a href="/Kyland_Evans" class="text-underline-white">
+							<a href="/<%= currentUser[0].handle %>" class="text-underline-white">
 								<h3 class="text-color">Kyland Evans</h3>
 							</a>
 						</div>
 						<div class="mobile-aside-handle">
-							<a href="/Kyland_Evans" class="text-decoration-none">
+							<a href="/<%= currentUser[0].handle %>" class="text-decoration-none">
 								<h4 class="text-muted handle-text">@Kyland_Evans</h4>
 							</a>
 						</div>
 						<div class="mobile-aside-following-followers">
-							<a href="/Kyland_Evans/following" class="following-count bold-white"
+							<a
+								href="/<%= currentUser[0].handle %>/following"
+								class="following-count bold-white"
 								><span>38&nbsp;</span
 								><span class="text-muted follow-text">Following</span></a
 							>
-							<a href="/Kyland_Evans/followers" class="followers-count bold-white"
+							<a
+								href="/<%= currentUser[0].handle %>/followers"
+								class="followers-count bold-white"
 								><span>11&nbsp;</span
 								><span class="text-muted follow-text">Followers</span></a
 							>
 						</div>
 					</div>
 					<div class="mobile-account-links-wrapper">
-						<a href="/Kyland_Evans" class="mobile-account-link-wrapper">
+						<a href="/<%= currentUser[0].handle %>" class="mobile-account-link-wrapper">
 							<div class="mobile-aside-account-link">
 								<svg viewBox="0 0 24 24" class="mobile-aside-link-image">
 									<g>
@@ -343,7 +350,10 @@
 								</div>
 							</div>
 						</a>
-						<a href="/Kyland_Evans/topics" class="mobile-account-link-wrapper">
+						<a
+							href="/<%= currentUser[0].handle %>/topics"
+							class="mobile-account-link-wrapper"
+						>
 							<div class="mobile-aside-account-link">
 								<svg viewBox="0 0 24 24" class="mobile-aside-link-image">
 									<g>
@@ -371,7 +381,7 @@
 								</div>
 							</div>
 						</a>
-						<a href="/Kyland_Evans/lists" class="mobile-account-link-wrapper">
+						<a href="/<%= currentUser[0].handle %>/lists" class="mobile-account-link-wrapper">
 							<div class="mobile-aside-account-link">
 								<svg viewBox="0 0 24 24" class="mobile-aside-link-image">
 									<g>
@@ -638,7 +648,7 @@
 	</aside>
 	<aside class="desktop-aside">
 		<div class="desktop-aside-links-wrapper">
-			<div class="desktop-logo-wrapper">
+			<a href="/home" class="desktop-logo-wrapper">
 				<svg viewBox="0 0 24 24" class="desktop-logo">
 					<g>
 						<path
@@ -646,9 +656,9 @@
 						></path>
 					</g>
 				</svg>
-			</div>
+			</a>
 			<div class="desktop-links-wrapper">
-				<div class="desktop-icon-outer">
+				<a href="/home" class="desktop-icon-outer">
 					<div class="desktop-aside-icon-wrapper">
 						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
 							<g>
@@ -658,9 +668,9 @@
 							</g>
 						</svg>
 					</div>
-				</div>
+				</a>
 
-				<div class="desktop-icon-outer">
+				<a href="/explore" class="desktop-icon-outer">
 					<div class="desktop-aside-icon-wrapper">
 						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
 							<g>
@@ -670,8 +680,8 @@
 							</g>
 						</svg>
 					</div>
-				</div>
-				<div class="desktop-icon-outer">
+				</a>
+				<a href="/notifications" class="desktop-icon-outer">
 					<div class="desktop-aside-icon-wrapper">
 						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
 							<g>
@@ -681,8 +691,8 @@
 							</g>
 						</svg>
 					</div>
-				</div>
-				<div class="desktop-icon-outer">
+				</a>
+				<a href="/messages" class="desktop-icon-outer">
 					<div class="desktop-aside-icon-wrapper">
 						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
 							<g>
@@ -692,8 +702,8 @@
 							</g>
 						</svg>
 					</div>
-				</div>
-				<div class="desktop-icon-outer">
+				</a>
+				<a href="/i/bookmarks" class="desktop-icon-outer">
 					<div class="desktop-aside-icon-wrapper">
 						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
 							<g>
@@ -703,8 +713,8 @@
 							</g>
 						</svg>
 					</div>
-				</div>
-				<div class="desktop-icon-outer">
+				</a>
+				<a href="/i/twitter_blue_sign_up" class="desktop-icon-outer">
 					<div class="desktop-aside-icon-wrapper">
 						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
 							<g>
@@ -714,8 +724,8 @@
 							</g>
 						</svg>
 					</div>
-				</div>
-				<div class="desktop-icon-outer">
+				</a>
+				<a href="/<%= currentUser[0].handle %>" class="desktop-icon-outer">
 					<div class="desktop-aside-icon-wrapper">
 						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
 							<g>
@@ -725,7 +735,7 @@
 							</g>
 						</svg>
 					</div>
-				</div>
+				</a>
 				<div class="desktop-icon-outer" data-desktop-extra-links-button-sm>
 					<div class="desktop-aside-icon-wrapper">
 						<svg viewBox="0 0 24 24" class="desktop-aside-icon">
@@ -847,7 +857,7 @@
 					</div>
 				</div>
 			</a>
-			<a href="/Kyland_Evans" class="large-desktop-link-wrapper">
+			<a href="/<%= currentUser[0].handle %>" class="large-desktop-link-wrapper">
 				<div class="large-desktop-link-inner">
 					<svg viewBox="0 0 24 24" class="large-desktop-link-img-wrapper">
 						<g>
@@ -1224,7 +1234,7 @@
 				</div>
 			</div>
 			<% if(newTweet) {%>
-			<div class="feed-item-outer" onclick="location.href='/newlocation'">
+			<div class="feed-item-outer" onclick="location.href='/<%= currentUser[0].handle %>'">
 				<div class="feed-proile-image-wrapper">
 					<div class="image-border-wrapper">
 						<a href="#">
@@ -1326,7 +1336,7 @@
 				</div>
 			</div>
 			<% } %> <% for(let i = 0; i < 50; i++) {%>
-			<div class="feed-item-outer" onclick="location.href='/newlocation'">
+			<div class="feed-item-outer" onclick="location.href='/<%= tweets[i].handle %>'">
 				<div class="feed-proile-image-wrapper">
 					<div class="image-border-wrapper">
 						<a href="#">
