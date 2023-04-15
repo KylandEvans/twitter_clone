@@ -1407,7 +1407,11 @@
 							</div>
 							<div class="action-button-text retweets-text"><%= tweets[i].retweets %></div>
 						</div>
-						<div class="action-button-wrapper">
+						<div
+							class="action-button-wrapper"
+							data-like-id="<%= tweets[0].id %>"
+							data-likes-buttons
+						>
 							<div class="action-button-image likes-button">
 								<svg viewBox="0 0 24 24" class="action-button-defaults likes-image">
 									<g>
@@ -1419,6 +1423,7 @@
 							</div>
 							<div class="action-button-text likes-text"><%= tweets[i].likes %></div>
 						</div>
+
 						<div class="action-button-wrapper views-wrapper">
 							<div class="action-button-image views-button">
 								<svg viewBox="0 0 24 24" class="action-button-defaults views-image">

@@ -9,6 +9,7 @@ const app = {
 		const largeDesktopAside = document.querySelector(".large-desktop-aside");
 		const desktopMoreItemsButton = document.querySelector("[data-desktop-extra-links-button]");
 		const newTweetBtn = document.querySelector("[data-submit-tweet-btn]");
+		const likeBtns = document.querySelectorAll("[data-likes-buttons]");
 		const moreItemsButton = (extraItemsMenu = document.querySelector(
 			"[data-desktop-extra-links-button-sm]"
 		));
@@ -28,6 +29,9 @@ const app = {
 		largeAccountButton.addEventListener("click", app.desktopOpenAccountOptions);
 		desktopMoreItemsButton.addEventListener("click", app.openMoreItemsMenu);
 		moreItemsButton.addEventListener("click", app.openMoreItemsMenu);
+		likeBtns.forEach(btn => {
+			btn.addEventListener("click", app.sendLike);
+		});
 		openCreatorMenuBtn.forEach(ele => {
 			ele.addEventListener("click", app.toggleCreatorMenu);
 		});
@@ -374,6 +378,12 @@ const app = {
 	async getTweetBox() {
 		const response = await fetch("/compose/tweet");
 		console.log(await response.text());
+	},
+
+	sendLike(e) {
+		e.stopPropagation();
+		console.log(e);
+		// console.log(e.target);
 	},
 };
 

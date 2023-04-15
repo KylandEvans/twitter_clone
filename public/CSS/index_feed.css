@@ -561,7 +561,7 @@ main {
 }
 
 .feed-text {
-	color: #e7e9eaff;
+	color: var(--primary-text);
 	font-size: 1.1em;
 }
 
@@ -624,6 +624,15 @@ main {
 	color: var(--faded-white);
 	font-size: 14px;
 	align-items: center;
+	position: relative;
+}
+
+.button-like {
+	background-color: transparent;
+}
+
+.button-like:hover {
+	cursor: pointer;
 }
 
 .action-button-image {
