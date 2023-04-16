@@ -14,6 +14,7 @@ const session = require("express-session");
 const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
 var mysql2 = require("mysql2/promise");
+const { rejects } = require("assert");
 const MySQLStore = require("express-mysql-session")(session);
 
 const sessionStoreOptions = {
@@ -289,6 +290,27 @@ app.get("/emptylink", (req, res) => {
 
 app.get("/favicon.ico", (req, res) => {
 	return;
+});
+
+app.post("/like/:id", (req, res) => {
+	async function postLike() {
+		function getTweetLikes() {
+			return new Promise((resolve, reject) => {
+				db.query(
+					`UPDATE tweets SET likes = likes + 1 WHERE tweetId = ${req.params.id}`,
+					(err, results) => {
+						if (err) {
+							reject(err);
+						} else {
+							resolve(results);
+						}
+					}
+				);
+			});
+		}
+		console.log(await getTweetLikes());
+	}
+	postLike();
 });
 
 // Must be the last GET request!! Will hanldle all other get requests that don't match above

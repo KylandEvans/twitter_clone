@@ -382,8 +382,15 @@ const app = {
 
 	sendLike(e) {
 		e.stopPropagation();
-		console.log(e);
-		// console.log(e.target);
+		let likeId = e.target.dataset.likeId;
+		// console.log(e.target.dataset.likeId);
+		async function postLike(url) {
+			const response = await fetch(url, {
+				method: "POST",
+			});
+			console.log(response);
+		}
+		postLike(`/like/${likeId}`);
 	},
 };
 
