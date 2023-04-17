@@ -308,7 +308,14 @@ app.post("/like/:id", (req, res) => {
 				);
 			});
 		}
-		console.log(await getTweetLikes());
+		let result = await getTweetLikes();
+		console.log(result);
+		if (result.changedRows) {
+			return res.status(200).send("like posted");
+		}
+		if (!result.changedRows) {
+			return res.status(400).send("Unable to post like!");
+		}
 	}
 	postLike();
 });
