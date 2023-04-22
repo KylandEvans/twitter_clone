@@ -27,8 +27,17 @@ CREATE TABLE tweets (
     REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-SELECT * FROM users;	
+CREATE TABLE likes (
+	likeId INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    tweetId INT,
+    userId INT, 
+    FOREIGN KEY (tweetId) REFERENCES tweets(tweetId),
+    FOREIGN KEY (userId) REFERENCES users(id)
+);
+
+SELECT * FROM users;
 SELECT * FROM tweets;
+SELECT * FROM likes;
 SELECT * FROM sessions;
 
 SELECT * FROM users WHERE id > 1000;
@@ -45,5 +54,6 @@ SHOW TABLES;
 
 DESC users;
 DESC tweets;
+DESC likes;
 
 select * from tweets, users where tweetId <= 50 AND tweets.user_id = users.id;

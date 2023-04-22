@@ -309,7 +309,6 @@ app.post("/like/:id", (req, res) => {
 			});
 		}
 		let result = await getTweetLikes();
-		console.log(result);
 		if (result.changedRows) {
 			return res.status(200).send("like posted");
 		}
@@ -318,6 +317,33 @@ app.post("/like/:id", (req, res) => {
 		}
 	}
 	postLike();
+});
+
+app.post("/unlike/:id", (req, res) => {
+	async function postUnlike() {
+		function setTweetLikes() {
+			return new Promise((resolve, reject) => {
+				db.query(
+					`UPDATE tweets SET likes = likes - 1 WHERE tweetId = ${req.params.id}`,
+					(err, results) => {
+						if (err) {
+							reject(err);
+						} else {
+							resolve(results);
+						}
+					}
+				);
+			});
+		}
+		let result = await setTweetLikes();
+		if (result.changedRows) {
+			return res.status(200).send("like posted");
+		}
+		if (!result.changedRows) {
+			return res.status(400).send("Unable to post like!");
+		}
+	}
+	postUnlike();
 });
 
 // Must be the last GET request!! Will hanldle all other get requests that don't match above
